@@ -35,36 +35,27 @@ public class Player extends Sprite {
 			}
 			this.addxVelocity(playerxVelocity);
 		}
-		if(pressedKeyset.contains(KeyCode.UP) && this.ground) {
-			this.addyVelocity(-playeryVelocity);
-			this.ground=false;
-		}
-		if(pressedKeyset.contains(KeyCode.DOWN)) {
-			this.addyVelocity(playeryVelocity);
-		}
+
 		yVelocity+=gravity;
 		xVelocity = 0.97 * xVelocity;
 		yVelocity = 0.97 * yVelocity;
 		this.x = this.x + xVelocity;
 		this.y = this.y + yVelocity;
 		if (x < 0) {
-			xVelocity = -xVelocity;
+			xVelocity = 0;
 
 			//xVelocity=0;
 			x = 0;
 		}else if (x+width > winWidth){
-			xVelocity = -xVelocity;
+
+			xVelocity = 0;
 
 			x = winWidth-width;
 			//xVelocity=0;
 		}
-		if(y < 0) {
-			y=0;
-			//yVelocity = -yVelocity;
-			yVelocity=0;
-		}else if (y+height > winHeight){
+		if (y+height > winHeight){
 			y=winHeight-height;
-			yVelocity=0;
+			yVelocity=-playeryVelocity;
 			ground=true;
 			//yVelocity = -yVelocity;
 		}
@@ -72,7 +63,7 @@ public class Player extends Sprite {
 			if(platform.intersects(this)) {
 				y=platform.y-this.height;
 				if(yVelocity>0) {
-				yVelocity=0;
+				yVelocity=-playeryVelocity;
 				ground=true;
 				}
 			}

@@ -43,9 +43,6 @@ public class Main extends Application {
 
 		
 		Player player = new Player(playerImage, 70, 70);
-		Platform platform = new Platform(platformImage, 300, 30);
-		platform.setPostition((width-platform.width)/2, (height-platform.height)/2);
-
 		
 		/*Listen on key presses*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
@@ -55,12 +52,19 @@ public class Main extends Application {
 			PressedKeyset.add(e.getCode());
 		});
 
-		Platform[] platforms = {platform};
+		Platform[] platforms = new Platform[50];
+		int i=0;
+		for(int c=0; c< 50;c++) {
+			platforms[c]=new Platform(platformImage, 100, 30);
+			platforms[c].setPostition((width-platforms[c].width)*Math.random(), height/2-i*150+i*i/100);
+			i++;
+		}
 		
-		double playeryVelocity=40;
+		double playeryVelocity=30;
 		double playerxVelocity=3;
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
+			double ycamera = 0;
 
 		    @Override
 		    public void handle(long now) {
@@ -83,9 +87,13 @@ public class Main extends Application {
 		        lastTime = now;
 				gc.clearRect(0, 0, canva.getWidth(), canva.getHeight());
 				
+				ycamera=player.y-height/2;
+				
 				player.updatePosition(PressedKeyset,playerxVelocity,playeryVelocity,width, height, platforms);
-				player.render(gc);
-				platform.render(gc);
+				player.render(gc,ycamera);
+				for(Platform platform1 : platforms) {
+					platform1.render(gc,ycamera);
+				}
 				
 
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		

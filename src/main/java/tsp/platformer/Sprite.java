@@ -27,8 +27,8 @@ public class Sprite {
 		this.x = x;
 		this.y = y;
 	}
-	public void render(GraphicsContext gc) {
-		gc.drawImage(img, x, y);
+	public void render(GraphicsContext gc, double ycamera) {
+		gc.drawImage(img, x, y-ycamera);
 	}
 
 }
