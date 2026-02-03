@@ -43,7 +43,7 @@ public class Main extends Application {
 
 		
 		Player player = new Player(playerImage, 70, 70);
-		Tower tower = new Tower(group);
+		Tower tower = new Tower(group, width, height);
 		
 		/*Listen on key presses*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
@@ -97,7 +97,7 @@ public class Main extends Application {
 				for(Platform platform1 : platforms) {
 					platform1.render(gc,ycamera);
 				}
-				tower.rotate(rotation);
+				tower.render(rotation, ycamera);
 				rotation += 0.5;
 
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		
