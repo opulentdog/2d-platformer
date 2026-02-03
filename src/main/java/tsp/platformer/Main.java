@@ -61,7 +61,7 @@ public class Main extends Application {
 		}
 		
 		double playeryVelocity=30;
-		double playerxVelocity=3;
+		double playerxVelocity=1;
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
 			double ycamera = 0;
