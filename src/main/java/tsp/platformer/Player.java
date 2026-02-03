@@ -41,8 +41,6 @@ public class Player extends Sprite {
 		yVelocity+=gravity;
 		xVelocity = 0.97 * xVelocity;
 		yVelocity = 0.97 * yVelocity;
-		this.x = this.x + xVelocity;
-		this.y = this.y + yVelocity;
 		if (x < 0) {
 			xVelocity = 0;
 
@@ -63,13 +61,15 @@ public class Player extends Sprite {
 		}
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
-				y=platform.y-this.height;
+				//y=platform.y-this.height;
 				if(yVelocity>0) {
 				yVelocity=-playeryVelocity;
 				ground=true;
 				}
 			}
 		}
+		this.x = this.x + xVelocity;
+		this.y = this.y + yVelocity;
 	}
 
 }
