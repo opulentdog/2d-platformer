@@ -5,8 +5,10 @@ import java.util.HashSet;
 import javafx.scene.input.KeyCode;
 
 public class Player extends Sprite {
-	private double xVelocity=30;
-	private double yVelocity=1;
+	private double xVelocity=0;
+	private double yVelocity=0;
+	double playeryVelocity=30;
+	double playerxVelocity=1;
 	private int gravity=1;
 	private Boolean ground=true;
 	
@@ -21,7 +23,7 @@ public class Player extends Sprite {
 		this.yVelocity += playeryVelocity;
 	}
 	
-	public void updatePosition(HashSet<KeyCode> pressedKeyset, double playerxVelocity, double playeryVelocity, int winWidth,
+	public void updatePosition(HashSet<KeyCode> pressedKeyset, int winWidth,
 			int winHeight, Platform[] platforms) {
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
 			if(this.ground) {

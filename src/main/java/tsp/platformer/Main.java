@@ -94,7 +94,7 @@ public class Main extends Application {
 				
 				ycamera=player.y-height/2;
 				
-				player.updatePosition(PressedKeyset,playerxVelocity,playeryVelocity,width, height, platforms);
+				player.updatePosition(PressedKeyset,width, height, platforms);
 				player.render(gc,ycamera);
 				for(Platform platform1 : platforms) {
 					platform1.render(gc,ycamera);
