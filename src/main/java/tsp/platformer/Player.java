@@ -61,7 +61,7 @@ public class Player extends Sprite {
 		}
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
-				//y=platform.y-this.height;
+				//	y=platform.y-this.height;
 				if(yVelocity>0) {
 				yVelocity=-playeryVelocity;
 				ground=true;

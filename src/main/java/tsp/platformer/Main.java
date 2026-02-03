@@ -45,6 +45,8 @@ public class Main extends Application {
 		//Les images pour la platforme et le joueur
 		String playerImage = getClass().getResource("/images/player.png").toString();
 		String platformImage = getClass().getResource("/images/platform.png").toString();
+		String platformLavaImage = getClass().getResource("/images/platform-lava.png").toString();
+		
 		
 		//Je crée l'objet player.
 		Player player = new Player(playerImage, 70, 70);
@@ -62,8 +64,14 @@ public class Main extends Application {
 		Platform[] platforms = new Platform[50];
 		int i=0;
 		for(int c=0; c< 50;c++) {
-			platforms[c]=new Platform(platformImage, 100, 30);
-			platforms[c].setPostition((width-platforms[c].width)*Math.random(), height/2-i*150+i*i/100);
+			if(Math.random() < 0.75) {
+				platforms[c]=new Platform(platformImage, 100, 30);
+			}else {
+				platforms[c]=new Platform(platformLavaImage, 100, 30);
+			}
+			double posititionx=(width-platforms[c].width)*Math.random();
+			double posititiony=height/2-i*150+i*i/100;
+			platforms[c].setPostition(posititionx, posititiony);
 			i++;
 		}
 		
@@ -112,7 +120,7 @@ public class Main extends Application {
 		
 		stage.setScene(scene);
 		stage.setResizable(false);
-		stage.setTitle("Alien vs Pinapples");
+		//stage.setTitle("Alien vs Pinapples");
 		stage.show();
 
 	}
