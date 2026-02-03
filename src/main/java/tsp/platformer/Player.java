@@ -18,7 +18,7 @@ public class Player extends Sprite {
 	}
 	
 	public void addxVelocity(double d) {
-		this.xVelocity += d;
+		 this.xVelocity += d;
 	}
 	public void addyVelocity(double playeryVelocity) {
 		this.yVelocity += playeryVelocity;
