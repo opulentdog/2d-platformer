@@ -8,8 +8,8 @@ import javafx.scene.input.KeyCode;
 public class Player extends Sprite {
 	private double xVelocity=0;
 	private double yVelocity=0;
-	double playeryVelocityValue=30 ;
-	double playerxVelocityValue=1;
+	double playeryVelocity=31;
+	double playerxVelocity=3;
 	private int gravity=1;
 	private Boolean ground=true;
 	
@@ -23,48 +23,53 @@ public class Player extends Sprite {
 	public void addyVelocity(double playeryVelocity) {
 		this.yVelocity += playeryVelocity;
 	}
-	
-	public void updatePosition(HashSet<KeyCode> pressedKeyset, int winWidth,
-			int winHeight, Platform[] platforms) {
+	public void controlPlayer(HashSet<KeyCode> pressedKeyset) {
+		
+		//Vérifie si les touche sont appuyé et modifie la vitesse du joueur
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
 			if(this.ground) {
-				this.addxVelocity(-playerxVelocityValue);
+				this.addxVelocity(-playerxVelocity);
 			}
-			this.addxVelocity(-playerxVelocityValue);
+			this.addxVelocity(-playerxVelocity);
 		}
 		if(pressedKeyset.contains(KeyCode.RIGHT)) {
 			if(this.ground) {
-				this.addxVelocity(playerxVelocityValue);
+				this.addxVelocity(playerxVelocity);
 			}
-			this.addxVelocity(playerxVelocityValue);
+			this.addxVelocity(playerxVelocity);
 		}
+	}
+	
+	public void calculatePosition(int windowsWidth,
+			int windowsHeight, Platform[] platforms) {
 
+		//Calcule la position du joueur à la prochaine frame.
 		yVelocity+=gravity;
-		xVelocity = 0.97 * xVelocity;
+		xVelocity = 0.7 * xVelocity;
 		yVelocity = 0.97 * yVelocity;
+		
+		/*Bordure de l'écran gestion des collisions*/
 		if (x < 0) {
 			xVelocity = 0;
-
-			//xVelocity=0;
 			x = 0;
-		}else if (x+width > winWidth){
-
+		}else if (x+width > windowsWidth){
 			xVelocity = 0;
+			x = windowsWidth-width;
+		}
 
-			x = winWidth-width;
-			//xVelocity=0;
-		}
-		if (y+height > winHeight){
-			y=winHeight-height;
-			yVelocity=-playeryVelocityValue;
+		if (y+height > windowsHeight){
+			y=windowsHeight-height;
+			yVelocity=-playeryVelocity;
 			ground=true;
-			//yVelocity = -yVelocity;
 		}
+		
+		
+		/*Collision avec les platformes*/
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
 				//	y=platform.y-this.height;
 				if(yVelocity>0) {
-				yVelocity=-playeryVelocityValue;
+				yVelocity=-playeryVelocity;
 				ground=true;
 				}
 			}

@@ -50,6 +50,7 @@ public class Main extends Application {
 		
 		//Je crée l'objet player.
 		Player player = new Player(playerImage, 70, 70);
+		player.setPostition((width-player.width)/2, player.height);
 		
 		/*J'écoute on key presses*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
@@ -77,32 +78,37 @@ public class Main extends Application {
 		
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
-			double ycamera = 0;
+			double ycamera = 0; //Position verticale de la "caméra" (caméra virtuelle)
 
 		    @Override
 		    public void handle(long now) {
+		    	//Fonction qui est appelé à chaque frame pour dessiner la scène
 		        if (lastTime == 0) {
 		            lastTime = now;
 		            return;
 		        }
 
+		        //Delta c'est le temps en milliseconde qui s'est écoulé entre deux frames
+		        //Ca que le joueur bouge tjrs à la même vitesse même si il y a du lag
 		        double delta = (now - lastTime) / 1_000_000_000.0; // seconds
 		        update(delta,now);
 		    }
 
 			private void update(double delta, long now) {
-				if (delta < 1.0/40) return;
-				if (delta > 2.0 / 40 ) {
+				if (delta < 1.0/40) return; // On limite les fps à 40 frames par seconds
+				if (delta > 2.0 / 40 ) { // On a passé plus de deux frames c'est le cas si on a du lag
 					System.out.println("Dropped frame");
 					lastTime = now;
 					return;
 				}
+				//On met à jour le dernier temps de dessin
 		        lastTime = now;
+		        
 				gc.clearRect(0, 0, canva.getWidth(), canva.getHeight());
 				
 				ycamera=player.y-height/2;
-				
-				player.updatePosition(PressedKeyset,width, height, platforms);
+				player.controlPlayer(PressedKeyset);
+				player.calculatePosition(width, height, platforms);
 				for(Platform platform1 : platforms) {
 					platform1.render(gc,ycamera);
 				}
@@ -123,7 +129,6 @@ public class Main extends Application {
 		
 		stage.setScene(scene);
 		stage.setResizable(false);
-		//stage.setTitle("Alien vs Pinapples");
 		stage.show();
 
 	}
