@@ -103,10 +103,13 @@ public class Main extends Application {
 				ycamera=player.y-height/2;
 				
 				player.updatePosition(PressedKeyset,width, height, platforms);
-				player.render(gc,ycamera);
 				for(Platform platform1 : platforms) {
 					platform1.render(gc,ycamera);
 				}
+				
+				//On dessine le joueur en dernier pour etre au premier plan
+				player.render(gc,ycamera);
+
 				
 
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		
