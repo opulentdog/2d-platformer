@@ -8,7 +8,7 @@ public class Player extends Sprite {
 	private double xVelocity=0;
 	private double yVelocity=0;
 	double playeryVelocity=30;
-	double playerxVelocity=1;
+	double playerxVelocity=3;
 	private int gravity=1;
 	private Boolean ground=true;
 	
@@ -42,7 +42,7 @@ public class Player extends Sprite {
 
 
 		yVelocity+=gravity;
-		xVelocity = 0.97 * xVelocity;
+		xVelocity = 0.7 * xVelocity;
 		yVelocity = 0.97 * yVelocity;
 		
 		/*Bordure de l'écran gestion des collisions*/
