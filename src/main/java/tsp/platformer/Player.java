@@ -23,6 +23,8 @@ public class Player extends Sprite {
 		this.yVelocity += playeryVelocity;
 	}
 	public void controlPlayer(HashSet<KeyCode> pressedKeyset) {
+		
+		//Vérifie si les touche sont appuyé et modifie la vitesse du joueur
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
 			if(this.ground) {
 				this.addxVelocity(-playerxVelocity);
@@ -40,7 +42,7 @@ public class Player extends Sprite {
 	public void calculatePosition(int windowsWidth,
 			int windowsHeight, Platform[] platforms) {
 
-
+		//Calcule la position du joueur à la prochaine frame.
 		yVelocity+=gravity;
 		xVelocity = 0.7 * xVelocity;
 		yVelocity = 0.97 * yVelocity;
