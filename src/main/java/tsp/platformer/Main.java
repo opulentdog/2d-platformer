@@ -101,7 +101,7 @@ public class Main extends Application {
 				gc.clearRect(0, 0, canva.getWidth(), canva.getHeight());
 				
 				ycamera=player.y-height/2;
-				player.listenKeys(PressedKeyset);
+				player.controlPlayer(PressedKeyset);
 				player.calculatePosition(width, height, platforms);
 				for(Platform platform1 : platforms) {
 					platform1.render(gc,ycamera);

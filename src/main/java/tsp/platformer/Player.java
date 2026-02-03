@@ -22,7 +22,7 @@ public class Player extends Sprite {
 	public void addyVelocity(double playeryVelocity) {
 		this.yVelocity += playeryVelocity;
 	}
-	public void listenKeys(HashSet<KeyCode> pressedKeyset) {
+	public void controlPlayer(HashSet<KeyCode> pressedKeyset) {
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
 			if(this.ground) {
 				this.addxVelocity(-playerxVelocity);
@@ -37,8 +37,8 @@ public class Player extends Sprite {
 		}
 	}
 	
-	public void updatePosition(int winWidth,
-			int winHeight, Platform[] platforms) {
+	public void calculatePosition(int windowsWidth,
+			int windowsHeight, Platform[] platforms) {
 
 
 		yVelocity+=gravity;
@@ -49,12 +49,12 @@ public class Player extends Sprite {
 		if (x < 0) {
 			xVelocity = 0;
 			x = 0;
-		}else if (x+width > winWidth){
+		}else if (x+width > windowsWidth){
 			xVelocity = 0;
-			x = winWidth-width;
+			x = windowsWidth-width;
 		}
-		if (y+height > winHeight){
-			y=winHeight-height;
+		if (y+height > windowsHeight){
+			y=windowsHeight-height;
 			yVelocity=-playeryVelocity;
 			ground=true;
 		}
