@@ -36,13 +36,14 @@ public class Main extends Application {
 		Group group = new Group();
 		Canvas canva = new Canvas(width,height);
 		GraphicsContext gc = canva.getGraphicsContext2D();
-		Scene scene = new Scene(group);
+		Scene scene = new Scene(group, width, height);
 		
 		String playerImage = getClass().getResource("/images/player.png").toString();
 		String platformImage = getClass().getResource("/images/platform.png").toString();
 
 		
 		Player player = new Player(playerImage, 70, 70);
+		Tower tower = new Tower(group);
 		
 		/*Listen on key presses*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
@@ -62,9 +63,11 @@ public class Main extends Application {
 		
 		double playeryVelocity=30;
 		double playerxVelocity=1;
+		
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
 			double ycamera = 0;
+			float rotation=0;
 
 		    @Override
 		    public void handle(long now) {
@@ -94,7 +97,8 @@ public class Main extends Application {
 				for(Platform platform1 : platforms) {
 					platform1.render(gc,ycamera);
 				}
-				
+				tower.rotate(rotation);
+				rotation += 0.5;
 
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		
 				return ;				
