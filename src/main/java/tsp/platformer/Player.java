@@ -22,9 +22,7 @@ public class Player extends Sprite {
 	public void addyVelocity(double playeryVelocity) {
 		this.yVelocity += playeryVelocity;
 	}
-	
-	public void updatePosition(HashSet<KeyCode> pressedKeyset, int winWidth,
-			int winHeight, Platform[] platforms) {
+	public void listenKeys(HashSet<KeyCode> pressedKeyset) {
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
 			if(this.ground) {
 				this.addxVelocity(-playerxVelocity);
@@ -37,28 +35,32 @@ public class Player extends Sprite {
 			}
 			this.addxVelocity(playerxVelocity);
 		}
+	}
+	
+	public void updatePosition(int winWidth,
+			int winHeight, Platform[] platforms) {
+
 
 		yVelocity+=gravity;
 		xVelocity = 0.97 * xVelocity;
 		yVelocity = 0.97 * yVelocity;
+		
+		/*Bordure de l'écran gestion des collisions*/
 		if (x < 0) {
 			xVelocity = 0;
-
-			//xVelocity=0;
 			x = 0;
 		}else if (x+width > winWidth){
-
 			xVelocity = 0;
-
 			x = winWidth-width;
-			//xVelocity=0;
 		}
 		if (y+height > winHeight){
 			y=winHeight-height;
 			yVelocity=-playeryVelocity;
 			ground=true;
-			//yVelocity = -yVelocity;
 		}
+		
+		
+		/*Collision avec les platformes*/
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
 				//	y=platform.y-this.height;
