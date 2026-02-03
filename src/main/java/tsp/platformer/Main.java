@@ -30,21 +30,26 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		int width = 694	;
-		int height = 520;
+		int width = 694	; //Largeur de la fenêtre
+		int height = 520; // Hauteur de la fenête
 		
+		
+		//Elements de la scène
 		Group group = new Group();
 		Canvas canva = new Canvas(width,height);
 		GraphicsContext gc = canva.getGraphicsContext2D();
 		Scene scene = new Scene(group);
 		
+		
+		
+		//Les images pour la platforme et le joueur
 		String playerImage = getClass().getResource("/images/player.png").toString();
 		String platformImage = getClass().getResource("/images/platform.png").toString();
-
 		
+		//Je crée l'objet player.
 		Player player = new Player(playerImage, 70, 70);
 		
-		/*Listen on key presses*/
+		/*J'écoute on key presses*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
 			PressedKeyset.remove(e.getCode());
 		});
@@ -52,6 +57,8 @@ public class Main extends Application {
 			PressedKeyset.add(e.getCode());
 		});
 
+		
+		// Créer 50 platformes avec des coordonées horizontale random
 		Platform[] platforms = new Platform[50];
 		int i=0;
 		for(int c=0; c< 50;c++) {
@@ -60,8 +67,6 @@ public class Main extends Application {
 			i++;
 		}
 		
-		double playeryVelocity=30;
-		double playerxVelocity=1;
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
 			double ycamera = 0;

@@ -5,8 +5,8 @@ import java.util.HashSet;
 import javafx.scene.input.KeyCode;
 
 public class Player extends Sprite {
-	private double xVelocity=0;
-	private double yVelocity=0;
+	private double xVelocity=30;
+	private double yVelocity=1;
 	private int gravity=1;
 	private Boolean ground=true;
 	
