@@ -66,7 +66,11 @@ public class Tower{
 
     /*Trace le cylindre à une certaine rotation et position de la caméra*/
     public void render(double ycamera) {
-        towerxVelocity*=0.50;
+        cyl.setRotate(rotation);
+        //Le modulo permet d'avoir l'illusion d'un cylindre de taille infini
+        cyl.setTranslateY(((-ycamera)%(window_height)));
+        
+    	towerxVelocity*=0.70;
         rotation+=towerxVelocity;
 		if(rotation >= 360) {
 			rotation -= 360;
@@ -74,20 +78,16 @@ public class Tower{
 		if(rotation < 0) {
 			rotation += 360;
 		}
-        cyl.setRotate(rotation);
-        //Le modulo permet d'avoir l'illusion d'un cylindre de taille infini
-        cyl.setTranslateY(((-ycamera)%(window_height)));
     }
 
 
 	public void controlTower(HashSet<KeyCode> pressedKeyset) {
 		//Vérifie si les touche sont appuyé et modifie la vitesse du joueur
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
-
-			towerxVelocity=+10;
+			towerxVelocity=-7;
 		}
 		if(pressedKeyset.contains(KeyCode.RIGHT)) {
-			towerxVelocity=-10;
+			towerxVelocity=7;
 		}		
 		
 	}
