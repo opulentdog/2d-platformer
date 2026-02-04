@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Main extends Application {
+	protected static final int TowerWidth = 300;
 	int score = 0;
 	HashSet<KeyCode> PressedKeyset = new HashSet<>();
 
@@ -50,7 +51,7 @@ public class Main extends Application {
 		
 		//Je crée l'objet player.
 		Player player = new Player(playerImage, 70, 70);
-		Tower tower = new Tower(group, width, height);
+		Tower tower = new Tower(group, TowerWidth, width, height);
 		player.setPostition((width-player.width)/2, player.height);
 
 		
@@ -66,19 +67,18 @@ public class Main extends Application {
 		// Créer 50 platformes avec des coordonées horizontale random
 		Platform[] platforms = new Platform[50];
 		int i=0;
-		for(int c=0; c< 50;c++) {
+		for(int c=0; c<50;c++) {
 			if(Math.random() < 0.75) {
 				platforms[c]=new Platform(platformImage, 100, 30);
 			}else {
 				platforms[c]=new Platform(platformLavaImage, 100, 30);
 			}
 			double posititionx=(width-platforms[c].width)*Math.random();
-			double posititiony=height/2-i*150+i*i/100;
+			double posititiony=height/2-i*190+i*i/100;
 			platforms[c].setPostition(posititionx, posititiony);
 			i++;
 		}
 		
-
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
 			double ycamera = 0;	//Position verticale de la "caméra" (caméra virtuelle)
@@ -112,17 +112,25 @@ public class Main extends Application {
 				gc.clearRect(0, 0, canva.getWidth(), canva.getHeight());
 				
 				ycamera=player.y-height/2;
-				player.controlPlayer(PressedKeyset);
+				//player.controlPlayer(PressedKeyset);
+				tower.controlTower(PressedKeyset);
 				player.calculatePosition(width, height, platforms);
+				double towercenterx =width/2;
+				double cos=Math.cos(rotation*2*3.14159/360);
+				double sin=Math.sin(rotation*2*3.14159/360);
 				for(Platform platform1 : platforms) {
-					platform1.render(gc,ycamera);
+					if(rotation>0 && rotation < 180) {
+						platform1.render(gc,ycamera,Math.abs(sin)*100,platform1.height);
+						platform1.setPostition(towercenterx+cos*TowerWidth,platform1.y);
+					}
 				}
-
-				tower.render(rotation, ycamera);
-				rotation += 0.5;
+				tower.render(ycamera);
+				rotation = (float) tower.rotation;
+	
 				
 				//On dessine le joueur en dernier pour etre au premier plan
-				player.render(gc,ycamera);
+				double x=(player.x-width/2)/TowerWidth;
+				player.render(gc,ycamera,Math.sqrt(1-x*x)*player.height,player.height);
 
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		
 				return ;				

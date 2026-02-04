@@ -30,5 +30,8 @@ public class Sprite {
 	public void render(GraphicsContext gc, double ycamera) {
 		gc.drawImage(img, x, y-ycamera);
 	}
-
+	//Rend l'image et permet aussi de redimentionner en temps réel
+	public void render(GraphicsContext gc, double ycamera,double width,double height) {
+		gc.drawImage(img, x, y - ycamera, width, height);
+	}
 }
