@@ -1,0 +1,45 @@
+Projet PRO3600 :
+Réunion de lancement du 06/02 
+
+13 semaines de travail pour le projet
+fin avril : projet terminé
+
+Dates importantes 
+20/02 : pré-rapport : c’est le rapport
+27/03 :  prototype : toutes difficultés résolues
+15/05 : fin avec tests + rapport
+11-12/06  : soutenance
+
+Pour le 20/02 :
+- plan de charge : tableau de répartition du temps
+prévisionnel et le suivi
+- diagramme de classes 
+- le plan du rapport
+il faut le sujet dont : la recette
+—> tous les tests qui vont montrer que le projet marche
+ce sont des actions à faire. ex : ordre de l’utilisateur
+sur Gdocs
+envoyer en PDF
+
+Pour les tests : utiliser JUnit 
+—> cours dans 2 semaines pour l’utiliser
+
+A faire en priorité :
+Séparer les contrôles avec le modèle
+
+/** entrée : faire la Javadoc : expliquer la méthode au lieu de //
+
+Pour les boutons :
+Utiliser Scenebuilder
+faire le tuto sur Moodle : Etape 0 et 9
+pour simplifier le code des affichages
+
+Adrien : il faut rajouter Eric Lallet avec tous les droits sur le Github
+compte : lallet
+
+mettre les .java dans le .gitignore
+rm si ils sont quand même transmis
+
+prochain RDV mardi 17 février : 15h30
+préparer le pré rapport
+mais ne pas rédiger : faire confirmer le plan pendant le rdv
