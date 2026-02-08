@@ -22,41 +22,52 @@ import javafx.scene.AmbientLight;
 
 
 public class Tower{
+	private int windowWidth;
+	private int windowHeight;
 
-	private int cylinder_width;
-	private int cylinder_height;
+	private int cylinderWidth = 250;
+	private int cylinderHeight = 2000;
+	
+	private double towerxVelocity;
+	double rotation;
 	
 	private int repeatX = 5;   // nombre de tuiles horizontalement (autour du cylindre)
-	private int repeatY = 5/2;   // nombre de tuiles verticalement (hauteur)
+	private int repeatY = 5;   // nombre de tuiles verticalement (hauteur)
 	
     private Cylinder cyl;
-	private int window_height;
-	private double towerxVelocity;
-	 double rotation;
+
 
     @SuppressWarnings("exports")
-	public Tower(Group group1, int cylinder_width,int window_width, int window_height) {
-    	this.cylinder_height=window_height*2;
-    	this.cylinder_width=cylinder_width;
-    	this.window_height=window_height;
+	public Tower(Group group1, int cylinderWidth,int windowWidth, int windowHeight) {
+    	this.cylinderHeight=windowHeight*2;
+    	this.cylinderWidth=cylinderWidth;
+    	this.windowHeight=windowHeight;
     	
+		/* Scene scene = new Scene(group1, width, height, true, SceneAntialiasing.BALANCED);
+		stage.setScene(scene);
+		PerspectiveCamera camera = new PerspectiveCamera(true);
+		camera.setTranslateZ(-800);
+		camera.setNearClip(0.1);
+		camera.setFarClip(5000);
+		scene.setCamera(camera);*/
+
         AmbientLight ambient = new AmbientLight(Color.color(1, 1, 1));
 		group1.getChildren().add(ambient);
 		
 		/* Texturer le cylindre en répetant la texture */
-		Image texture = new Image(getClass().getResource("/images/Stone Wall.png").toString(), cylinder_height/repeatX, cylinder_height/repeatY, false, false);
+		Image texture = new Image(getClass().getResource("/images/Stone Wall.png").toString(), cylinderHeight/repeatX, cylinderHeight/repeatY, false, false);
 		double w = texture.getWidth();
 		double h = texture.getHeight();
 		Tile tile = new Tile(texture, w, h);
-		Image tiledTexture = tile.tileWithCanvas(repeatX, 2*repeatY);
-		Cylinder cyl = new Cylinder(this.cylinder_width, cylinder_height);
+		Image tiledTexture = tile.tileWithCanvas(repeatX, repeatY);
+		Cylinder cyl = new Cylinder(cylinderWidth, cylinderHeight);
 		PhongMaterial mat = new PhongMaterial();
 		mat.setDiffuseMap(tiledTexture);
 		cyl.setMaterial(mat);
 		
 		group1.getChildren().add(cyl);
-		cyl.setTranslateX(window_width / 2.0);
-		cyl.setTranslateY(window_height / 2.0);
+		cyl.setTranslateX(windowWidth / 2.0);
+		cyl.setTranslateY(windowHeight / 2.0);
 		
 		cyl.setRotationAxis(javafx.scene.transform.Rotate.Y_AXIS);
 		cyl.setRotate(0);
@@ -64,11 +75,11 @@ public class Tower{
     }
     
 
-    /*Trace le cylindre à une certaine rotation et position de la caméra*/
+    /* Trace le cylindre à une certaine rotation et position de la caméra */
     public void render(double ycamera) {
         cyl.setRotate(rotation);
-        //Le modulo permet d'avoir l'illusion d'un cylindre de taille infini
-        cyl.setTranslateY(((-ycamera)%(window_height)));
+        // Le modulo permet d'avoir l'illusion d'un cylindre de taille infini
+        cyl.setTranslateY(((-ycamera)%(windowHeight)));
         
     	towerxVelocity*=0.70;
         rotation+=towerxVelocity;

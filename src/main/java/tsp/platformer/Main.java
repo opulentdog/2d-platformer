@@ -33,15 +33,15 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		int width = 694	; //Largeur de la fenêtre
-		int height = 520; // Hauteur de la fenête
+		int windowWidth = 694	; //Largeur de la fenêtre
+		int windowHeight = 520; // Hauteur de la fenête
 		
 		
 		//Elements de la scène
 		Group group = new Group();
-		Canvas canva = new Canvas(width,height);
+		Canvas canva = new Canvas(windowWidth,windowHeight);
 		GraphicsContext gc = canva.getGraphicsContext2D();
-		Scene scene = new Scene(group, width, height);
+		Scene scene = new Scene(group, windowWidth, windowHeight);
 		
 		
 		
@@ -53,8 +53,8 @@ public class Main extends Application {
 		
 		//Je crée l'objet player.
 		Player player = new Player(playerImage, 70, 70);
-		Tower tower = new Tower(group, TowerWidth, width, height);
-		player.setPostition((width-player.width)/2, player.height);
+		Tower tower = new Tower(group, TowerWidth, windowWidth, windowHeight);
+		player.setPostition((windowWidth-player.width)/2, player.height);
 
 		
 		/*J'écoute on key presses*/
@@ -80,12 +80,13 @@ public class Main extends Application {
 			}else {
 				platforms[c]=new Platform(platformLavaImage, 100, 30);
 			}
-			double posititionx=(width-platforms[c].width)*Math.random();
-			double posititiony=height/2.-i*PlatformSpacing-(i*i);
+			double posititionx=(windowWidth-platforms[c].width)*Math.random();
+			double posititiony=windowHeight/2.-i*PlatformSpacing-(i*i);
 			platforms[c].setPostition(posititionx, posititiony);
 			i++;
 		}
 		
+
 		AnimationTimer animation = new AnimationTimer() {
 			long lastTime = 0;
 			double ycamera = 0;	//Position verticale de la "caméra" (caméra virtuelle)
@@ -118,12 +119,12 @@ public class Main extends Application {
 		        
 				gc.clearRect(0, 0, canva.getWidth(), canva.getHeight());
 				
-				ycamera=player.y-height/2;
+				ycamera=player.y-windowHeight/2;
 				//player.controlPlayer(PressedKeyset);
 				tower.controlTower(PressedKeyset);
 				tower.render(ycamera);
 				rotation = tower.rotation;
-				double towercenterx =width/2;
+				double towercenterx = windowWidth/2;
 
 				
 				int i=0;
@@ -139,14 +140,14 @@ public class Main extends Application {
 				}
 				double cos=Math.cos(rotation*2*3.14159/360);
 				double sin=Math.sin(rotation*2*3.14159/360);
-				player.calculatePosition(width, height, platforms);
+				player.calculatePosition(windowWidth, windowHeight, platforms);
 	
 				
 				//On dessine le joueur en dernier pour etre au premier plan
-				double x=(player.x-width/2)/TowerWidth;
+				double x=(player.x-windowWidth/2)/TowerWidth;
 				player.render(gc,ycamera,Math.sqrt(1-x*x)*player.height,player.height);
 				
-				gc.strokeText("Score: "+(int)-ycamera/PlatformSpacing, width-100, 10);
+				gc.strokeText("Score: "+(int)-ycamera/PlatformSpacing, windowHeight-100, 10);
 
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		
 				return ;				
