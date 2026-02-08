@@ -20,9 +20,16 @@ public class Player extends Sprite {
 	public void addxVelocity(double d) {
 		 this.xVelocity += d;
 	}
+	
 	public void addyVelocity(double playeryVelocity) {
 		this.yVelocity += playeryVelocity;
 	}
+	
+	/**
+	 * Explication de la méthode.
+	 * @param pressedKeyset
+	 * explication du paramètre
+	 */
 	public void controlPlayer(HashSet<KeyCode> pressedKeyset) {
 		
 		//Vérifie si les touche sont appuyé et modifie la vitesse du joueur
