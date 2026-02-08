@@ -17,6 +17,11 @@ public class Sprite {
 		img = new Image(image, width, height, false, true);
 	}
 	
+	/**
+	 * 
+	 * @param s
+	 * @return explication d l'objet retourné
+	 */
 	public Boolean intersects(Sprite s) {
 		double relativex=s.x-this.x;
 		double relativey=s.y-this.y;
