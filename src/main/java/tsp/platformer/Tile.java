@@ -8,30 +8,30 @@ import javafx.scene.image.Image;
 
 
 public class Tile {
-	private double w;
-	private double h;
+	private double width;
+	private double height;
 	private Image img;
 	
 	Tile(Image img, double w, double h) {
 		this.img = img;
-		this.w = w;
-		this.h = h;
+		this.width = w;
+		this.height = h;
 	}
 	
 	public Image tileWithCanvas(int repeatX, int repeatY) {
 
-		  Canvas canvas = new Canvas(w * repeatX, h * repeatY);
+		  Canvas canvas = new Canvas(width * repeatX, height * repeatY);
 		  GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		  // On "tamponne" l'image en quadrillage
 		  for (int y = 0; y < repeatY; y++) {
 		    for (int x = 0; x < repeatX; x++) {
-		      gc.drawImage(img, x * w, y * h);
+		      gc.drawImage(img, x * width, y * height);
 		    }
 		  }
 
 		  // Convertit le Canvas en Image
-		  WritableImage out = new WritableImage((int) (w * repeatX), (int) (h * repeatY));
+		  WritableImage out = new WritableImage((int) (width * repeatX), (int) (height * repeatY));
 		  canvas.snapshot(new SnapshotParameters(), out);
 		  return out;
 		}

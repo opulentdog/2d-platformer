@@ -33,15 +33,15 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		int width = 694	; //Largeur de la fenêtre
-		int height = 520; // Hauteur de la fenête
+		int windowWidth = 694	; //Largeur de la fenêtre
+		int windowHeight = 520; // Hauteur de la fenête
 		
 		
 		//Elements de la scène
 		Group group = new Group();
-		Canvas canva = new Canvas(width,height);
+		Canvas canva = new Canvas(windowWidth,windowHeight);
 		GraphicsContext gc = canva.getGraphicsContext2D();
-		Scene scene = new Scene(group, width, height);
+		Scene scene = new Scene(group, windowWidth, windowHeight);
 		
 		
 		
@@ -53,8 +53,8 @@ public class Main extends Application {
 		
 		//Je crée l'objet player.
 		Player player = new Player(playerImage, 70, 70);
-		Tower tower = new Tower(group, TowerWidth, width, height);
-		player.setPostition((width-player.width)/2, player.height);
+		Tower tower = new Tower(group, windowWidth, windowHeight);
+		player.setPostition((windowWidth-player.width)/2, player.height);
 
 		
 		/*J'écoute on key presses*/
@@ -80,8 +80,8 @@ public class Main extends Application {
 			}else {
 				platforms[c]=new Platform(platformLavaImage, 100, 30);
 			}
-			double posititionx=(width-platforms[c].width)*Math.random();
-			double posititiony=height/2.-i*PlatformSpacing-(i*i);
+			double posititionx=(windowWidth-platforms[c].width)*Math.random();
+			double posititiony=windowHeight/2-i*150+i*i/100;
 			platforms[c].setPostition(posititionx, posititiony);
 			i++;
 		}
@@ -118,15 +118,9 @@ public class Main extends Application {
 		        
 				gc.clearRect(0, 0, canva.getWidth(), canva.getHeight());
 				
-				ycamera=player.y-height/2;
-				//player.controlPlayer(PressedKeyset);
-				tower.controlTower(PressedKeyset);
-				tower.render(ycamera);
-				rotation = tower.rotation;
-				double towercenterx =width/2;
-
-				
-				int i=0;
+				ycamera=player.y-windowHeight/2;
+				player.controlPlayer(PressedKeyset);
+				player.calculatePosition(windowWidth, windowHeight, platforms);
 				for(Platform platform1 : platforms) {
 					int relRotation = ((int)rotation - platformAngles[i] + 360)%360;
 					double cos=Math.cos(relRotation*2*3.14159/360);

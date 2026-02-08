@@ -34,25 +34,26 @@ public class Tower{
 	private double towerxVelocity;
 	 double rotation;
 
-    @SuppressWarnings("exports")
-	public Tower(Group group1, int cylinder_width,int window_width, int window_height) {
-    	this.cylinder_height=window_height*2;
-    	this.cylinder_width=cylinder_width;
-    	this.window_height=window_height;
+    public Tower(Group group1, int width, int height) {
+    	this.window_width = width;
+    	this.window_height = height;
     	
         AmbientLight ambient = new AmbientLight(Color.color(1, 1, 1));
 		group1.getChildren().add(ambient);
 		
-		/* Texturer le cylindre en répetant la texture */
-		Image texture = new Image(getClass().getResource("/images/Stone Wall.png").toString(), cylinder_height/repeatX, cylinder_height/repeatY, false, false);
+		// Texturer le cylindre en repetant la texture
+		
+		Image texture = new Image(getClass().getResource("/images/Stone Wall.png").toString(), 200, 200, false, false);
 		double w = texture.getWidth();
 		double h = texture.getHeight();
+		
 		Tile tile = new Tile(texture, w, h);
 		Image tiledTexture = tile.tileWithCanvas(repeatX, 2*repeatY);
 		Cylinder cyl = new Cylinder(this.cylinder_width, cylinder_height);
 		PhongMaterial mat = new PhongMaterial();
 		mat.setDiffuseMap(tiledTexture);
 		cyl.setMaterial(mat);
+		
 		
 		group1.getChildren().add(cyl);
 		cyl.setTranslateX(window_width / 2.0);
