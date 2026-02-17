@@ -196,7 +196,6 @@ public class Window extends Application{
 				double x=(player.getX()-window.getWidth()/2)/tower.getWidth();
 				playerRender.render();
 				// playerRender.render(window.getGC(),window.getCamY(),Math.sqrt(1-x*x)*player.getHeight(),player.getHeight());
-
 				
 				window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
 	
