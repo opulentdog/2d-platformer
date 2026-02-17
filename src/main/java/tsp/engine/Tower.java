@@ -10,13 +10,14 @@ import javafx.scene.input.KeyCode;
 
 public class Tower extends Asset{
 	private final static int cylinderWidth = 250;
+	private static int cylinderHeight = 2000;
 	
 	private double towerxVelocity;
 	double rotation;
 
 
 	public Tower() {
-		super("/images/stone-wall.png", cylinderWidth, 0);
+		super("/images/stone-wall.png", cylinderWidth, cylinderHeight);
 
     }
 	

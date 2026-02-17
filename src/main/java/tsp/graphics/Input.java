@@ -15,6 +15,9 @@ public class Input {
 		this.scene = window.getScene();
 	}
 	
+	/**
+	 * Lance la détection des touches
+	 */
 	public void listen() {
 		/*J'écoute les touvhes enfoncees*/
 		scene.setOnKeyReleased((KeyEvent e) -> {

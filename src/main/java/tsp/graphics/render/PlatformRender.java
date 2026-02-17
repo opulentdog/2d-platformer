@@ -39,7 +39,7 @@ public class PlatformRender extends Render<Platform> {
 			if(relRotation>0 && relRotation < 180) {
 				this.renderPlatform(platform1,Math.abs(sinRel)*100,platform1.getHeight());
 				platform1.setPostition(towercenterx+cosRel*tower.getWidth(),platform1.getY());
-				window.getGC().drawImage(this.getTexture().getImage(), platform.getX(),platform.getY()-window.getCamY());
+				window.getGC().drawImage(this.getTexture().getImage(), platform1.getX(),platform1.getY()-window.getCamY());
 			}
 			i++;
 		}
