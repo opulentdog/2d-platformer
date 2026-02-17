@@ -1,10 +1,10 @@
 	module tsp.alien {
-		exports tsp.platformer;
+		exports tsp.graphics;
 	
 		requires javafx.base;
 		requires javafx.controls;
 		requires javafx.fxml;
 		requires javafx.graphics;
 		
-		opens tsp.platformer to javafx.graphics, javafx.fxml;
+		opens tsp.graphics to javafx.graphics, javafx.fxml;
 	}
