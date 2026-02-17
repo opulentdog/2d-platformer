@@ -1,17 +1,22 @@
 
-package tsp.platformer;
+package tsp.engine;
 
 import java.util.HashSet;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import tsp.engine.platforms.Platform;
+import tsp.graphics.Window;
+import tsp.graphics.render.PlayerRender;
 
-public class Player extends Sprite {
+public class Player extends Asset {
 	private double xVelocity=0;
 	private double yVelocity=0;
 	double playeryVelocity=31;
 	double playerxVelocity=3;
 	private int gravity=1;
 	private Boolean ground=true;
+	private PlayerRender playerRender;
 	
 	public Player(String image, int width, int height) {
 		super(image, width, height);

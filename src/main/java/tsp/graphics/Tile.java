@@ -1,4 +1,4 @@
-package tsp.platformer;
+package tsp.graphics;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 public class Tile {
 	private double width;
 	private double height;
+	private int repeatX = 5;   // nombre de tuiles horizontalement (autour du cylindre)
+	private int repeatY = 5;   // nombre de tuiles verticalement (hauteur)
 	private Image img;
 	
 	Tile(Image img, double w, double h) {
