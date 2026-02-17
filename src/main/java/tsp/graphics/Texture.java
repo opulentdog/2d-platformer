@@ -25,7 +25,10 @@ public class Texture {
 	 * 
 	 */
 	private Image img;
+
+	private String imgPath;
 	
+
 	/**
 	 * 
 	 * @param imgPath
@@ -33,11 +36,13 @@ public class Texture {
 	 * @param height
 	 */
 	public Texture(String imgPath, double width, double height) {
+		this.imgPath = imgPath;
 		String imageStr = getClass().getResource(imgPath).toString();
 		img = new Image(imageStr, width, height, false, true);
 	}
 	
 	public Texture(String imgPath) {
+		this.imgPath = imgPath;
 		String imageStr = getClass().getResource(imgPath).toString();
 		img = new Image(imageStr, width, height, false, true);
 	}
@@ -50,17 +55,17 @@ public class Texture {
 	 * @param repeatX
 	 * @param repeatY
 	 */
-	public Texture(String imgPath, int width, int height, int repeatX, int repeatY) {
-		Image texture = new Image(getClass().getResource(imgPath).toString(), height/repeatX, width/repeatY, false, false);
-		double w = texture.getWidth();
-		double h = texture.getHeight();
-		Tile tile = new Tile(texture, w, h);
-		Image tiledTexture = tile.tileWithCanvas(repeatX, repeatY);
+	public void tileTexture(int repeatX, int repeatY) {
+		img = new Image(getClass().getResource(imgPath).toString(), height/repeatX, height/repeatY, false, false);
+		double w = img.getWidth();
+		double h = img.getHeight();
+		Tile tile = new Tile(img, w, h);
+		img = tile.tileWithCanvas(repeatX, repeatY);
 	}
 	
-	public void applyTexture(Shape3D shape, Image tiledTexture) {
+	public void applyTexture(Shape3D shape) {
 		PhongMaterial mat = new PhongMaterial();
-		mat.setDiffuseMap(tiledTexture);
+		mat.setDiffuseMap(img);
 		shape.setMaterial(mat);
 	}
 	

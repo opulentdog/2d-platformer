@@ -19,7 +19,6 @@ class Main{
 	int score = 0;
 	
 	public static void main(String[] args) {
-		Window window = new Window();
 		Window.launchApp(args);
 
 		

@@ -1,7 +1,6 @@
 package tsp.graphics.render;
 
 import javafx.scene.AmbientLight;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Cylinder;
 import tsp.engine.Tower;
@@ -13,17 +12,21 @@ public class TowerRender extends Render<Tower>{
 	private Cylinder cyl;
 	
 	public TowerRender(Window window, Tower tower) {
-		/* Scene scene = new Scene(group1, width, height, true, SceneAntialiasing.BALANCED);
-		stage.setScene(scene);
+		super(tower);
+		/*
+		Scene scene = window.getScene();
+		window.getStage().setScene(scene);
 		PerspectiveCamera camera = new PerspectiveCamera(true);
 		camera.setTranslateZ(-800);
 		camera.setNearClip(0.1);
 		camera.setFarClip(5000);
-		scene.setCamera(camera);*/
-		super(tower);
+		scene.setCamera(camera);
+		*/
 		this.tower = tower;
 		Cylinder cyl = new Cylinder(tower.getWidth(), tower.getHeight());
 		this.cyl = cyl;
+		getTexture().tileTexture(5, 5);
+		getTexture().applyTexture(cyl);
 
         AmbientLight ambient = new AmbientLight(Color.color(1, 1, 1));
 		window.getGroup().getChildren().add(ambient);
@@ -43,7 +46,7 @@ public class TowerRender extends Render<Tower>{
         cyl.setRotate(tower.getRotation());
 		// Le modulo permet d'avoir l'illusion d'un cylindre de taille infini
         cyl.setTranslateY(((-window.getCamY())%(window.getHeight())));
-        
+        tower.updatePosition();
 	}
 
 }

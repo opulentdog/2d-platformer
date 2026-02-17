@@ -50,16 +50,7 @@ public class Window extends Application{
 
 	
 
-// ----------- GETTER/SETTER/CONSTRUCTEUR ---------------------------------------------------------------------------------------------------
-	/**
-	 * Constructeur de la fenetre
-	 * @param windowWidth	largeur de la fenetre
-	 * @param windowHeight	hauteur de la fenetre
-	 */
-	public Window() {
-		
-	}
-	
+// ----------- GETTER/SETTER/CONSTRUCTEUR ---------------------------------------------------------------------------------------------------	
 	public void setSize(int windowWidth, int windowHeight) {
 		 this.windowWidth = windowWidth;
 		 this.windowHeight = windowHeight;
@@ -153,6 +144,7 @@ public class Window extends Application{
 		
 		Player player = new Player("/images/player.png", 70, 70);
 		Tower tower = new Tower();
+		input.listen();
 		Platform[] platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
 		
 		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
@@ -193,13 +185,13 @@ public class Window extends Application{
 				window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
 				
 				window.setCam(player.getY()-window.getHeight()/2);
-				//player.controlPlayer(PressedKeyset);
+				// player.controlPlayer(input.getPressedKeyset());
 				tower.controlTower(input.getPressedKeyset());
 				towerRender.render();
+				
+				platformRender.render();
 
 				player.calculatePosition(window.getWidth(), window.getHeight(), platforms);
-	
-				
 				//On dessine le joueur en dernier pour etre au premier plan
 				double x=(player.getX()-window.getWidth()/2)/tower.getWidth();
 				playerRender.render();
