@@ -42,6 +42,10 @@ public class Window extends Application{
 	private Group group;
 	private Canvas canvas;
 	private GraphicsContext gc;
+	/**
+	 * Son de la fenêtre
+	 */
+	Sound sound;
 	
 	/**
 	 * Position verticale de la "caméra" (caméra virtuelle)
@@ -136,9 +140,10 @@ public class Window extends Application{
 		this.gc = canvas.getGraphicsContext2D();
 		this.scene = new Scene(group, windowWidth, windowHeight);
 		this.stage = stage;
+		this.sound = new Sound();
 		
 		Window window = this;
-		
+				
 		Input input = new Input(window);
 		Generation generator = new Generation();
 		
@@ -154,6 +159,7 @@ public class Window extends Application{
 		PlatformRender platformRender = new PlatformRender(window, tower, platforms, generator);	
 		
 		AnimationTimer animation = new AnimationTimer() {
+		
 			private static final int PlatformSpacing = 300;
 
 			long lastTime = 0;			
@@ -192,27 +198,46 @@ public class Window extends Application{
 				platformRender.render();
 
 				player.calculatePosition(window.getWidth(), window.getHeight(), platforms);
+				
 				//On dessine le joueur en dernier pour etre au premier plan
 				double x=(player.getX()-window.getWidth()/2)/tower.getWidth();
 				playerRender.render();
-				// playerRender.render(window.getGC(),window.getCamY(),Math.sqrt(1-x*x)*player.getHeight(),player.getHeight());
 				
+				// playerRender.render(window.getGC(),window.getCamY(),Math.sqrt(1-x*x)*player.getHeight(),player.getHeight());
 				window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
 	
 				//gc.strokeText("FPS: "+1/delta, 540, 36);		
+				
 				return ;
 			}
 		};
 		animation.start();
-		
+		//On lance la musique
+		playMusic(0);
 		window.getGroup().getChildren().add(window.getCanvas());
 		window.getStage().setScene(window.getScene());
 		window.getStage().setResizable(false);
 		window.getStage().show();
 		
 	}
-		
 	
+// --------------- Méthodes paramétrant le son ------------------------
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	public void stopMusic() {
+		sound.stop();
+	}
+	 
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	 }	
+	
+// --------------- Lancement du jeu ------------------------
+
     public static void launchApp(String[] args) {
         launch(args);
     }
