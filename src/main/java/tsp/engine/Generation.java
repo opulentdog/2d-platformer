@@ -1,5 +1,7 @@
 package tsp.engine;
 
+import java.util.Random;
+
 import tsp.engine.platforms.*;
 
 public class Generation {
@@ -20,8 +22,9 @@ public class Generation {
 			platformAngles[k]=(platformAngles[k-1]+(int)(250*Math.random())-125)%360;
 		}
 		int i=0;
+        Random random = new Random();
 		for(int c=0; c<50;c++) {
-			if(Math.random() < 0.75) {
+			if(random.nextDouble() < 0.75) {
 				platforms[c]=new BasicPlatform();
 			}else {
 				platforms[c]=new LavaPlatform();

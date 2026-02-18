@@ -37,9 +37,11 @@ public class Tower extends Asset{
 		}
 	}
 
-
+	/**
+	 * Vérifie si les touche sont appuyé et modifie la vitesse du joueur
+	 * @param pressedKeyset
+	 */
 	public void controlTower(HashSet<KeyCode> pressedKeyset) {
-		//Vérifie si les touche sont appuyé et modifie la vitesse du joueur
 		if(pressedKeyset.contains(KeyCode.LEFT)) {
 			towerxVelocity=-7;
 		}

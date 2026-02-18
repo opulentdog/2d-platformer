@@ -56,7 +56,7 @@ public class Texture {
 	 * @param repeatY
 	 */
 	public void tileTexture(int repeatX, int repeatY) {
-		img = new Image(getClass().getResource(imgPath).toString(), height/repeatX, height/repeatY, false, false);
+		img = new Image(getClass().getResource(imgPath).toString(), height, height, false, false);
 		double w = img.getWidth();
 		double h = img.getHeight();
 		Tile tile = new Tile(img, w, h);
