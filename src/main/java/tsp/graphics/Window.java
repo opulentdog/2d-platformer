@@ -213,7 +213,7 @@ public class Window extends Application{
 		};
 		animation.start();
 		//On lance la musique
-		playMusic(0);
+		playMusic(1);
 		window.getGroup().getChildren().add(window.getCanvas());
 		window.getStage().setScene(window.getScene());
 		window.getStage().setResizable(false);
