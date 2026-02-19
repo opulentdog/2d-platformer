@@ -17,9 +17,11 @@ public class Player extends Asset {
 	private int gravity=1;
 	private Boolean ground=true;
 	private PlayerRender playerRender;
+	private Window window;
 	
-	public Player(String image, int width, int height) {
+	public Player(String image, int width, int height, Window window) {
 		super(image, width, height);
+		this.window=window;
 	}
 	
 	public void addxVelocity(double d) {
@@ -83,6 +85,8 @@ public class Player extends Asset {
 				if(yVelocity>0) {
 				yVelocity=-playeryVelocity;
 				ground=true;
+				window.playSE(2);
+				window.volume(0.8f);
 				}
 			}
 		}
