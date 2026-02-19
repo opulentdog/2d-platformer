@@ -147,7 +147,7 @@ public class Window extends Application{
 		Input input = new Input(window);
 		Generation generator = new Generation();
 		
-		Player player = new Player("/images/player.png", 70, 70);
+		Player player = new Player("/images/player.png", 70, 70,this);
 		Tower tower = new Tower();
 		input.listen();
 		Platform[] platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
@@ -214,6 +214,7 @@ public class Window extends Application{
 		animation.start();
 		//On lance la musique
 		playMusic(1);
+		volume(0.7f);
 		window.getGroup().getChildren().add(window.getCanvas());
 		window.getStage().setScene(window.getScene());
 		window.getStage().setResizable(false);
@@ -234,6 +235,9 @@ public class Window extends Application{
 	public void playSE(int i) {
 		sound.setFile(i);
 		sound.play();
+	 }	
+	public void volume(float i) {
+		sound.volume_percent_to_gain(i);
 	 }	
 	
 // --------------- Lancement du jeu ------------------------
