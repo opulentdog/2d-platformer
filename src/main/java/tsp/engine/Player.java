@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import tsp.engine.platforms.Platform;
 import tsp.graphics.Window;
 import tsp.graphics.render.PlayerRender;
+import tsp.graphics.Sound;
 
 public class Player extends Asset {
 	private double xVelocity=0;
@@ -17,11 +18,10 @@ public class Player extends Asset {
 	private int gravity=1;
 	private Boolean ground=true;
 	private PlayerRender playerRender;
-	private Window window;
+	private Sound soundeff = new Sound("/sounds/sound_effect/SFX_Jump_42.wav.wav");
 	
 	public Player(String image, int width, int height, Window window) {
 		super(image, width, height);
-		this.window=window;
 	}
 	
 	public void addxVelocity(double d) {
@@ -85,8 +85,8 @@ public class Player extends Asset {
 				if(yVelocity>0) {
 				yVelocity=-playeryVelocity;
 				ground=true;
-				window.playSE(2);
-				window.volume(0.8f);
+				soundeff.playSE();
+				soundeff.volume(0.8f);
 				}
 			}
 		}
