@@ -6,6 +6,7 @@ import java.util.HashSet;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import tsp.engine.platforms.Platform;
+import tsp.engine.platforms.BasicPlatform;
 import tsp.graphics.Window;
 import tsp.graphics.render.PlayerRender;
 import tsp.graphics.Sound;
@@ -18,7 +19,7 @@ public class Player extends Asset {
 	private int gravity=1;
 	private Boolean ground=true;
 	private PlayerRender playerRender;
-	private Sound soundeff = new Sound("/sounds/sound_effect/SFX_Jump_42.wav.wav");
+//	private Sound soundeff = new Sound("/sounds/sound_effect/SFX_Jump_42.wav.wav");
 	
 	public Player(String image, int width, int height, Window window) {
 		super(image, width, height);
@@ -83,10 +84,11 @@ public class Player extends Asset {
 			if(platform.intersects(this)) {
 				//	y=platform.y-this.height;
 				if(yVelocity>0) {
-				yVelocity=-playeryVelocity;
-				ground=true;
-				soundeff.playSE();
-				soundeff.volume(0.8f);
+					yVelocity=-playeryVelocity;
+					ground=true;
+					if (platform instanceof BasicPlatform) {
+						platform.rebond();
+			        }
 				}
 			}
 		}
