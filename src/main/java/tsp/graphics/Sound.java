@@ -11,8 +11,15 @@ public class Sound {
 	private Clip clip;
 	private URL soundURL;
 	
+<<<<<<< nathan
 	public Sound(String chemin) {
 		soundURL = getClass().getResource(chemin);
+=======
+	public Sound() {
+		soundURL[0] = getClass().getResource("/sounds/music/track1.wav");
+		soundURL[1] = getClass().getResource("/sounds/music/track2.wav");
+		soundURL[2] = getClass().getResource("/sounds/sound_effect/SFX_Jump_42.wav.wav");
+>>>>>>> main
 	}
 	
 	public void setFile() {
@@ -45,6 +52,7 @@ public class Sound {
 		float gain = min + (max - min) * volumePercent;
 		volume.setValue(gain);
 	}
+<<<<<<< nathan
 	
 	public void playMusic() {
 		this.setFile();
@@ -62,4 +70,6 @@ public class Sound {
 	public void volume(float i) {
 		this.volume_percent_to_gain(i);
 	 }	
+=======
+>>>>>>> main
 }

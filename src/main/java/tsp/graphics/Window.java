@@ -214,15 +214,41 @@ public class Window extends Application{
 		};
 		animation.start();
 		//On lance la musique
+<<<<<<< nathan
 		sound.playMusic();
 		sound.volume(0.7f);
+=======
+		playMusic(1);
+		volume(0.7f);
+>>>>>>> main
 		window.getGroup().getChildren().add(window.getCanvas());
 		window.getStage().setScene(window.getScene());
 		window.getStage().setResizable(false);
 		window.getStage().show();
 		
 	}
+<<<<<<< nathan
 		
+=======
+	
+// --------------- Méthodes paramétrant le son ------------------------
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	public void stopMusic() {
+		sound.stop();
+	}
+	 
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	 }	
+	public void volume(float i) {
+		sound.volume_percent_to_gain(i);
+	 }	
+>>>>>>> main
 	
 // --------------- Lancement du jeu ------------------------
 

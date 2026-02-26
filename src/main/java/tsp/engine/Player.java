@@ -23,6 +23,7 @@ public class Player extends Asset {
 	
 	public Player(String image, int width, int height, Window window) {
 		super(image, width, height);
+		this.window=window;
 	}
 	
 	public void addxVelocity(double d) {
