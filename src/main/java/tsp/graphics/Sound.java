@@ -9,17 +9,15 @@ import javax.sound.sampled.FloatControl;
 
 public class Sound {
 	private Clip clip;
-	private URL soundURL[] = new URL[30];
+	private URL soundURL;
 	
-	public Sound() {
-		soundURL[0] = getClass().getResource("/sounds/music/track1.wav");
-		soundURL[1] = getClass().getResource("/sounds/music/track2.wav");
-		soundURL[2] = getClass().getResource("/sounds/sound_effect/SFX_Jump_42.wav.wav");
+	public Sound(String chemin) {
+		soundURL = getClass().getResource(chemin);
 	}
 	
-	public void setFile(int i) {
+	public void setFile() {
 		try {
-			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
 			clip = AudioSystem.getClip();
 			clip.open(ais);
 		}catch(Exception e) {
@@ -47,4 +45,21 @@ public class Sound {
 		float gain = min + (max - min) * volumePercent;
 		volume.setValue(gain);
 	}
+	
+	public void playMusic() {
+		this.setFile();
+		this.play();
+		this.loop();
+	}
+	public void stopMusic() {
+		this.stop();
+	}
+	 
+	public void playSE() {
+		this.setFile();
+		this.play();
+	 }	
+	public void volume(float i) {
+		this.volume_percent_to_gain(i);
+	 }	
 }
