@@ -1,4 +1,3 @@
-
 package tsp.engine;
 
 import java.util.HashSet;
@@ -21,9 +20,8 @@ public class Player extends Asset {
 	private PlayerRender playerRender;
 //	private Sound soundeff = new Sound("/sounds/sound_effect/SFX_Jump_42.wav.wav");
 	
-	public Player(String image, int width, int height, Window window) {
+	public Player(String image, int width, int height) {
 		super(image, width, height);
-		this.window=window;
 	}
 	
 	public void addxVelocity(double d) {
@@ -35,9 +33,8 @@ public class Player extends Asset {
 	}
 	
 	/**
-	 * Explication de la méthode.
+	 * TODO Explication de la méthode.
 	 * @param pressedKeyset
-	 * explication du paramètre
 	 */
 	public void controlPlayer(HashSet<KeyCode> pressedKeyset) {
 		
@@ -56,6 +53,12 @@ public class Player extends Asset {
 		}
 	}
 	
+	/**
+	 * TODO javadoc
+	 * @param windowsWidth
+	 * @param windowsHeight
+	 * @param platforms
+	 */
 	public void calculatePosition(int windowsWidth,
 			int windowsHeight, Platform[] platforms) {
 

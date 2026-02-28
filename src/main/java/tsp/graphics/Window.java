@@ -36,16 +36,17 @@ public class Window extends Application{
 	private Stage stage;
 	
 	/**
-	 * scene javafx
+	 * éléments javafx
 	 */
 	private Scene scene;
 	private Group group;
 	private Canvas canvas;
 	private GraphicsContext gc;
+	
 	/**
 	 * Son de la fenêtre
 	 */
-	Sound sound;
+	private Sound sound;
 	
 	/**
 	 * Position verticale de la "caméra" (caméra virtuelle)
@@ -60,66 +61,34 @@ public class Window extends Application{
 		 this.windowHeight = windowHeight;
 		 }
 	
-	/**
-	 * getter windowWidth
-	 * @return largeur de la fenetre (int)
-	 */
 	public int getWidth() {
 		return windowWidth;
 	}
 	
-	/**
-	 * getter windowHeight
-	 * @return hauteur de la fenetre (int)
-	 */
 	public int getHeight() {
 		return windowHeight;
 	}
 	
-	/**
-	 * getter scene
-	 * @return scene javafx
-	 */
 	public Stage getStage() {
 		return stage;
 	}
 	
-	/**
-	 * getter scene
-	 * @return scene javafx
-	 */
 	public Scene getScene() {
 		return scene;
 	}
 	
-	/**
-	 * getter group
-	 * @return groupe javafx
-	 */
 	public Group getGroup() {
 		return group;
 	}
 
-	/**
-	 * getter canvas
-	 * @return canvas javafx
-	 */
 	public Canvas getCanvas() {
 		return canvas;
 	}
 	
-	/**
-	 * getter gc
-	 * @return graphicscontext javafx
-	 */
 	public GraphicsContext getGC() {
 		return gc;
 	}
 	
-	/**
-	 * getter camera
-	 * @return ycamera (double)
-	 */
 	public double getCamY() {
 		return ycamera;
 	}
@@ -148,7 +117,7 @@ public class Window extends Application{
 		Input input = new Input(window);
 		Generation generator = new Generation();
 		
-		Player player = new Player("/images/player.png", 70, 70,this);
+		Player player = new Player("/images/player.png", 70, 70);
 		Tower tower = new Tower();
 		input.listen();
 		Platform[] platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
@@ -214,41 +183,15 @@ public class Window extends Application{
 		};
 		animation.start();
 		//On lance la musique
-<<<<<<< nathan
 		sound.playMusic();
 		sound.volume(0.7f);
-=======
-		playMusic(1);
-		volume(0.7f);
->>>>>>> main
+
 		window.getGroup().getChildren().add(window.getCanvas());
 		window.getStage().setScene(window.getScene());
 		window.getStage().setResizable(false);
 		window.getStage().show();
 		
 	}
-<<<<<<< nathan
-		
-=======
-	
-// --------------- Méthodes paramétrant le son ------------------------
-	public void playMusic(int i) {
-		sound.setFile(i);
-		sound.play();
-		sound.loop();
-	}
-	public void stopMusic() {
-		sound.stop();
-	}
-	 
-	public void playSE(int i) {
-		sound.setFile(i);
-		sound.play();
-	 }	
-	public void volume(float i) {
-		sound.volume_percent_to_gain(i);
-	 }	
->>>>>>> main
 	
 // --------------- Lancement du jeu ------------------------
 
