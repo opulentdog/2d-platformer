@@ -165,7 +165,6 @@ public class Window extends Application{
 				window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
 				window.setCam(player.getY()-window.getHeight()/2);
 				
-				// gc.drawImage(bg.getImage(), 0, 0, windowWidth, windowHeight);
 				// player.controlPlayer(input.getPressedKeyset());
 				tower.controlTower(input.getPressedKeyset());
 				towerRender.render();

@@ -1,9 +1,5 @@
 package tsp.engine;
 
-import javafx.scene.image.Image;
-import tsp.graphics.Texture;
-import tsp.graphics.Window;
-
 public abstract class Asset {
 	String imgPath;
 	double width;

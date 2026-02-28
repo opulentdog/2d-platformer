@@ -1,9 +1,13 @@
 package tsp.graphics.render;
 
+import java.util.EnumMap;
+
 import tsp.engine.Generation;
 import tsp.engine.Player;
 import tsp.engine.Tower;
 import tsp.engine.platforms.Platform;
+import tsp.engine.platforms.Platform.PlatformType;
+import tsp.graphics.Texture;
 import tsp.graphics.Window;
 
 public class PlatformRender extends Render<Platform> {
@@ -13,6 +17,7 @@ public class PlatformRender extends Render<Platform> {
 	double rotation = 0;
 	Platform[] platforms;
 	Generation generator;
+	EnumMap<PlatformType, Texture> textureMap;
 
 	
 	public PlatformRender(Window window, Tower tower, Platform[] platforms, Generation generator) {
@@ -21,6 +26,12 @@ public class PlatformRender extends Render<Platform> {
 		this.tower = tower;
 		this.platforms = platforms;
 		this.generator = generator;
+		
+		textureMap = new EnumMap<>(PlatformType.class);
+        textureMap.put(PlatformType.BASIC, new Texture("/images/platform.png"));
+        textureMap.put(PlatformType.LAVA, new Texture("/images/platform-lava.png"));
+        textureMap.put(PlatformType.SPRING, new Texture("/images/platform.png"));
+        textureMap.put(PlatformType.FALLING, new Texture("/images/platform.png"));
 	}
 	
 	@Override
@@ -39,7 +50,6 @@ public class PlatformRender extends Render<Platform> {
 			if(relRotation>0 && relRotation < 180) {
 				this.renderPlatform(platform1,Math.abs(sinRel)*100,platform1.getHeight());
 				platform1.setPostition(towercenterx+cosRel*tower.getWidth(),platform1.getY());
-				window.getGC().drawImage(this.getTexture().getImage(), platform1.getX(),platform1.getY()-window.getCamY());
 			}
 			i++;
 		}
@@ -48,7 +58,7 @@ public class PlatformRender extends Render<Platform> {
 	
 	//Rend l'image et permet aussi de redimentionner en temps réel
 	public void renderPlatform(Platform platform, double width, double height) {
-		window.getGC().drawImage(this.getTexture().getImage(), platform.getX(), platform.getY() - window.getCamY(), width, height);
+		window.getGC().drawImage(textureMap.get(platform.getType()).getImage(), platform.getX(), platform.getY() - window.getCamY(), width, height);
 	}
 
 }
