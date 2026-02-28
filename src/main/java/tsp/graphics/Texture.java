@@ -1,9 +1,8 @@
 package tsp.graphics;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Shape3D;
 
 /**
@@ -29,12 +28,6 @@ public class Texture {
 	private String imgPath;
 	
 
-	/**
-	 * 
-	 * @param imgPath
-	 * @param width
-	 * @param height
-	 */
 	public Texture(String imgPath, double width, double height) {
 		this.imgPath = imgPath;
 		String imageStr = getClass().getResource(imgPath).toString();
@@ -46,6 +39,11 @@ public class Texture {
 		String imageStr = getClass().getResource(imgPath).toString();
 		img = new Image(imageStr, width, height, false, true);
 	}
+	
+	public Image getImage() {
+		return img;
+	}
+	
 	
 	/**
 	 * Texture pour un cylindre (À généraliser plus tard éventuellement pour n'importe quelle forme)
@@ -69,8 +67,16 @@ public class Texture {
 		shape.setMaterial(mat);
 	}
 	
-	public Image getImage() {
-		return img;
+	/**
+	 * Définit l'image comme fond d'écran pour la fenêtre avec ImageView
+	 * @param window
+	 */
+	public void setBG(Window window) {
+		ImageView bgView = new ImageView(img);
+		bgView.setFitWidth(width);
+		bgView.setFitHeight(height);
+		bgView.setPreserveRatio(false);
+		window.getGroup().getChildren().add(bgView);
 	}
 
 }

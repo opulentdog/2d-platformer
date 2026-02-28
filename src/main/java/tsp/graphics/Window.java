@@ -124,9 +124,13 @@ public class Window extends Application{
 		
 		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
 		
+		Texture bg = new Texture("/images/space.jpg", windowWidth, windowHeight);
+		bg.setBG(this);
+		
 		TowerRender towerRender = new TowerRender(window, tower);
 		PlayerRender playerRender = new PlayerRender(window,player);
 		PlatformRender platformRender = new PlatformRender(window, tower, platforms, generator);	
+
 		
 		AnimationTimer animation = new AnimationTimer() {
 		
@@ -159,8 +163,9 @@ public class Window extends Application{
 		        lastTime = now;
 		        
 				window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-				
 				window.setCam(player.getY()-window.getHeight()/2);
+				
+				// gc.drawImage(bg.getImage(), 0, 0, windowWidth, windowHeight);
 				// player.controlPlayer(input.getPressedKeyset());
 				tower.controlTower(input.getPressedKeyset());
 				towerRender.render();
