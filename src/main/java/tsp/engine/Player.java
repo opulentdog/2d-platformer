@@ -11,6 +11,7 @@ import tsp.graphics.render.PlayerRender;
 import tsp.graphics.Sound;
 
 public class Player extends Asset {
+	private boolean dead;
 	private double xVelocity=0;
 	private double yVelocity=0;
 	double playeryVelocity=31;
@@ -22,8 +23,13 @@ public class Player extends Asset {
 	
 	public Player(String image, int width, int height) {
 		super(image, width, height);
+		dead = false;
 	}
 	
+	public boolean isDead() {
+		return dead;
+	}
+		
 	public void addxVelocity(double d) {
 		 this.xVelocity += d;
 	}

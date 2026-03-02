@@ -2,10 +2,10 @@ package tsp.engine;
 
 public abstract class Asset {
 	String imgPath;
-	double width;
-	double height;
-	double x = 0;
-	double y = 0;
+	protected double width;
+	protected double height;
+	protected double x = 0;
+	protected double y = 0;
 	
 
 	public Asset (String image, int width, int height) {
