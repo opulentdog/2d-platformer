@@ -160,20 +160,20 @@ public class Window extends Application{
 		        game.update(delta);
 		        switch(game.getState()) {
 		        	case RUNNING:
-						window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-						window.setCam(game.getPlayer().getY()-window.getHeight()/2);
-						
-						game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
-						game.getTower().controlTower(input.getPressedKeyset());
-						
-						towerRender.render();
-						platformRender.render();
-						playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
-						
-						window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
-			
-						//gc.strokeText("FPS: "+1/delta, 540, 36);
-						return ;
+                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
+                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
+
+                game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
+                game.getTower().controlTower(input.getPressedKeyset());
+
+                towerRender.render();
+                platformRender.render();
+                playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
+
+                window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
+
+                //gc.strokeText("FPS: "+1/delta, 540, 36);
+						    return ;
 						
 		        	case GAME_OVER:
 		                // on redessine une dernière image figée :
