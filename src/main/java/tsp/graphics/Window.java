@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import tsp.engine.Game;
 import tsp.engine.Generation;
 import tsp.engine.Player;
 import tsp.engine.Tower;
@@ -115,21 +116,15 @@ public class Window extends Application{
 		Window window = this;
 				
 		Input input = new Input(window);
-		Generation generator = new Generation();
-		
-		Player player = new Player("/images/player.png", 70, 70);
-		Tower tower = new Tower();
+		Game game = new Game(this);
 		input.listen();
-		Platform[] platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
-		
-		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
 		
 		Texture bg = new Texture("/images/space.jpg", windowWidth, windowHeight);
 		bg.setBG(this);
 		
-		TowerRender towerRender = new TowerRender(window, tower);
-		PlayerRender playerRender = new PlayerRender(window,player);
-		PlatformRender platformRender = new PlatformRender(window, tower, platforms, generator);	
+		TowerRender towerRender = new TowerRender(window, game.getTower());
+		PlayerRender playerRender = new PlayerRender(window,game.getPlayer());
+		PlatformRender platformRender = new PlatformRender(window, game.getTower(), game.getPlatforms(), game.getGenerator());	
 
 		
 		AnimationTimer animation = new AnimationTimer() {
@@ -147,7 +142,7 @@ public class Window extends Application{
 		        }
 	
 		        //Delta c'est le temps en milliseconde qui s'est écoulé entre deux frames
-		        //Ca que le joueur bouge tjrs à la même vitesse même si il y a du lag
+		        //Ca permet que le joueur bouge tjrs à la même vitesse même si il y a du lag
 		        double delta = (now - lastTime) / 1_000_000_000.0; // seconds
 		        update(delta,now);
 		    }
@@ -163,24 +158,24 @@ public class Window extends Application{
 		        lastTime = now;
 		        
 				window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-				window.setCam(player.getY()-window.getHeight()/2);
+				window.setCam(game.getPlayer().getY()-window.getHeight()/2);
 				
 				// player.controlPlayer(input.getPressedKeyset());
-				tower.controlTower(input.getPressedKeyset());
+				game.getTower().controlTower(input.getPressedKeyset());
 				towerRender.render();
 				
 				platformRender.render();
 
-				player.calculatePosition(window.getWidth(), window.getHeight(), platforms);
+				game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
 				
 				//On dessine le joueur en dernier pour etre au premier plan
-				double x=(player.getX()-window.getWidth()/2)/tower.getWidth();
+				double x=(game.getPlayer().getX()-window.getWidth()/2)/game.getTower().getWidth();
 				playerRender.render();
 				
 				// playerRender.render(window.getGC(),window.getCamY(),Math.sqrt(1-x*x)*player.getHeight(),player.getHeight());
 				window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
 	
-				//gc.strokeText("FPS: "+1/delta, 540, 36);		
+				//gc.strokeText("FPS: "+1/delta, 540, 36);
 				
 				return ;
 			}
