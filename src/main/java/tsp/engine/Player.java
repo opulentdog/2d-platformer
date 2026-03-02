@@ -29,7 +29,11 @@ public class Player extends Asset {
 	public boolean isDead() {
 		return dead;
 	}
-		
+	
+	public void kill() {
+		dead = true;
+	}
+ 		
 	public void addxVelocity(double d) {
 		 this.xVelocity += d;
 	}

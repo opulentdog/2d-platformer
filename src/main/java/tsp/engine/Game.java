@@ -17,7 +17,9 @@ public class Game {
 	private Generation generator;
 	private Platform[] platforms;
 	
-	
+	public GameState getState() {
+		return state;
+	}
 	
 	public Player getPlayer() {
 		return player;
@@ -58,7 +60,7 @@ public class Game {
 		
 		platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
 		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
-		
+		state = GameState.RUNNING;
 	}
 
 	public void update(double delta) {
@@ -73,6 +75,7 @@ public class Game {
 	            updateGame(delta);
 	            if(player.isDead()) {
 	                state = GameState.GAME_OVER;
+	                System.out.println("IN GAME OVER");
 	            }
 	            break;
 

@@ -157,27 +157,37 @@ public class Window extends Application{
 				//On met à jour le dernier temps de dessin
 		        lastTime = now;
 		        
-				window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-				window.setCam(game.getPlayer().getY()-window.getHeight()/2);
-				
-				// player.controlPlayer(input.getPressedKeyset());
-				game.getTower().controlTower(input.getPressedKeyset());
-				towerRender.render();
-				
-				platformRender.render();
+		        game.update(delta);
+		        switch(game.getState()) {
+		        	case RUNNING:
+                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
+                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
 
-				game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
-				
-				//On dessine le joueur en dernier pour etre au premier plan
-				double x=(game.getPlayer().getX()-window.getWidth()/2)/game.getTower().getWidth();
-				playerRender.render();
-				
-				// playerRender.render(window.getGC(),window.getCamY(),Math.sqrt(1-x*x)*player.getHeight(),player.getHeight());
-				window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
-	
-				//gc.strokeText("FPS: "+1/delta, 540, 36);
-				
-				return ;
+                game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
+                game.getTower().controlTower(input.getPressedKeyset());
+
+                towerRender.render();
+                platformRender.render();
+                playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
+
+                window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
+
+                //gc.strokeText("FPS: "+1/delta, 540, 36);
+						    return ;
+						
+		        	case GAME_OVER:
+		                // on redessine une dernière image figée :
+		                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
+		                towerRender.render();
+		                platformRender.render();
+		                playerRender.render();
+
+		                // puis l’overlay game over
+		                GameOver.render(window, (int)-window.getCamY()/PlatformSpacing);
+		                System.out.println("IN GAME OVER");
+		                return;				
+		        }
+
 			}
 		};
 		animation.start();
