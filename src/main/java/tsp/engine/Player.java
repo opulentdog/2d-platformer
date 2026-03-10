@@ -97,16 +97,15 @@ public class Player extends Asset {
 		/*Collision avec les platformes*/
 		for(Platform platform : platforms) {
 			if(platform.intersects(this) && yVelocity>0) {
-				//	y=platform.y-this.height;
-				if(yVelocity>0) {
-					yVelocity=-playeryVelocity;
-					ground=true;
-					platform.rebond();
+				
+				yVelocity=-playeryVelocity;
+				ground=true;
+				platform.rebond();
 					/*
 					if (platform.getType() == PlatformType.BASIC || platform.getType() == PlatformType.LAVA ) {
 						platform.rebond();
 			        }*/
-				}
+				
 			}
 		}
 		this.x = this.x + xVelocity;
