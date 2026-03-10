@@ -13,8 +13,12 @@ public class Sound {
 	
 	public Sound(String chemin) {
 		soundURL = getClass().getResource(chemin);
+
 	}
-	
+	/**
+	 *  Charge le fichier audio associé à l'objet Sound et prépare sa lecture.
+	 */
+
 	public void setFile() {
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
@@ -35,7 +39,13 @@ public class Sound {
 	public void stop() {
 		clip.stop();
 	}
-	public void volume_percent_to_gain(float volumePercent) {
+	/**
+	 * Convertit un pourcentage de volume linéaire en gain audio (en décibels)
+	 * et applique ce gain au clip sonore.
+	 * 
+	 * @param volumePercent ratio de volume compris entre 0.0 (minimum) et 1.0 (maximum)
+	 */
+	public void volume(float volumePercent) {
 
 		FloatControl volume = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
 
@@ -45,7 +55,7 @@ public class Sound {
 		float gain = min + (max - min) * volumePercent;
 		volume.setValue(gain);
 	}
-	
+
 	public void playMusic() {
 		this.setFile();
 		this.play();
@@ -58,9 +68,6 @@ public class Sound {
 	public void playSE() {
 		this.setFile();
 		this.play();
-	 }	
-	public void volume(float i) {
-		this.volume_percent_to_gain(i);
 	 }	
 
 }
