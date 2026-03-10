@@ -40,11 +40,14 @@ public abstract class Platform extends Asset{
 		return super.intersects(p);
 	}
 	
+
+
 	public void rebond() {
 		soundeff.playSE();
 		soundeff.volume(0.8f);
 	}
+
 	
 	public abstract void effect(Player p);
-
+	
 }

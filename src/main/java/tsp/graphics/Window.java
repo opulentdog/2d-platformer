@@ -45,14 +45,23 @@ public class Window extends Application{
 	private GraphicsContext gc;
 	
 	/**
-	 * Son de la fenêtre
-	 */
-	private Sound sound;
-	
-	/**
 	 * Position verticale de la "caméra" (caméra virtuelle)
 	 */
 	double ycamera = 0;
+	
+	/**
+	 * Son de la fenêtre
+	 */
+	private Sound soundgame;
+	/**
+	 * Son du game over
+	 */
+	private Sound soundDeath;
+	/**
+	 * Evite de répéter le lancement des musiques à chaque frame
+	 */
+	boolean hasplayedsoundDeath = false;
+	boolean hasplayedsoundgame = false;
 
 	
 
@@ -111,7 +120,9 @@ public class Window extends Application{
 		this.scene = new Scene(group, windowWidth, windowHeight);
 		this.stage = stage;
 		
-		this.sound = new Sound("/sounds/music/track1.wav");
+		this.soundgame = new Sound("/sounds/music/track1.wav");
+		this.soundDeath = new Sound("/sounds/music/GameOver.wav");
+
 		
 		Window window = this;
 				
@@ -131,7 +142,7 @@ public class Window extends Application{
 		
 			private static final int PlatformSpacing = 300;
 
-			long lastTime = 0;			
+			long lastTime = 0;	
 	
 		    @Override
 		    public void handle(long now) {
@@ -160,20 +171,30 @@ public class Window extends Application{
 		        game.update(delta);
 		        switch(game.getState()) {
 		        	case RUNNING:
-                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
-
-                game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
-                game.getTower().controlTower(input.getPressedKeyset());
-
-                towerRender.render();
-                platformRender.render();
-                playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
-
-                window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
-
-                //gc.strokeText("FPS: "+1/delta, 540, 36);
-						    return ;
+		                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
+		                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
+		
+		                game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
+		                game.getTower().controlTower(input.getPressedKeyset());
+		
+		                towerRender.render();
+		                platformRender.render();
+		                playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
+		
+		                window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
+		
+		                //gc.strokeText("FPS: "+1/delta, 540, 36);
+		                
+		                //on gère les musiques  
+		                
+		                if (!hasplayedsoundgame) {
+		                	soundgame.playMusic();
+		            		soundgame.volume(0.7f);
+		                	hasplayedsoundgame = true;
+		                	hasplayedsoundDeath = false;
+		                }
+		                
+						return ;
 						
 		        	case GAME_OVER:
 		                // on redessine une dernière image figée :
@@ -181,7 +202,16 @@ public class Window extends Application{
 		                towerRender.render();
 		                platformRender.render();
 		                playerRender.render();
-
+		                
+		                //on gère les musiques
+		                
+		                if (!hasplayedsoundDeath) {
+			                soundgame.stopMusic();
+		                	soundDeath.playMusic();
+		                	hasplayedsoundDeath = true;
+		                	hasplayedsoundgame = false;
+		                }
+		                
 		                // puis l’overlay game over
 		                GameOver.render(window, (int)-window.getCamY()/PlatformSpacing);
 		                System.out.println("IN GAME OVER");
@@ -191,10 +221,6 @@ public class Window extends Application{
 			}
 		};
 		animation.start();
-		//On lance la musique
-
-		sound.playMusic();
-		sound.volume(0.7f);
 
 		window.getGroup().getChildren().add(window.getCanvas());
 		window.getStage().setScene(window.getScene());
