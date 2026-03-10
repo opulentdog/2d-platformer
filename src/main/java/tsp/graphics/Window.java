@@ -181,7 +181,10 @@ public class Window extends Application{
 		                towerRender.render();
 		                platformRender.render();
 		                playerRender.render();
-
+		                
+		                //on arrête la musique
+		                sound.stopMusic();
+		                
 		                // puis l’overlay game over
 		                GameOver.render(window, (int)-window.getCamY()/PlatformSpacing);
 		                System.out.println("IN GAME OVER");
