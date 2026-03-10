@@ -1,5 +1,4 @@
 package tsp.engine.platforms;
-
 import tsp.engine.Player;
 import tsp.graphics.Sound;
 

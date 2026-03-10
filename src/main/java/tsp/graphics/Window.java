@@ -192,6 +192,7 @@ public class Window extends Application{
 		};
 		animation.start();
 		//On lance la musique
+
 		sound.playMusic();
 		sound.volume(0.7f);
 
@@ -201,7 +202,7 @@ public class Window extends Application{
 		window.getStage().show();
 		
 	}
-	
+
 // --------------- Lancement du jeu ------------------------
 
     public static void launchApp(String[] args) {

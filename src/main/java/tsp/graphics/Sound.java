@@ -18,6 +18,7 @@ public class Sound {
 	/**
 	 *  Charge le fichier audio associé à l'objet Sound et prépare sa lecture.
 	 */
+
 	public void setFile() {
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
@@ -54,7 +55,7 @@ public class Sound {
 		float gain = min + (max - min) * volumePercent;
 		volume.setValue(gain);
 	}
-	
+
 	public void playMusic() {
 		this.setFile();
 		this.play();
@@ -68,6 +69,5 @@ public class Sound {
 		this.setFile();
 		this.play();
 	 }	
-	
 
 }
