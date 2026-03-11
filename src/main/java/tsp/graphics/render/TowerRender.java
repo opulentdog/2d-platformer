@@ -10,6 +10,7 @@ public class TowerRender extends Render<Tower>{
 	private Tower tower;
     Window window;
 	private Cylinder cyl;
+	private int textureRepetition = 5 ;
 	
 	public TowerRender(Window window, Tower tower) {
 		super(tower);
@@ -25,7 +26,7 @@ public class TowerRender extends Render<Tower>{
 		this.tower = tower;
 		Cylinder cyl = new Cylinder(tower.getWidth(), tower.getHeight());
 		this.cyl = cyl;
-		getTexture().tileTexture(5, 5);
+		getTexture().tileTexture(textureRepetition, textureRepetition);
 		getTexture().applyTexture(cyl);
 
         AmbientLight ambient = new AmbientLight(Color.color(1, 1, 1));
@@ -42,11 +43,13 @@ public class TowerRender extends Render<Tower>{
 
 	@Override
 	public void render() {
-    /* Trace le cylindre à une certaine rotation et position de la caméra */
-        cyl.setRotate(tower.getRotation());
-		// Le modulo permet d'avoir l'illusion d'un cylindre de taille infini
-        cyl.setTranslateY(((-window.getCamY())%(window.getHeight())));
-        tower.updatePosition();
+	    double tileHeight = tower.getHeight() / textureRepetition; 
+	    // On module par la taille de la tuile de texture, pas par la taille de la fenêtre	
+	    double offsetY = (window.getCamY() % tileHeight);
+	    cyl.setTranslateY( -offsetY);
+
+	    cyl.setRotate(tower.getRotation());
+	    tower.updatePosition();
 	}
 
 }
