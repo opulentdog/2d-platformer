@@ -52,6 +52,10 @@ public class Game {
 	public void setPlatforms(Platform[] platforms) {
 		this.platforms = platforms;
 	}
+	
+	public void setState(GameState state) {
+	    this.state = state;
+	}
 
 	public Game(Window window) {
 		generator = new Generation();
@@ -60,7 +64,7 @@ public class Game {
 		
 		platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
 		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
-		state = GameState.RUNNING;
+		state = GameState.MENU;
 	}
 
 	public void update(double delta) {

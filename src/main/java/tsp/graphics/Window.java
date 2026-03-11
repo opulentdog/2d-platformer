@@ -137,7 +137,17 @@ public class Window extends Application{
 		PlayerRender playerRender = new PlayerRender(window,game.getPlayer());
 		PlatformRender platformRender = new PlatformRender(window, game.getTower(), game.getPlatforms(), game.getGenerator());	
 
-		
+		canvas.setOnMouseClicked(e -> {
+
+		    if(game.getState() == Game.GameState.MENU) {
+
+		        if(Menu.isClicked(e.getX(), e.getY())) {
+		            game.setState(Game.GameState.RUNNING);
+		        }
+
+		    }
+		});
+
 		AnimationTimer animation = new AnimationTimer() {
 		
 			private static final int PlatformSpacing = 300;
@@ -170,6 +180,10 @@ public class Window extends Application{
 		        
 		        game.update(delta);
 		        switch(game.getState()) {
+			        case MENU:
+			            window.getGC().clearRect(0,0,window.getWidth(),window.getHeight());
+			            Menu.render(window);
+			            return;
 		        	case RUNNING:
 		                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
 		                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
