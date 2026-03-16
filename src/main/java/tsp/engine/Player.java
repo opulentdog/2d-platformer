@@ -102,8 +102,6 @@ public class Player extends Asset {
 					ground=true;
 					platform.effect(this);
 				}
-
-					
 					if (platform.getType() == PlatformType.BASIC || platform.getType() == PlatformType.LAVA ) {
 						platform.rebond();
 			        }
