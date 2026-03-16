@@ -10,9 +10,11 @@ import javax.sound.sampled.FloatControl;
 public class Sound {
 	private Clip clip;
 	private URL soundURL;
+	private boolean on;
 	
 	public Sound(String chemin) {
 		soundURL = getClass().getResource(chemin);
+		on = false;
 
 	}
 	/**
@@ -58,12 +60,18 @@ public class Sound {
 	}
 
 	public void playMusic() {
-		this.setFile();
-		this.play();
-		this.loop();
+		if (! on) {
+			this.setFile();
+			this.play();
+			this.loop();
+			on = true;
+		}
 	}
 	public void stopMusic() {
-		this.stop();
+		if (on) {
+			this.stop();
+			on = false;
+		}
 	}
 	 
 	public void playSE() {

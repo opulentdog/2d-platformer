@@ -14,5 +14,6 @@ public class LavaPlatform extends Platform {
 	
 	public void effect(Player p) {
 		p.kill();
+		this.rebond();
 	}
 }
