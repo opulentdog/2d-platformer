@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tsp.engine.Game;
 import tsp.engine.Generation;
@@ -30,6 +31,8 @@ public class Window extends Application{
 	 * hauteur de la fenetre
 	 */
 	private int windowHeight = 520;
+	
+	private Game game;
 	
 	/**
 	 * stage javafx
@@ -98,6 +101,18 @@ public class Window extends Application{
 		this.ycamera = ycamera;
 	}
 // --------------- METHODES --------------------------------------------------------------------------------------------------------------------
+	private void changeState(MouseEvent e) {
+
+	    if(game.getState() == Game.GameState.MENU) {
+
+	        if(Menu.isClicked(e.getX(), e.getY())) {
+	            game.setState(Game.GameState.RUNNING);
+	        }
+	    }
+		
+	}
+	
+	
 	/**
 	 * 
 	 */
@@ -116,7 +131,7 @@ public class Window extends Application{
 		Window window = this;
 				
 		Input input = new Input(window);
-		Game game = new Game(this);
+		game = new Game(this);
 		input.listen();
 		
 		Texture bg = new Texture("/images/space.jpg", windowWidth, windowHeight);
@@ -126,7 +141,10 @@ public class Window extends Application{
 		PlayerRender playerRender = new PlayerRender(window,game.getPlayer());
 		PlatformRender platformRender = new PlatformRender(window, game.getTower(), game.getPlatforms(), game.getGenerator());	
 
-		
+		// Passer dans input
+		canvas.setOnMouseClicked(e -> changeState(e));
+	
+
 		AnimationTimer animation = new AnimationTimer() {
 		
 			private static final int PlatformSpacing = 300;
@@ -146,7 +164,8 @@ public class Window extends Application{
 		        double delta = (now - lastTime) / 1_000_000_000.0; // seconds
 		        update(delta,now);
 		    }
-	
+//	Refactor
+		    
 			private void update(double delta, long now) {
 				if (delta < 1.0/40) return; // On limite les fps à 40 frames par seconds
 				if (delta > 2.0 / 40 ) { // On a passé plus de deux frames c'est le cas si on a du lag
@@ -201,7 +220,12 @@ public class Window extends Application{
 		window.getStage().show();
 		
 	}
-	
+
+protected void update(double delta, long now) {
+		// TODO Auto-generated method stub
+		
+	}
+
 // --------------- Lancement du jeu ------------------------
 
     public static void launchApp(String[] args) {

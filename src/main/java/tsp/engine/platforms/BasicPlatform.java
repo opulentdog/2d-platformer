@@ -11,6 +11,8 @@ public class BasicPlatform extends Platform{
 		this.type = PlatformType.BASIC;
 	}
 	
-	public void effect(Player p) {}
+	public void effect(Player p) {
+		this.rebond();
+	}
 
 }

@@ -19,7 +19,7 @@ public class Input {
 	 * Lance la détection des touches
 	 */
 	public void listen() {
-		/*J'écoute les touvhes enfoncees*/
+		/*J'écoute les touches enfoncees*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
 			getPressedKeyset().remove(e.getCode());
 		});

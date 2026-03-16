@@ -55,11 +55,12 @@ public abstract class Asset {
 	 * @param s: asset à comparer avec this
 	 * @return true si this et s en contact, false sinon
 	 */
-	public Boolean intersects(Asset s) {
-		double relativex=s.x-this.x;
-		double relativey=s.y-this.y;
+	// TODO A tester
+	public Boolean intersects(Asset other) {
+		double relativex=other.x-this.x;
+		double relativey=other.y-this.y;
 		return relativex < this.width && relativey < this.height &&
-				-relativex < s.width && -relativey < s.height;
+				-relativex < other.width && -relativey < other.height;
 	}
 	
 	public void setPostition(double x, double y) {

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import tsp.engine.platforms.Platform;
+import tsp.engine.platforms.Platform.PlatformType;
 import tsp.engine.platforms.BasicPlatform;
 import tsp.graphics.Window;
 import tsp.graphics.render.PlayerRender;
@@ -96,16 +97,18 @@ public class Player extends Asset {
 		/*Collision avec les platformes*/
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
-				//	y=platform.y-this.height;
-				if(yVelocity>0) {
+				if (yVelocity>0) {
 					yVelocity=-playeryVelocity;
 					ground=true;
-					if (platform instanceof BasicPlatform) {
+					platform.effect(this);
+				}
+
+					
+					if (platform.getType() == PlatformType.BASIC || platform.getType() == PlatformType.LAVA ) {
 						platform.rebond();
 			        }
 				}
 			}
-		}
 		this.x = this.x + xVelocity;
 		this.y = this.y + yVelocity;
 	}
