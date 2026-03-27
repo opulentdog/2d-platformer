@@ -52,6 +52,10 @@ public class Game {
 	public void setPlatforms(Platform[] platforms) {
 		this.platforms = platforms;
 	}
+	
+	public void setState(GameState state) {
+	    this.state = state;
+	}
 
 	public Game(Window window) {
 		generator = new Generation();
