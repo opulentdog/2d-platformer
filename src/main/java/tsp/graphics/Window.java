@@ -16,6 +16,8 @@ import tsp.engine.platforms.Platform;
 import tsp.graphics.render.PlatformRender;
 import tsp.graphics.render.PlayerRender;
 import tsp.graphics.render.TowerRender;
+import tsp.graphics.Menu;
+
 
 /**
  * Classe pour ce qui est lié à la fenetre
