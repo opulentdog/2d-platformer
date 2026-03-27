@@ -110,6 +110,11 @@ public class Window extends Application{
 		this.ycamera = ycamera;
 	}
 // --------------- METHODES --------------------------------------------------------------------------------------------------------------------
+	
+	/**
+	 * Change l'état du jeu à RUNNING si on est dans le menu
+	 * @param e un mouseEvent
+	 */
 	private void changeState(MouseEvent e) {
 
 	    if(game.getState() == Game.GameState.MENU) {
@@ -123,6 +128,7 @@ public class Window extends Application{
 	
 	
 	/**
+	 * TODO segmenter
 	 * 
 	 */
 	@Override
@@ -258,6 +264,11 @@ protected void update(double delta, long now) {
 	}
 
 // --------------- Lancement du jeu ------------------------
+
+/**
+ * 
+ * @param args
+ */
 
     public static void launchApp(String[] args) {
         launch(args);

@@ -57,6 +57,10 @@ public class Game {
 	    this.state = state;
 	}
 
+	/**
+	 * génération du joueur, des plateformes et passage à l'écran du MENU
+	 * @param window la fene^tre du jeu
+	 */
 	public Game(Window window) {
 		generator = new Generation();
 		player = new Player("/images/player.png", 70, 70);

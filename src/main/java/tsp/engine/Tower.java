@@ -7,13 +7,15 @@ import tsp.graphics.Window;
 import tsp.graphics.render.TowerRender;
 import javafx.scene.input.KeyCode;
 
-
+/**
+ * classe de la tour contenant ses dimensions, sa texture.
+ */
 public class Tower extends Asset{
-	private final static int cylinderWidth = 250;
-	private static int cylinderHeight = 2000;
+	private final static int cylinderWidth = 250; // largeur de la tour
+	private static int cylinderHeight = 2000; // hauteur de la tour
 	
-	private double towerxVelocity;
-	double rotation;
+	private double towerxVelocity; 
+	double rotation; // position angulaire de la tour
 
 
 	public Tower() {
@@ -21,11 +23,18 @@ public class Tower extends Asset{
 
     }
 	
+	/*
+	 * donne la position angulaire de la tour
+	 */
 	public double getRotation() {
 		return rotation;
 	}
     
-
+	/**
+	 * met à jour la position de la tour
+	 * Applique un coefficient de friction à la vitesse de rotation,
+	 * maintient la position angulaire dans l'intervalle [0,360[ 
+	 */
 	public void updatePosition() {
     	towerxVelocity*=0.70;
         rotation+=towerxVelocity;

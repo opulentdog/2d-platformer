@@ -5,6 +5,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * écran de game over
+ */
 public class GameOver {
 	public static void render(Window window, int score) {
 	    GraphicsContext gc = window.getGC();

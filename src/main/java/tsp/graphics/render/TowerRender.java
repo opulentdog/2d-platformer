@@ -5,12 +5,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Cylinder;
 import tsp.engine.Tower;
 import tsp.graphics.Window;
-
+/**
+ * gère le rendu visuel de la tour en 3D.
+ * <p>
+ * elle classe crée un cylindre JavaFX, lui applique une texture répétée (tiling)
+ * et synchronise sa rotation avec l'état logique de tower.<p>
+ * gère également l'effet de défilement vertical infini de la tour.
+ * 
+ */
 public class TowerRender extends Render<Tower>{
 	private Tower tower;
     Window window;
 	private Cylinder cyl;
 	private int textureRepetition = 5 ;
+	
 	
 	public TowerRender(Window window, Tower tower) {
 		super(tower);
@@ -41,6 +49,16 @@ public class TowerRender extends Render<Tower>{
 		this.window=window;
 	}
 
+	/**
+	 * Met à jour l'affichage visuel de la tour pour la frame actuelle.
+	 * <p>
+	 * étapes :<p>
+	 * 
+	 * Calcule un décalage vertical ({@code offsetY}) basé sur la position de la caméra 
+	 * et la taille des tuiles de texture pour créer un effet de boucle infinie.<p>
+	 * Applique la rotation actuelle de la tour au cylindre 3D.
+	
+	 */
 	@Override
 	public void render() {
 	    double tileHeight = tower.getHeight() / textureRepetition; 

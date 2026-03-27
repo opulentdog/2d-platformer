@@ -27,11 +27,20 @@ public class Input {
 			getPressedKeyset().add(e.getCode());
 		});
 	}
-
+	
+	/**
+	 * récupère l'ensemble des touches actuellement enfoncées
+	 * @param pressedKeyset
+	 * @return un HashSet contenant les KeyCode des touches pressées
+	 */
 	public HashSet<KeyCode> getPressedKeyset() {
 		return PressedKeyset;
 	}
 
+	/**
+	 * remplace l'ensemble des touches pressées par un nouvel ensemble
+	 * * @param pressedKeyset le nouvel ensemble de keycode à utiliser
+	 */
 	public void setPressedKeyset(HashSet<KeyCode> pressedKeyset) {
 		PressedKeyset = pressedKeyset;
 	}

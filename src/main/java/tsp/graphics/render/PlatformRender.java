@@ -33,7 +33,9 @@ public class PlatformRender extends Render<Platform> {
         textureMap.put(PlatformType.SPRING, new Texture("/images/platform.png"));
         textureMap.put(PlatformType.FALLING, new Texture("/images/platform.png"));
 	}
-	
+	/**
+	 * Calcule en fonction de la positio de la tour la largeur que doivent avoir les plateformces et les déplace
+	 */
 	@Override
 	public void render() {
 		double rotation = tower.getRotation();

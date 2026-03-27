@@ -44,8 +44,9 @@ public class Player extends Asset {
 	}
 	
 	/**
-	 * TODO Explication de la méthode.
-	 * @param pressedKeyset
+	 * traduit les entrées clavier en mouvement
+	 * si la touche gauche ou droite est pressée, une accélération est ajoutée à la vitesse horizontale.
+	 * @param pressedKeyset l'ensemble des touches actuellement maintenues enfoncées
 	 */
 	public void controlPlayer(HashSet<KeyCode> pressedKeyset) {
 		
@@ -65,17 +66,24 @@ public class Player extends Asset {
 	}
 	
 	/**
-	 * TODO javadoc
-	 * @param windowsWidth
-	 * @param windowsHeight
-	 * @param platforms
+	 * calcule et applique le déplacement du joueur pour la prochaine frame</p>
+	 * 
+	 * étapes :</p>
+	 * Applique la gravité et la friction (horizontale et verticale).</p>
+	 * Gère les collisions avec les bords latéraux de la fenêtre.</p>
+	 * Rebond si le joueur touche le bas de l'écran.</p>
+	 * Détecte les collisions avec les plateformes et déclenche leurs effets </p>
+	 * 
+	 * @param windowsWidth  La largeur de la zone de jeu pour la collision latérale.
+	 * @param windowsHeight La hauteur de la zone de jeu pour le rebond au sol.
+	 * @param platforms     Le tableau des plateformes présentes dans le niveau.
 	 */
 	public void calculatePosition(int windowsWidth,
 			int windowsHeight, Platform[] platforms) {
 
 		//Calcule la position du joueur à la prochaine frame.
 		yVelocity+=gravity;
-		xVelocity = 0.7 * xVelocity;
+		xVelocity = 0.7 * xVelocity; // doit être identique au coefficient dans controlTower de tower.java
 		yVelocity = 0.97 * yVelocity;
 		
 		/*Bordure de l'écran gestion des collisions*/
