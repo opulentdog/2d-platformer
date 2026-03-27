@@ -22,13 +22,16 @@ public class Generation {
 			platformAngles[k]=(platformAngles[k-1]+(int)(250*Math.random())-125)%360;
 		}
 		int i=0;
+		// détermination du type de plateforme
         Random random = new Random();
+        
 		for(int c=0; c<50;c++) {
 			if(random.nextDouble() < 0.9) {
 				platforms[c]=new BasicPlatform();
 			}else {
 				platforms[c]=new LavaPlatform();
 			}
+			//détermination de la position de la plateforme
 			double posititionx=(windowWidth-platforms[c].getWidth())*Math.random();
 			double posititiony=windowHeight/2.-i*PlatformSpacing-(i*i);
 			platforms[c].setPostition(posititionx, posititiony);

@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 
 public class Menu {
 
+	// dimensions du bouton start qui sert à lancer la boucle de jeu
     private static double btnX = 250;
     private static double btnY = 200;
     private static double btnWidth = 200;
@@ -24,6 +25,12 @@ public class Menu {
         gc.fillText("PLAY", btnX+80, btnY+35);
     }
 
+    /**
+     * Indique si la souris est superposée au bouton start ( n'indique pas directement que le bouton start est cliqué )
+     * @param x position de la souris selon l'horizontale
+     * @param y position de la souris selon la verticale
+     * @return
+     */
     public static boolean isClicked(double x,double y) {
         return x >= btnX && x <= btnX+btnWidth &&
                y >= btnY && y <= btnY+btnHeight;

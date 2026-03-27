@@ -45,6 +45,9 @@ public abstract class Platform extends Asset{
 		return isInContact;
 	}
 	
+	/**
+	 * joue les effets liés au rebond
+	 */
 	public void rebond() {
 		soundeff.playSE();
 		soundeff.volume(0.8f);

@@ -7,33 +7,42 @@ import javafx.scene.shape.Shape3D;
 
 /**
  * Sert à importer les images
- * 2 constructeurs différents selon si image "répétée" sur une surface ou utilisée directement comme "sprite"
+ * 2 constructeurs différents selon si l' image "répétée" sur une surface ou utilisée directement comme "sprite"
  */
 public class Texture {
 	/**
-	 * 
+	 * Largeur de la texture
 	 */
 	private double width;
 	
 	/**
-	 * 
+	 * Hauteur de la texture
 	 */
 	private double height;
 	
 	/**
-	 * 
+	 * Image de la texture
 	 */
 	private Image img;
 
 	private String imgPath;
 	
-
+	/**
+	 * constructeur lorsque l'image est répétée sur une surface
+	 * @param imgPath
+	 * @param width
+	 * @param height
+	 */
 	public Texture(String imgPath, double width, double height) {
 		this.imgPath = imgPath;
 		String imageStr = getClass().getResource(imgPath).toString();
 		img = new Image(imageStr, width, height, false, true);
 	}
 	
+	/**
+	 * constructeur lorsque l'image est utilisée directement comme simple sprite
+	 * @param imgPath
+	 */
 	public Texture(String imgPath) {
 		this.imgPath = imgPath;
 		String imageStr = getClass().getResource(imgPath).toString();

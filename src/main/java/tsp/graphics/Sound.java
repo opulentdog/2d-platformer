@@ -31,14 +31,23 @@ public class Sound {
 		}
 	}
 	
+	/**
+	 * lance le son
+	 */
 	public void play() {
 		clip.start();
 	}
 	
+	/**
+	 * lance le son en boucle 
+	 */
 	public void loop() {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
+	/**
+	 * arrete le son
+	 */
 	public void stop() {
 		clip.stop();
 	}
@@ -58,7 +67,10 @@ public class Sound {
 		float gain = min + (max - min) * volumePercent;
 		volume.setValue(gain);
 	}
-
+	
+	/**
+	 * Lance la musique ( et non un simple son ) en boucle
+	 */
 	public void playMusic() {
 		if (! on) {
 			this.setFile();
@@ -67,6 +79,9 @@ public class Sound {
 			on = true;
 		}
 	}
+	/**
+	 * Arrete la musique
+	 */
 	public void stopMusic() {
 		if (on) {
 			this.stop();
@@ -74,6 +89,9 @@ public class Sound {
 		}
 	}
 	 
+	/**
+	 * Lance un son ( sound effect )
+	 */
 	public void playSE() {
 		this.setFile();
 		this.play();

@@ -4,6 +4,9 @@ import tsp.engine.Player;
 import tsp.engine.platforms.Platform.PlatformType;
 import tsp.graphics.Sound;
 
+/**
+ * Platefome qu'il ne faut pas toucher sous peine de perdre la partie
+ */
 public class LavaPlatform extends Platform {
 	
 	public LavaPlatform() {
@@ -12,6 +15,11 @@ public class LavaPlatform extends Platform {
 		this.type = PlatformType.LAVA;
 	}
 	
+	/**
+	 * effets associés à la plateforme :
+	 * l'état du joueur pass à "mort"
+	 * joue les effets liés au rebond
+	 */
 	public void effect(Player p) {
 		p.kill();
 		this.rebond();
