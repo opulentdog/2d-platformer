@@ -32,12 +32,17 @@ public abstract class Platform extends Asset{
 	 * @param s: asset à comparer avec this
 	 * @return true si this et s en contact, false sinon
 	 */
-	public Boolean intersects(Player p) {
-		boolean isInContact = super.intersects(p);
-		if (isInContact) {
-			this.effect(p);
+	@Override
+	public Boolean intersects(Asset asset) {
+		boolean isInContact = super.intersects(asset);
+		if (! (asset instanceof Player)) {
+			// Pour les non joueur
 		}
-		return super.intersects(p);
+		Player player = (Player) asset;
+		if (isInContact) {
+			// this.effect(player);
+		}
+		return isInContact;
 	}
 	
 	public void rebond() {

@@ -10,8 +10,8 @@ public class Generation {
 
 	/**
 	 * genere des plateformes sur la tour de maniere aleatoire
-	 * @param windowWidth
-	 * @param windowHeight
+	 * @param windowWidth largeur fenetre
+	 * @param windowHeight hauteur fenetre
 	 */
 	public Platform[] randomPlatformGeneration(int windowWidth, int windowHeight) {
 		// Créer 50 platformes avec des coordonées horizontale random
@@ -24,7 +24,7 @@ public class Generation {
 		int i=0;
         Random random = new Random();
 		for(int c=0; c<50;c++) {
-			if(random.nextDouble() < 0.75) {
+			if(random.nextDouble() < 0.9) {
 				platforms[c]=new BasicPlatform();
 			}else {
 				platforms[c]=new LavaPlatform();

@@ -19,7 +19,6 @@ public class TestAsset {
 	*/
 	protected Asset playerUnderTest1;
 
-	  
 	 /**
 	 * The {@link Asset} object to be tested. It must be initialised to a concrete
 	 * instance in the {@link #setUp()} method.
