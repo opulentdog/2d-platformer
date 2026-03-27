@@ -38,13 +38,26 @@ public class TestAsset {
 	   * Test1: Contact entre un Player et une plateforme
 	   */
 	  @Test
-	  @DisplayName("Test1: Contact entre un Player et une plateforme")
-	  void platformIntersectPlayer() {
+	  @DisplayName("Test 1: Contact entre un Player et une plateforme")
+	  void platformOverPlayer() {
 		playerUnderTest1.x=50;
 		playerUnderTest1.y=50;
 		platformUnderTest1.x=50;
 		platformUnderTest1.y=50;
-	    Assertions.assertTrue(playerUnderTest1.intersects(playerUnderTest1));
+	    Assertions.assertTrue(platformUnderTest1.intersects(playerUnderTest1));
+	  }
+	  
+	  /**
+	   * Test2: Player et plateforme éloignés
+	   */
+	  @Test
+	  @DisplayName("Test 2: Player et plateforme éloignés")
+	  void platformFarFromPlayer() {
+		playerUnderTest1.x=50;
+		playerUnderTest1.y=400;
+		platformUnderTest1.x=500;
+		platformUnderTest1.y=50;
+	    Assertions.assertFalse(platformUnderTest1.intersects(playerUnderTest1));
 	  }
 	  
 	  /**

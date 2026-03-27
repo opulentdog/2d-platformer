@@ -64,7 +64,7 @@ public class Game {
 		
 		platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
 		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
-		state = GameState.RUNNING;
+		state = GameState.MENU;
 	}
 
 	public void update(double delta) {
