@@ -60,12 +60,6 @@ public class Window extends Application{
 	 * Son du game over
 	 */
 	private Sound soundDeath;
-	/**
-	 * Evite de répéter le lancement des musiques à chaque frame
-	 */
-	boolean hasplayedsoundDeath = false;
-	boolean hasplayedsoundgame = false;
-
 	
 
 // ----------- GETTER/SETTER/CONSTRUCTEUR ---------------------------------------------------------------------------------------------------	
@@ -141,7 +135,7 @@ public class Window extends Application{
 		this.scene = new Scene(group, windowWidth, windowHeight);
 		this.stage = stage;
 		
-		this.soundgame = new Sound("/sounds/music/track1.wav");
+		this.soundgame = new Sound("/sounds/music/track2.wav");
 		this.soundDeath = new Sound("/sounds/music/GameOver.wav");
 
 		
@@ -216,14 +210,10 @@ public class Window extends Application{
 		                
 		                //on gère les musiques  
 		                
-		                if (!hasplayedsoundgame) {
-		                	soundgame.playMusic();
-		            		soundgame.volume(0.7f);
-		                	hasplayedsoundgame = true;
-		                	hasplayedsoundDeath = false;
-		                }
-		                
-						return ;
+	                	soundgame.playMusic();
+	            		soundgame.volume(0.7f);
+	                	
+		               return ;
 						
 		        	case GAME_OVER:
 		                // on redessine une dernière image figée :
@@ -233,15 +223,12 @@ public class Window extends Application{
 		                playerRender.render();
 		                
 		                //on gère les musiques
-		                
-		                if (!hasplayedsoundDeath) {
-			                soundgame.stopMusic();
-		                	soundDeath.playMusic();
-		                	hasplayedsoundDeath = true;
-		                	hasplayedsoundgame = false;
-		                }
-		                
-		                // puis l’overlay game over
+		                soundgame.stopMusic();
+	                	soundDeath.playMusic();
+	                	soundDeath.volume(0.8f);
+
+	                
+	                	// puis l’overlay game over
 		                GameOver.render(window, (int)-window.getCamY()/PlatformSpacing);
 		                System.out.println("IN GAME OVER");
 		                return;				
