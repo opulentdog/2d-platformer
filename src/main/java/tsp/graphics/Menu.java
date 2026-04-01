@@ -2,6 +2,8 @@ package tsp.graphics;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+
 
 public class Menu {
 
@@ -14,9 +16,11 @@ public class Menu {
     public static void render(Window window) {
 
         GraphicsContext gc = window.getGC();
-
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0,0,window.getWidth(),window.getHeight());
+        
+        Texture background = new Texture("/images/fond_menu.jpg", window.getWidth(), window.getHeight());
+        background.setBG(window);
+        //gc.setFill(Color.BLACK);
+        //gc.fillRect(0,0,window.getWidth(),window.getHeight());
 
         gc.setFill(Color.ORANGE);
         gc.fillRect(btnX,btnY,btnWidth,btnHeight);
