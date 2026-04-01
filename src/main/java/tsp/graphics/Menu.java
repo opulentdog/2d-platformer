@@ -14,15 +14,14 @@ public class Menu {
     private static double btnHeight = 60;
 
     public static void render(Window window) {
-
         GraphicsContext gc = window.getGC();
         
-        Texture background = new Texture("/images/fond_menu.jpg", window.getWidth(), window.getHeight());
-        background.setBG(window);
-        //gc.setFill(Color.BLACK);
-        //gc.fillRect(0,0,window.getWidth(),window.getHeight());
+        //Texture background = new Texture("/images/fond_menu.jpg", window.getWidth(), window.getHeight());
+        //background.setBG(window);
+        gc.setFill(Color.GREEN);
+        gc.fillRect(0,0,window.getWidth(),window.getHeight());
 
-        gc.setFill(Color.ORANGE);
+        gc.setFill(Color.RED);
         gc.fillRect(btnX,btnY,btnWidth,btnHeight);
 
         gc.setFill(Color.BLACK);
