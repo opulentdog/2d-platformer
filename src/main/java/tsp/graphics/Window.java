@@ -135,8 +135,8 @@ public class Window extends Application{
 		this.scene = new Scene(group, windowWidth, windowHeight);
 		this.stage = stage;
 		
-		this.soundgame = new Sound("/sounds/music/track2.wav");
-		this.soundDeath = new Sound("/sounds/music/GameOver.wav");
+		this.soundgame = new Sound(Constants.TRACK1_PATH);
+		this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
 
 		
 		Window window = this;
@@ -145,7 +145,7 @@ public class Window extends Application{
 		game = new Game(this);
 		input.listen();
 		
-		Texture bg = new Texture("/images/space.jpg", windowWidth, windowHeight);
+		Texture bg = new Texture(Constants.SPACE_PATH, windowWidth, windowHeight);
 		bg.setBG(this);
 		
 		TowerRender towerRender = new TowerRender(window, game.getTower());
