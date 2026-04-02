@@ -38,9 +38,9 @@ public class TowerRender extends Render<Tower>{
 		getTexture().applyTexture(cyl);
 
         AmbientLight ambient = new AmbientLight(Color.color(1, 1, 1));
-		window.getGroup().getChildren().add(ambient);
+		window.getGameGroup().getChildren().add(ambient);
 		
-		window.getGroup().getChildren().add(cyl);
+		window.getGameGroup().getChildren().add(cyl);
 		cyl.setTranslateX(window.getWidth() / 2.0);
 		cyl.setTranslateY(window.getHeight() / 2.0);
 		

@@ -1,31 +1,40 @@
 package tsp.graphics;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.image.Image;
 
 
 public class Menu {
 
-	// dimensions du bouton start qui sert à lancer la boucle de jeu
+	/***
+	 * Coordonnées du bouton dans la fenêtre
+	 */
     private static double btnX = 250;
     private static double btnY = 200;
+    /**
+     * Dimensions du bouton
+     */
     private static double btnWidth = 200;
     private static double btnHeight = 60;
 
-    public static void render(Window window) {
-        GraphicsContext gc = window.getGC();
-        
-        //Texture background = new Texture("/images/fond_menu.jpg", window.getWidth(), window.getHeight());
-        //background.setBG(window);
-        gc.setFill(Color.GREEN);
-        gc.fillRect(0,0,window.getWidth(),window.getHeight());
+    public static void render(Window window, Canvas overlayCanvas) {
+        //GraphicsContext gc = window.getGC(); On le garde on sait jamais
+    	
+    	// Récupère le contexte du canvas overlay (et non celui du jeu)
+    	GraphicsContext gc = overlayCanvas.getGraphicsContext2D(); 
+    	// Efface le canvas menu à chaque frame pour éviter les superpositions
+    	gc.clearRect(0, 0, overlayCanvas.getWidth(), overlayCanvas.getHeight());
+  
+       // gc.setFill(Color.GREEN);
+        //gc.fillRect(0,0,window.getWidth(),window.getHeight());
 
         gc.setFill(Color.RED);
         gc.fillRect(btnX,btnY,btnWidth,btnHeight);
 
         gc.setFill(Color.BLACK);
         gc.fillText("PLAY", btnX+80, btnY+35);
+        
     }
 
     /**

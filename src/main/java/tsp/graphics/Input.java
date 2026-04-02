@@ -29,7 +29,7 @@ public class Input {
 	}
 	
 	/**
-	 * récupère l'ensemble des touches actuellement enfoncées
+	 * Récupère l'ensemble des touches actuellement enfoncées
 	 * @param pressedKeyset
 	 * @return un HashSet contenant les KeyCode des touches pressées
 	 */
@@ -38,7 +38,7 @@ public class Input {
 	}
 
 	/**
-	 * remplace l'ensemble des touches pressées par un nouvel ensemble
+	 * Remplace l'ensemble des touches pressées par un nouvel ensemble
 	 * * @param pressedKeyset le nouvel ensemble de keycode à utiliser
 	 */
 	public void setPressedKeyset(HashSet<KeyCode> pressedKeyset) {

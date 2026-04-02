@@ -14,5 +14,7 @@ public final class Constants {
     public static final String GAMEOVER_PATH = "/sounds/music/GameOver.wav";
     public static final String EXPLOSIONPATH = "/sounds/sound_effect/8-bit-bomb-explosion-2811.wav";
     
+    public static final int FLOU = 20;
+
 
 }

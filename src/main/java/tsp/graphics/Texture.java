@@ -86,6 +86,7 @@ public class Texture {
 		bgView.setFitHeight(height);
 		bgView.setPreserveRatio(false);
 		window.getGroup().getChildren().add(bgView);
+		
 	}
 
 }
