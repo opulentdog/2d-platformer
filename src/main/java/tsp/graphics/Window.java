@@ -9,6 +9,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -264,8 +266,14 @@ public class Window extends Application{
 		                towerRender.render();
 		                platformRender.render();
 		                playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
-		
-		                window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 10);
+		                
+		                gc.save();			// Etat où restore() va revenir
+		                gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
+		                gc.setFill(Color.WHITE);
+		                gc.fillText("Score : "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-220, 50);
+		                gc.restore(); // retire le gras et revient à la police précédente
+		                
+		                //window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 20);
 		
 		                //gc.strokeText("FPS: "+1/delta, 540, 36);
 		                
