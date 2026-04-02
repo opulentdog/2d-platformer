@@ -20,8 +20,8 @@ public class LavaPlatform extends Platform {
 	 * l'état du joueur pass à "mort"
 	 * joue les effets liés au rebond
 	 */
-	public void effect(Player p) {
-		p.kill();
+	public void effect(Player player) {
+		player.kill();
 		this.rebond();
 	}
 }

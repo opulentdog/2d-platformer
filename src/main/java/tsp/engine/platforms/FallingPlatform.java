@@ -15,7 +15,7 @@ public class FallingPlatform extends Platform{
 
 	}
 	
-	public void effect(Player p) {}
+	public void effect(Player player) {}
 
 
 }

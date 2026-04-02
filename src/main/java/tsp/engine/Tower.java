@@ -2,6 +2,7 @@ package tsp.engine;
 
 import java.util.HashSet;
 
+import tsp.graphics.Constants;
 import tsp.graphics.Texture;
 import tsp.graphics.Window;
 import tsp.graphics.render.TowerRender;
@@ -19,7 +20,7 @@ public class Tower extends Asset{
 
 
 	public Tower() {
-		super("/images/stone-wall.png", cylinderWidth, cylinderHeight);
+		super(Constants.WALL_PATH, cylinderWidth, cylinderHeight);
 
     }
 	

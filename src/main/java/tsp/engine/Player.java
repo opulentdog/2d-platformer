@@ -35,12 +35,12 @@ public class Player extends Asset {
 		dead = true;
 	}
  		
-	public void addxVelocity(double d) {
-		 this.xVelocity += d;
+	public void addxVelocity(double delta_xVelocity) {
+		 this.xVelocity += delta_xVelocity;
 	}
 	
-	public void addyVelocity(double playeryVelocity) {
-		this.yVelocity += playeryVelocity;
+	public void addyVelocity(double delta_yVelocity) {
+		this.yVelocity += delta_yVelocity;
 	}
 	
 	/**
