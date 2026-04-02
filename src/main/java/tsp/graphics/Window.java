@@ -4,9 +4,14 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import tsp.engine.Game;
 import tsp.engine.Generation;
@@ -44,7 +49,9 @@ public class Window extends Application{
 	 */
 	private Scene scene;
 	private Group group;
-	private Canvas canvas;
+	private Group gameGroup;
+	private Canvas canvas; // Canva du jeu flouté pendant le menu
+	private Canvas menuCanvas; // Canvas transparent superposé au canvas jeu, réservé au rendu du menu
 	private GraphicsContext gc;
 	
 	/**
@@ -60,6 +67,8 @@ public class Window extends Application{
 	 * Son du game over
 	 */
 	private Sound soundDeath;
+	private Texture bg;
+
 	
 
 // ----------- GETTER/SETTER/CONSTRUCTEUR ---------------------------------------------------------------------------------------------------	
@@ -87,9 +96,16 @@ public class Window extends Application{
 	public Group getGroup() {
 		return group;
 	}
+	public Group getGameGroup() { 
+		return gameGroup; 
+	}  // Getter du gameGroup pour y ajouter les formes de la tour
+
 
 	public Canvas getCanvas() {
 		return canvas;
+	}
+	public Canvas getMenuCanvas() {
+		return menuCanvas; 
 	}
 	
 	public GraphicsContext getGC() {
@@ -130,32 +146,48 @@ public class Window extends Application{
 		
 		//Elements de la scène
 		this.group = new Group();
+		this.gameGroup = new Group();
 		this.canvas = new Canvas(windowWidth,windowHeight);
+		// Création du canvas du menu aux mêmes dimensions que la fenêtre
+		this.menuCanvas = new Canvas(windowWidth, windowHeight); 
+		
 		this.gc = canvas.getGraphicsContext2D();
 		this.scene = new Scene(group, windowWidth, windowHeight);
 		this.stage = stage;
 		
 		this.soundgame = new Sound(Constants.TRACK1_PATH);
 		this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
+		this.bg = new Texture(Constants.SPACE_PATH, windowWidth, windowHeight);
 
-		
+		// Pour pouvoir appeler window dans la classe anonyme AnimationTimer
 		Window window = this;
 				
 		Input input = new Input(window);
 		game = new Game(this);
 		input.listen();
 		
+		// Création et affichage du fond d'écran
 		Texture bg = new Texture(Constants.SPACE_PATH, windowWidth, windowHeight);
-		bg.setBG(this);
+        //bg.setBG(window);
+		ImageView bgView = new ImageView(bg.getImage());
+		bgView.setFitWidth(windowWidth);
+		bgView.setFitHeight(windowHeight);
+		gameGroup.getChildren().add(bgView);
 		
+		
+        // Création et affichage de : tour, des plateformes, du joueur
 		TowerRender towerRender = new TowerRender(window, game.getTower());
 		PlayerRender playerRender = new PlayerRender(window,game.getPlayer());
 		PlatformRender platformRender = new PlatformRender(window, game.getTower(), game.getPlatforms(), game.getGenerator());	
 
-		// Passer dans input
-		canvas.setOnMouseClicked(e -> changeState(e));
-	
-
+		gameGroup.getChildren().add(canvas); // Canvas (joueur + plateformes) dans le gameGroup
+		
+		// Détection du click qui quitte le menu
+		menuCanvas.setOnMouseClicked(e -> changeState(e));
+		
+		// Effet de flou appliqué au canvas de jeu pendant le menu
+		GaussianBlur menuBlur = new GaussianBlur(Constants.FLOU);
+		
 		AnimationTimer animation = new AnimationTimer() {
 		
 			private static final int PlatformSpacing = 300;
@@ -191,9 +223,38 @@ public class Window extends Application{
 		        switch(game.getState()) {
 			        case MENU:
 			            window.getGC().clearRect(0,0,window.getWidth(),window.getHeight());
-			            Menu.render(window);
+			            
+			            // Dessiner le fond sur le canvas
+			            window.getGC().drawImage(bg.getImage(), 0, 0, window.getWidth(), window.getHeight());			            
+			            towerRender.render();
+			            
+			            // Snapshot du gameGroup pour capturer la tour 3D
+			            WritableImage snapshotTower = new WritableImage(window.getWidth(), window.getHeight());
+			            SnapshotParameters params = new SnapshotParameters();
+			            params.setFill(Color.TRANSPARENT); 			// Fond transparent pour voir le fond space derrière
+			            gameGroup.snapshot(params, snapshotTower);			 // Photo de gameGroup --> snapshotTower
+			            
+			            // Snapshot du canvas pour capturer le fond space
+			            WritableImage snapshotCanvas = new WritableImage(window.getWidth(), window.getHeight());
+			            window.getCanvas().snapshot(params, snapshotCanvas);
+			            
+			            // Redessiner les deux snapshots floutées dans l'ordre
+			            window.getGC().clearRect(0,0,window.getWidth(),window.getHeight()); // Efface le canvas
+			            window.getGC().save(); 									// Sauvegarde l'état actuel du GC
+			            window.getGC().setEffect(menuBlur); 				// Applique le flou gaussien
+			            window.getGC().drawImage(snapshotCanvas, 0, 0);  // On dessine le fond flou
+			            window.getGC().drawImage(snapshotTower, 0, 0);   // On dessine la tour floue par-dessus
+			            window.getGC().restore();						// Retour à save() => annule le flou
+			            
+			            menuCanvas.setVisible(true);
+			            playerRender.render();							// On affiche le Player net
+			            Menu.render(window, menuCanvas);				// On lance Menu qui affiche le bouton net
 			            return;
 		        	case RUNNING:
+		        		window.getCanvas().setEffect(null);		   // Supprime le flou	
+		        		menuCanvas.setVisible(false);		       // Cache le canvas menu pendant la partie	
+		        		menuCanvas.getGraphicsContext2D().clearRect(0,0,windowWidth,windowHeight);// Efface le canvas menu
+		        	    
 		                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
 		                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
 		
@@ -238,7 +299,13 @@ public class Window extends Application{
 		};
 		animation.start();
 
-		window.getGroup().getChildren().add(window.getCanvas());
+		//window.getGroup().getChildren().add(window.getCanvas());	// Ajout du canvas jeu (flouté)
+		//window.getGroup().getChildren().add(menuCanvas);           // Ajout du canvas menu au-dessus du canvas jeu (ordre = profondeur)
+
+		// Ajout au group principal
+		window.getGroup().getChildren().add(gameGroup);           // gameGroup --> group principal (fond + tour + canvas)
+		window.getGroup().getChildren().add(menuCanvas);          // Canvas menu --> group au-dessus du gameGroup
+
 		window.getStage().setScene(window.getScene());
 		window.getStage().setResizable(false);
 		window.getStage().show();
