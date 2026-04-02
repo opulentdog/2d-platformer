@@ -12,6 +12,7 @@ public final class Constants {
     public static final String TRACK1_PATH = "/sounds/music/track1.wav";
     public static final String TRACK2_PATH = "/sounds/music/track2.wav";
     public static final String GAMEOVER_PATH = "/sounds/music/GameOver.wav";
-
+    public static final String EXPLOSIONPATH = "/sounds/sound_effect/8-bit-bomb-explosion-2811.wav";
+    
 
 }

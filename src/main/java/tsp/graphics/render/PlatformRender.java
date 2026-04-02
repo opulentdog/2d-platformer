@@ -7,6 +7,7 @@ import tsp.engine.Player;
 import tsp.engine.Tower;
 import tsp.engine.platforms.Platform;
 import tsp.engine.platforms.Platform.PlatformType;
+import tsp.graphics.Constants;
 import tsp.graphics.Texture;
 import tsp.graphics.Window;
 
@@ -28,10 +29,10 @@ public class PlatformRender extends Render<Platform> {
 		this.generator = generator;
 		
 		textureMap = new EnumMap<>(PlatformType.class);
-        textureMap.put(PlatformType.BASIC, new Texture("/images/platform.png"));
-        textureMap.put(PlatformType.LAVA, new Texture("/images/platform-lava.png"));
-        textureMap.put(PlatformType.SPRING, new Texture("/images/platform.png"));
-        textureMap.put(PlatformType.FALLING, new Texture("/images/platform.png"));
+        textureMap.put(PlatformType.BASIC, new Texture(Constants.BASICPLATFORM_PATH));
+        textureMap.put(PlatformType.LAVA, new Texture(Constants.LAVAPLATFORM_PATH));
+        textureMap.put(PlatformType.SPRING, new Texture(Constants.BASICPLATFORM_PATH));
+        textureMap.put(PlatformType.FALLING, new Texture(Constants.BASICPLATFORM_PATH));
 	}
 	/**
 	 * Calcule en fonction de la positio de la tour la largeur que doivent avoir les plateformces et les déplace
