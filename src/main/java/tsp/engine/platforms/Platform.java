@@ -54,6 +54,6 @@ public abstract class Platform extends Asset{
 	}
 
 	
-	public abstract void effect(Player p);
+	public abstract void effect(Player player);
 	
 }

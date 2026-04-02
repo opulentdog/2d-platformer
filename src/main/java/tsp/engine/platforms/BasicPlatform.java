@@ -16,7 +16,7 @@ public class BasicPlatform extends Platform{
 	/**
 	 * joue les effets liés au rebond
 	 */
-	public void effect(Player p) {
+	public void effect(Player player) {
 		this.rebond();
 	}
 

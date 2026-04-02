@@ -13,7 +13,7 @@ public class SpringBoardPlatform extends Platform{
 		this.type = PlatformType.SPRING;
 	}
 	
-	public void effect(Player p) {}
+	public void effect(Player player) {}
 
 
 }
