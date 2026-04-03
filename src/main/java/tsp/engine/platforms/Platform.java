@@ -16,7 +16,8 @@ public abstract class Platform extends Asset{
 	    BASIC,
 	    LAVA,
 	    SPRING,
-	    FALLING
+	    FALLING,
+	    INVISIBLE
 	}
 
 	public Platform(String image, int width, int height) {
