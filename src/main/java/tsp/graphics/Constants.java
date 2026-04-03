@@ -8,8 +8,9 @@ public final class Constants {
     public static final String PLAYER_PATH = "/images/player.png";
     public static final String BASICPLATFORM_PATH = "/images/platform.png";
     public static final String LAVAPLATFORM_PATH = "/images/platform-lava.png";
+    public static final String INVISIBLEPLATFORM_PATH = "/images/stone-wallplatform.png";
     public static final String WALL_PATH = "/images/stone-wall.png";
-
+    
 
     public static final String TRACK1_PATH = "/sounds/music/track1.wav";
     public static final String TRACK2_PATH = "/sounds/music/track2.wav";

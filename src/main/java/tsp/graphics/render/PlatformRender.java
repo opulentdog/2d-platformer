@@ -29,10 +29,13 @@ public class PlatformRender extends Render<Platform> {
 		this.generator = generator;
 		
 		textureMap = new EnumMap<>(PlatformType.class);
+
         textureMap.put(PlatformType.BASIC, new Texture(Constants.BASICPLATFORM_PATH));
         textureMap.put(PlatformType.LAVA, new Texture(Constants.LAVAPLATFORM_PATH));
         textureMap.put(PlatformType.SPRING, new Texture(Constants.BASICPLATFORM_PATH));
         textureMap.put(PlatformType.FALLING, new Texture(Constants.BASICPLATFORM_PATH));
+        textureMap.put(PlatformType.INVISIBLE, new Texture(Constants.INVISIBLEPLATFORM_PATH));
+
 	}
 	/**
 	 * Calcule en fonction de la positio de la tour la largeur que doivent avoir les plateformces et les déplace
