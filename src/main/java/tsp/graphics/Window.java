@@ -190,6 +190,7 @@ public class Window extends Application{
 		// Effet de flou appliqué au canvas de jeu pendant le menu
 		GaussianBlur menuBlur = new GaussianBlur(Constants.FLOU);
 		
+		// Grande classe anonyme à décomoser en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		
 			private static final int PlatformSpacing = 300;
@@ -311,12 +312,12 @@ public class Window extends Application{
 		//window.getGroup().getChildren().add(menuCanvas);           // Ajout du canvas menu au-dessus du canvas jeu (ordre = profondeur)
 
 		// Ajout au group principal
-		window.getGroup().getChildren().add(gameGroup);           // gameGroup --> group principal (fond + tour + canvas)
-		window.getGroup().getChildren().add(menuCanvas);          // Canvas menu --> group au-dessus du gameGroup
+		group.getChildren().add(gameGroup);           // gameGroup --> group principal (fond + tour)
+		group.getChildren().add(menuCanvas);          // Canvas menu --> group au-dessus du gameGroup
 
-		window.getStage().setScene(window.getScene());
-		window.getStage().setResizable(false);
-		window.getStage().show();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 		
 	}
 
