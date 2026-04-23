@@ -22,8 +22,8 @@ public class Player extends Asset {
 	private Boolean ground=true;
 	private PlayerRender playerRender;
 	
-	public Player(String image, int width, int height) {
-		super(image, width, height);
+	public Player(int width, int height) {
+		super(width, height);
 		dead = false;
 	}
 	
