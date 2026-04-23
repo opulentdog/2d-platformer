@@ -29,7 +29,7 @@ public class TestAsset {
 	
 	  @BeforeEach
 	  public void setUp() {
-		  playerUnderTest1= new Player("/images/player.png", 70, 70);
+		  playerUnderTest1= new Player(70, 70);
 		  platformUnderTest1 = new BasicPlatform();
 	  }
 	  

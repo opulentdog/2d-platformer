@@ -22,7 +22,7 @@ public class PlatformRender extends Render<Platform> {
 
 	
 	public PlatformRender(Window window, Tower tower, Platform[] platforms, Generation generator) {
-		super(platforms[0]);
+		super(platforms[0], Constants.BASICPLATFORM_PATH);
 		this.window = window;
 		this.tower = tower;
 		this.platforms = platforms;
