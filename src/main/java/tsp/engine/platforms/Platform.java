@@ -20,8 +20,8 @@ public abstract class Platform extends Asset{
 	    INVISIBLE
 	}
 
-	public Platform(String image, int width, int height) {
-		super(image, width, height);
+	public Platform(int width, int height) {
+		super(width, height);
 	}
 	
 	public PlatformType getType() {
