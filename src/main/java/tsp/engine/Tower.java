@@ -20,7 +20,7 @@ public class Tower extends Asset{
 
 
 	public Tower() {
-		super(Constants.WALL_PATH, cylinderWidth, cylinderHeight);
+		super(cylinderWidth, cylinderHeight);
 
     }
 	
