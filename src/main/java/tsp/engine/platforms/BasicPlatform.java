@@ -13,9 +13,8 @@ public class BasicPlatform extends Platform{
 		this.type = PlatformType.BASIC;
 	}
 	
-	/**
-	 * joue les effets liés au rebond
-	 */
+
+	@Override
 	public void effect(Player player) {
 		this.rebond();
 	}

@@ -54,7 +54,10 @@ public abstract class Platform extends Asset{
 		soundeff.volume(0.8f);
 	}
 
-	
+	/**
+	 * joue les effets liés au rebond
+	 * @param player
+	 */
 	public abstract void effect(Player player);
 	
 }

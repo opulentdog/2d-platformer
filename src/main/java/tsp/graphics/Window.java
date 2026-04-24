@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import tsp.engine.Game;
+import tsp.engine.GameState;
 import tsp.engine.Generation;
 import tsp.engine.Player;
 import tsp.engine.Tower;
@@ -70,6 +71,11 @@ public class Window extends Application{
 	 */
 	private Sound soundDeath;
 	private Texture bg;
+	
+	private Input input;
+	private TowerRender towerRender;
+	private PlayerRender playerRender;
+	private PlatformRender platformRender;
 
 	
 
@@ -126,18 +132,67 @@ public class Window extends Application{
 	/**
 	 * Change l'état du jeu à RUNNING si on est dans le menu
 	 * @param e un mouseEvent
-	 */
+	 */	
 	private void changeState(MouseEvent e) {
 
-	    if(game.getState() == Game.GameState.MENU) {
-
-	        if(Menu.isClicked(e.getX(), e.getY())) {
-	            game.setState(Game.GameState.RUNNING);
+	    if (game.getState() == GameState.MENU) {
+	        if (Menu.isClicked(e.getX(), e.getY())) {
+	            game.setState(GameState.RUNNING);
 	        }
 	    }
-		
+
+	    else if (game.getState() == GameState.GAME_OVER) {
+	        if (GameOver.isRetryClicked(e.getX(), e.getY())) {
+	            game.reset(this);
+	            startRenders();
+	            ycamera = 0;
+	        }
+	    }
+	}
+
+	/**
+	 * Crée ou recrée tout les renders des différents objets
+	 */
+	private void startRenders() {
+	    towerRender = new TowerRender(this, game.getTower());
+	    playerRender = new PlayerRender(this, game.getPlayer());
+	    platformRender = new PlatformRender(this, game.getTower(), game.getPlatforms(), game.getGenerator());
+	
+	    canvas.toFront();
+	    menuCanvas.toFront();
 	}
 	
+	/**
+	 * 
+	 * @param stage: stage javafx
+	 */
+	private void startScene(Stage stage) {
+		// Elements de la scene
+	    this.group = new Group();
+	    this.gameGroup = new Group();
+	    this.canvas = new Canvas(windowWidth, windowHeight);
+	    
+	    this.menuCanvas = new Canvas(windowWidth, windowHeight);			// Création du canvas du menu aux mêmes dimensions que la fenêtre
+	
+	    this.gc = canvas.getGraphicsContext2D();
+	    this.scene = new Scene(group, windowWidth, windowHeight);
+	    this.stage = stage;
+	
+	    this.soundgame = new Sound(Constants.TRACK1_PATH);
+	    this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
+	}
+	
+	/**
+	 * Creation et affichage du fond d'ecran
+	 */
+	private void startBackground() {
+	    this.bg = new Texture(Constants.SPACE_PATH, windowWidth, windowHeight);
+	    ImageView bgView = new ImageView(bg.getImage());
+	    bgView.setFitWidth(windowWidth);
+	    bgView.setFitHeight(windowHeight);
+	
+	    gameGroup.getChildren().add(bgView);
+	}
 	
 	/**
 	 * TODO segmenter
@@ -145,42 +200,16 @@ public class Window extends Application{
 	 */
 	@Override
 	public void start(Stage stage) {		
-		
-		//Elements de la scène
-		this.group = new Group();
-		this.gameGroup = new Group();
-		this.canvas = new Canvas(windowWidth,windowHeight);
-		// Création du canvas du menu aux mêmes dimensions que la fenêtre
-		this.menuCanvas = new Canvas(windowWidth, windowHeight); 
-		
-		this.gc = canvas.getGraphicsContext2D();
-		this.scene = new Scene(group, windowWidth, windowHeight);
-		this.stage = stage;
-		
-		this.soundgame = new Sound(Constants.TRACK1_PATH);
-		this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
-		this.bg = new Texture(Constants.SPACE_PATH, windowWidth, windowHeight);
-
 		// Pour pouvoir appeler window dans la classe anonyme AnimationTimer
 		Window window = this;
-				
+		
+		// Construire tout les éléments de la fenêtre
+		startScene(stage);
 		Input input = new Input(window);
 		game = new Game(this);
 		input.listen();
-		
-		// Création et affichage du fond d'écran
-		Texture bg = new Texture(Constants.SPACE_PATH, windowWidth, windowHeight);
-        //bg.setBG(window);
-		ImageView bgView = new ImageView(bg.getImage());
-		bgView.setFitWidth(windowWidth);
-		bgView.setFitHeight(windowHeight);
-		gameGroup.getChildren().add(bgView);
-		
-		
-        // Création et affichage de : tour, des plateformes, du joueur
-		TowerRender towerRender = new TowerRender(window, game.getTower());
-		PlayerRender playerRender = new PlayerRender(window,game.getPlayer());
-		PlatformRender platformRender = new PlatformRender(window, game.getTower(), game.getPlatforms(), game.getGenerator());	
+		startBackground();
+		startRenders();
 
 		gameGroup.getChildren().add(canvas); // Canvas (joueur + plateformes) dans le gameGroup
 		
@@ -299,7 +328,8 @@ public class Window extends Application{
 
 	                
 	                	// puis l’overlay game over
-		                GameOver.render(window, (int)-window.getCamY()/PlatformSpacing);
+		                menuCanvas.setVisible(true);
+		                GameOver.render(window, menuCanvas, (int)-window.getCamY()/PlatformSpacing);
 		                System.out.println("IN GAME OVER");
 		                return;				
 		        }

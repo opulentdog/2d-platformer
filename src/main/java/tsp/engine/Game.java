@@ -5,12 +5,6 @@ import tsp.graphics.Window;
 
 public class Game {
 	
-	public enum GameState {
-		MENU,
-	    RUNNING,
-	    GAME_OVER
-	}
-	
 	private GameState state = GameState.RUNNING;
 	private Player player;
 	private Tower tower;
@@ -62,12 +56,7 @@ public class Game {
 	 * @param window la fene^tre du jeu
 	 */
 	public Game(Window window) {
-		generator = new Generation();
-		player = new Player(70, 70);
-		tower = new Tower();
-		
-		platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
-		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
+		reset(window);
 		state = GameState.MENU;
 	}
 
@@ -77,6 +66,7 @@ public class Game {
 	    	// A l'ouvreture du jeu ou après un game over
 	    	case MENU:
 	    		updateMenu(delta);
+	    		break;
 
 	    	// jeu en cours
 	        case RUNNING:
@@ -98,6 +88,21 @@ public class Game {
 	
 	public void updateGame(double delta) {
 		
+	}
+	
+	public void updateGameOver(double delta) {
+		
+	}
+	
+	public void reset(Window window) {
+	    generator = new Generation();
+	    player = new Player(70, 70);
+	    tower = new Tower();
+
+	    platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
+		player.setPostition((window.getWidth()-player.getWidth())/2, player.getHeight());
+
+	    state = GameState.RUNNING;
 	}
 	
 }
