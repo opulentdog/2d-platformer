@@ -29,7 +29,7 @@ public class Menu {
        // gc.setFill(Color.GREEN);
         //gc.fillRect(0,0,window.getWidth(),window.getHeight());
 
-        gc.setFill(Color.RED);
+        gc.setFill(Color.BLUE);
         gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
 
         gc.setFill(Color.BLACK);

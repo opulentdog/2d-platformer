@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import tsp.engine.Game;
+import tsp.engine.GameState;
 import tsp.engine.Generation;
 import tsp.engine.Player;
 import tsp.engine.Tower;
@@ -126,16 +127,21 @@ public class Window extends Application{
 	/**
 	 * Change l'état du jeu à RUNNING si on est dans le menu
 	 * @param e un mouseEvent
-	 */
+	 */	
 	private void changeState(MouseEvent e) {
 
-	    if(game.getState() == Game.GameState.MENU) {
-
-	        if(Menu.isClicked(e.getX(), e.getY())) {
-	            game.setState(Game.GameState.RUNNING);
+	    if (game.getState() == GameState.MENU) {
+	        if (Menu.isClicked(e.getX(), e.getY())) {
+	            game.setState(GameState.RUNNING);
 	        }
 	    }
-		
+
+	    else if (game.getState() == GameState.GAME_OVER) {
+	        if (GameOver.isRetryClicked(e.getX(), e.getY())) {
+	            game.reset(this);
+	            ycamera = 0;
+	        }
+	    }
 	}
 	
 	
@@ -299,7 +305,8 @@ public class Window extends Application{
 
 	                
 	                	// puis l’overlay game over
-		                GameOver.render(window, (int)-window.getCamY()/PlatformSpacing);
+		                menuCanvas.setVisible(true);
+		                GameOver.render(window, menuCanvas);
 		                System.out.println("IN GAME OVER");
 		                return;				
 		        }
