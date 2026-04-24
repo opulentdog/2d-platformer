@@ -10,13 +10,13 @@ public class Menu {
 	/***
 	 * Coordonnées du bouton dans la fenêtre
 	 */
-    private static double btnX = 250;
-    private static double btnY = 200;
+    private final static double BTN_X = 250;
+    private final static double BTN_Y = 200;
     /**
      * Dimensions du bouton
      */
-    private static double btnWidth = 200;
-    private static double btnHeight = 60;
+    private final static double BTN_WIDTH = 200;
+    private final static double BTN_HEIGHT = 60;
 
     public static void render(Window window, Canvas overlayCanvas) {
         //GraphicsContext gc = window.getGC(); On le garde on sait jamais
@@ -30,10 +30,10 @@ public class Menu {
         //gc.fillRect(0,0,window.getWidth(),window.getHeight());
 
         gc.setFill(Color.RED);
-        gc.fillRect(btnX,btnY,btnWidth,btnHeight);
+        gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
 
         gc.setFill(Color.BLACK);
-        gc.fillText("PLAY", btnX+80, btnY+35);
+        gc.fillText("PLAY", BTN_X+80, BTN_Y+35);
         
     }
 
@@ -44,7 +44,7 @@ public class Menu {
      * @return
      */
     public static boolean isClicked(double x,double y) {
-        return x >= btnX && x <= btnX+btnWidth &&
-               y >= btnY && y <= btnY+btnHeight;
+        return x >= BTN_X && x <= BTN_X+BTN_WIDTH &&
+               y >= BTN_Y && y <= BTN_Y+BTN_HEIGHT;
     }
 }
