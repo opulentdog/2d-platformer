@@ -43,10 +43,10 @@ public class Generation {
 
 	    Platform[] platforms     = new Platform[PLATFORM_COUNT];
 	    this.platformAngles       = new int[PLATFORM_COUNT];
-	    Random random             = new Random();
+	    Random random             = new Random(1);
 
 	    // ── First platform: centred vertically, random angle ──────────────────────
-	    platformAngles[0] = (int) (360 * Math.random());
+	    platformAngles[0] = (int) (360 * random.nextDouble());
 	    platforms[0]      = new BasicPlatform();
 	    platforms[0].setPostition(0, windowHeight / 2.0);
 
@@ -66,11 +66,11 @@ public class Generation {
 	            // ── Basic platform ────────────────────────────────────────────────
 
 	            // Angle stays within ±BASIC_ANGLE_SPREAD of the previous platform's angle
-	            int angleOffset    = (int) (2 * BASIC_ANGLE_SPREAD * Math.random()) - BASIC_ANGLE_SPREAD;
+	            int angleOffset    = (int) (2 * BASIC_ANGLE_SPREAD * random.nextDouble()) - BASIC_ANGLE_SPREAD;
 	            platformAngles[k]  = (platformAngles[k - 1] + angleOffset) % 360;
 
 	            platforms[k]       = new BasicPlatform();
-	            double posX        = (windowWidth - platforms[k].getWidth()) * Math.random();
+	            double posX        = (windowWidth - platforms[k].getWidth()) * random.nextDouble();
 	            double posY        = windowHeight / 2.0 - altitude * PlatformSpacing;
 	            altitude++;
 	            platforms[k].setPostition(posX, posY);
@@ -81,16 +81,16 @@ public class Generation {
 	            // ── Lava platform ─────────────────────────────────────────────────
 
 	            // Angle is offset by a random amount in [MIN, MIN+RANGE], on a random side
-	            double angleOffset = MIN_LAVA_ANGLE_OFFSET + LAVA_ANGLE_RANGE * Math.random();
-	            double sign        = 2 * Math.ceil(Math.random() - 0.5) - 1; // −1 or +1 with equal probability
+	            double angleOffset = MIN_LAVA_ANGLE_OFFSET + LAVA_ANGLE_RANGE * random.nextDouble();
+	            double sign        = 2 * Math.ceil(random.nextDouble() - 0.5) - 1; // −1 or +1 with equal probability
 	            platformAngles[k]  = (int) ((platformAngles[k - 1] + angleOffset * sign) % 360);
 
 	            platforms[k]       = new LavaPlatform();
 
 	            // Lava floats between altitude-1 and altitude-0.5 steps above the midpoint,
 	            // keeping it visually sandwiched between the two surrounding basic platforms
-	            double altitudeOffset = LAVA_ALTITUDE_BASE + LAVA_ALTITUDE_VARIANCE * Math.random();
-	            double posX           = (windowWidth - platforms[k].getWidth()) * Math.random();
+	            double altitudeOffset = LAVA_ALTITUDE_BASE + LAVA_ALTITUDE_VARIANCE * random.nextDouble();
+	            double posX           = (windowWidth - platforms[k].getWidth()) * random.nextDouble();
 	            double posY           = windowHeight / 2.0 - (altitude - altitudeOffset) * PlatformSpacing;
 	            platforms[k].setPostition(posX, posY);
 	            previousWasLava       = true;
