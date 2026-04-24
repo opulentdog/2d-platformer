@@ -1,7 +1,5 @@
 package tsp.graphics.render;
-
-import javafx.application.ConditionalFeature;
-import javafx.application.Platform;
+import tsp.graphics.Constants;
 import javafx.scene.AmbientLight;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Cylinder;
@@ -23,7 +21,7 @@ public class TowerRender extends Render<Tower>{
 	
 	
 	public TowerRender(Window window, Tower tower) {
-		super(tower);
+		super(tower, Constants.WALL_PATH);
 		/*
 		Scene scene = window.getScene();
 		window.getStage().setScene(scene);

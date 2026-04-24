@@ -8,7 +8,7 @@ import tsp.graphics.Sound;
 public class BasicPlatform extends Platform{
 	
 	public BasicPlatform() {
-		super("/images/stone-wallplatform.png", 100, 30);
+		super(100, 30);
 		this.soundeff = new Sound("/sounds/sound_effect/SFX_Jump_42.wav");
 		this.type = PlatformType.BASIC;
 	}

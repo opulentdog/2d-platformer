@@ -1,17 +1,15 @@
 package tsp.engine;
 
 public abstract class Asset {
-	String imgPath;
 	protected double width;
 	protected double height;
 	protected double x = 0;
 	protected double y = 0;
 	
 
-	public Asset (String image, int width, int height) {
+	public Asset (int width, int height) {
 		this.width=width;
 		this.height=height;
-		this.imgPath = image;
 	}
 	
 	/**
@@ -46,9 +44,6 @@ public abstract class Asset {
 		return y;
 	}
 	
-	public String getImgPath() {
-		return imgPath;
-	}
 	
 	/**
 	 * methode pour gerer les hitbox

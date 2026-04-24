@@ -63,7 +63,7 @@ public class Game {
 	 */
 	public Game(Window window) {
 		generator = new Generation();
-		player = new Player("/images/player.png", 70, 70);
+		player = new Player(70, 70);
 		tower = new Tower();
 		
 		platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());

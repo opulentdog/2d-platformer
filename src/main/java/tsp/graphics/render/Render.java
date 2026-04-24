@@ -7,8 +7,8 @@ import tsp.graphics.Window;
 public abstract class Render<A extends Asset> {
 	private Texture texture;
 	
-	public Render(A a){
-		this.texture = new Texture(a.getImgPath(), a.getWidth(), a.getHeight());
+	public Render(A a, String imgPath){
+		this.texture = new Texture(imgPath, a.getWidth(), a.getHeight());
 	}
 	
 	public Texture getTexture() {
