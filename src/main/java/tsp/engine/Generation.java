@@ -23,7 +23,7 @@ public class Generation {
 	    // At altitude N, the chance of spawning a BasicPlatform is:
 	    //   BASE_BASIC_CHANCE / (altitude / ALTITUDE_SCALE)
 	    // So the deeper you go, the rarer basic platforms become.
-	    final double BASE_BASIC_CHANCE        = 0;
+	    final double BASE_BASIC_CHANCE        = 0.5;
 	    final double ALTITUDE_SCALE           = 5.0;
 
 	    // Max angle deviation (±degrees) between consecutive basic platform angles
