@@ -1,5 +1,7 @@
 package tsp.graphics.render;
 import tsp.graphics.Constants;
+import javafx.application.ConditionalFeature;
+import javafx.application.Platform;
 import javafx.scene.AmbientLight;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Cylinder;
@@ -31,6 +33,15 @@ public class TowerRender extends Render<Tower>{
 		camera.setFarClip(5000);
 		scene.setCamera(camera);
 		*/
+		
+        //Test du support materiel pour le rendu 3d (-Dprism.forceGPU=true)
+        Boolean Support3D = Platform.isSupported(ConditionalFeature.SCENE3D);
+        if(!Support3D){
+                System.out.println("JavaFX version: " + System.getProperty("javafx.version"));
+                System.out.println("Le support 3D est désactivé !!!");
+                throw new Error();
+        }
+		
 		this.tower = tower;
 		Cylinder cyl = new Cylinder(tower.getWidth(), tower.getHeight());
 		this.cyl = cyl;

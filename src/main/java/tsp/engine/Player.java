@@ -19,6 +19,7 @@ public class Player extends Asset {
 	double playeryVelocity=31;
 	double playerxVelocity=3;
 	private int gravity=1;
+	final private int FALL_THRESHOLD=29;
 	private Boolean ground=true;
 	private PlayerRender playerRender;
 	
@@ -96,16 +97,22 @@ public class Player extends Asset {
 		}
 
 		if (y+height > windowsHeight){
-			y=windowsHeight-height;
-			yVelocity=-playeryVelocity;
-			ground=true;
+			if (yVelocity>FALL_THRESHOLD) {			// dégâts de chute (sol)
+				this.kill();
+			} else {
+				y=windowsHeight-height;
+				yVelocity=-playeryVelocity;
+				ground=true;
+			}
 		}
 		
 		
 		/*Collision avec les platformes*/
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
-				if (yVelocity>0) {
+				if (yVelocity>FALL_THRESHOLD) {		// dégâts de chute (plateforme)
+					this.kill();
+				} else if (yVelocity>0){
 					yVelocity=-playeryVelocity;
 					ground=true;
 					platform.effect(this);
