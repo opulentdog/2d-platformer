@@ -146,6 +146,8 @@ public class Window extends Application{
 	            game.reset(this);
 	            startRenders();
 	            ycamera = 0;
+	          //on coupe la musique
+                soundDeath.stopMusic();
 	        }
 	    }
 	}
