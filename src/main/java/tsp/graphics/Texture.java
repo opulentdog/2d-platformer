@@ -53,6 +53,13 @@ public class Texture {
 		return img;
 	}
 	
+	public double getHeight() {
+		return height;
+	}
+	
+	public double getWidth() {
+		return width;
+	}
 	
 	/**
 	 * Texture pour un cylindre (À généraliser plus tard éventuellement pour n'importe quelle forme)

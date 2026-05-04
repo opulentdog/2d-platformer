@@ -11,7 +11,7 @@ public class Menu {
 	 * Coordonnées du bouton dans la fenêtre
 	 */
     private final static double BTN_X = 250;
-    private final static double BTN_Y = 200;
+    private final static double BTN_Y = 350;
     /**
      * Dimensions du bouton
      */
@@ -25,10 +25,11 @@ public class Menu {
     	GraphicsContext gc = overlayCanvas.getGraphicsContext2D(); 
     	// Efface le canvas menu à chaque frame pour éviter les superpositions
     	gc.clearRect(0, 0, overlayCanvas.getWidth(), overlayCanvas.getHeight());
-  
-       // gc.setFill(Color.GREEN);
-        //gc.fillRect(0,0,window.getWidth(),window.getHeight());
-
+    	
+    	// Affichage de l'image du titre
+        Texture titre = new Texture(Constants.TITRE_JEU_1, 400, 300);
+        gc.drawImage(titre.getImage(), 145 , -10);
+        
         gc.setFill(Color.BLUE);
         gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
 
