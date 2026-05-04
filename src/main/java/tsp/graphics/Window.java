@@ -280,6 +280,7 @@ public class Window extends Application{
 			            window.getGC().drawImage(snapshotTower, 0, 0);   // On dessine la tour floue par-dessus
 			            window.getGC().restore();						// Retour à save() => annule le flou
 			            
+			            game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
 			            menuCanvas.setVisible(true);
 			            playerRender.render();							// On affiche le Player net
 			            Menu.render(window, menuCanvas);				// On lance Menu qui affiche le bouton net
