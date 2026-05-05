@@ -70,7 +70,7 @@ public class Generation {
 	            platformAngles[k]  = (platformAngles[k - 1] + angleOffset) % 360;
 
 	            platforms[k]       = new BasicPlatform();
-	            double posX        = (windowWidth - platforms[k].getWidth()) * random.nextDouble();
+	            double posX        = 0;//(windowWidth - platforms[k].getWidth()) * random.nextDouble();
 	            double posY        = windowHeight / 2.0 - altitude * PlatformSpacing;
 	            altitude++;
 	            platforms[k].setPostition(posX, posY);
@@ -90,7 +90,7 @@ public class Generation {
 	            // Lava floats between altitude-1 and altitude-0.5 steps above the midpoint,
 	            // keeping it visually sandwiched between the two surrounding basic platforms
 	            double altitudeOffset = LAVA_ALTITUDE_BASE + LAVA_ALTITUDE_VARIANCE * random.nextDouble();
-	            double posX           = (windowWidth - platforms[k].getWidth()) * random.nextDouble();
+	            double posX           = 0;//(windowWidth - platforms[k].getWidth()) * random.nextDouble();
 	            double posY           = windowHeight / 2.0 - (altitude - altitudeOffset) * PlatformSpacing;
 	            platforms[k].setPostition(posX, posY);
 	            previousWasLava       = true;
