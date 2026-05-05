@@ -76,6 +76,9 @@ public class Window extends Application{
 	private TowerRender towerRender;
 	private PlayerRender playerRender;
 	private PlatformRender platformRender;
+	
+	private static final int PlatformSpacing = 300;
+
 
 	
 
@@ -197,6 +200,94 @@ public class Window extends Application{
 	}
 	
 	/**
+	 *  Creation du menu avec les calques flous et nets
+	 */
+	private void setMenu(GaussianBlur menuBlur) {
+		this.getGC().clearRect(0,0,this.getWidth(),this.getHeight());
+        
+        // Dessiner le fond sur le canvas
+        this.getGC().drawImage(bg.getImage(), 0, 0, this.getWidth(), this.getHeight());			            
+        towerRender.render();
+        
+        // Snapshot du gameGroup pour capturer la tour 3D
+        WritableImage snapshotTower = new WritableImage(this.getWidth(), this.getHeight());
+        SnapshotParameters params = new SnapshotParameters();
+        params.setFill(Color.TRANSPARENT); 			// Fond transparent pour voir le fond space derrière
+        gameGroup.snapshot(params, snapshotTower);			 // Photo de gameGroup --> snapshotTower
+        
+        // Snapshot du canvas pour capturer le fond space
+        WritableImage snapshotCanvas = new WritableImage(this.getWidth(), this.getHeight());
+        this.getCanvas().snapshot(params, snapshotCanvas);
+        
+        // Redessiner les deux snapshots floutées dans l'ordre
+        this.getGC().clearRect(0,0,this.getWidth(),this.getHeight()); // Efface le canvas
+        this.getGC().save(); 									// Sauvegarde l'état actuel du GC
+        this.getGC().setEffect(menuBlur); 				// Applique le flou gaussien
+        this.getGC().drawImage(snapshotCanvas, 0, 0);  // On dessine le fond flou
+        this.getGC().drawImage(snapshotTower, 0, 0);   // On dessine la tour floue par-dessus
+        this.getGC().restore();						// Retour à save() => annule le flou
+        
+        game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
+        menuCanvas.setVisible(true);
+        playerRender.render();							// On affiche le Player net
+        Menu.render(this, menuCanvas);				// On lance Menu qui affiche le bouton net
+	}
+	
+	/**
+	 *  Creation de lavec les calques flous et nets
+	 */
+	private void setRunning() {
+		this.getCanvas().setEffect(null);		   // Supprime le flou	
+		menuCanvas.setVisible(false);		       // Cache le canvas menu pendant la partie	
+		menuCanvas.getGraphicsContext2D().clearRect(0,0,windowWidth,windowHeight);// Efface le canvas menu
+	    
+		this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
+		this.setCam(game.getPlayer().getY()-this.getHeight()/2);
+
+        game.getPlayer().calculatePosition(this.getWidth(), this.getHeight(), game.getPlatforms());
+        game.getTower().controlTower(input.getPressedKeyset());
+
+        towerRender.render();
+        platformRender.render();
+        playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
+        
+        gc.save();			// Etat où restore() va revenir
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
+        gc.setFill(Color.WHITE);
+        gc.fillText("Score : "+(int)-this.getCamY()/PlatformSpacing, this.getHeight()-220, 50);
+        gc.restore(); // retire le gras et revient à la police précédente
+        
+        //window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 20);
+
+        //gc.strokeText("FPS: "+1/delta, 540, 36);
+        
+        //on gère les musiques  
+        
+    	soundgame.playMusic();
+		soundgame.volume(0.7f);
+    	
+	}
+	
+	private void setGameOver() {
+		// on redessine une dernière image figée :
+        this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
+        towerRender.render();
+        platformRender.render();
+        playerRender.render();
+        
+        //on gère les musiques
+        soundgame.stopMusic();
+    	soundDeath.playMusic();
+    	soundDeath.volume(0.8f);
+
+    
+    	// puis l’overlay game over
+        menuCanvas.setVisible(true);
+        GameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing);
+        System.out.println("IN GAME OVER");
+	}
+	
+	/**
 	 * TODO segmenter
 	 * 
 	 */
@@ -207,7 +298,7 @@ public class Window extends Application{
 		
 		// Construire tout les éléments de la fenêtre
 		startScene(stage);
-		Input input = new Input(window);
+		this.input = new Input(this);
 		game = new Game(this);
 		input.listen();
 		startBackground();
@@ -224,7 +315,7 @@ public class Window extends Application{
 		// Grande classe anonyme à décomoser en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		
-			private static final int PlatformSpacing = 300;
+			//private static final int PlatformSpacing = 300;
 
 			long lastTime = 0;	
 	
@@ -256,84 +347,15 @@ public class Window extends Application{
 		        game.update(delta);
 		        switch(game.getState()) {
 			        case MENU:
-			            window.getGC().clearRect(0,0,window.getWidth(),window.getHeight());
-			            
-			            // Dessiner le fond sur le canvas
-			            window.getGC().drawImage(bg.getImage(), 0, 0, window.getWidth(), window.getHeight());			            
-			            towerRender.render();
-			            
-			            // Snapshot du gameGroup pour capturer la tour 3D
-			            WritableImage snapshotTower = new WritableImage(window.getWidth(), window.getHeight());
-			            SnapshotParameters params = new SnapshotParameters();
-			            params.setFill(Color.TRANSPARENT); 			// Fond transparent pour voir le fond space derrière
-			            gameGroup.snapshot(params, snapshotTower);			 // Photo de gameGroup --> snapshotTower
-			            
-			            // Snapshot du canvas pour capturer le fond space
-			            WritableImage snapshotCanvas = new WritableImage(window.getWidth(), window.getHeight());
-			            window.getCanvas().snapshot(params, snapshotCanvas);
-			            
-			            // Redessiner les deux snapshots floutées dans l'ordre
-			            window.getGC().clearRect(0,0,window.getWidth(),window.getHeight()); // Efface le canvas
-			            window.getGC().save(); 									// Sauvegarde l'état actuel du GC
-			            window.getGC().setEffect(menuBlur); 				// Applique le flou gaussien
-			            window.getGC().drawImage(snapshotCanvas, 0, 0);  // On dessine le fond flou
-			            window.getGC().drawImage(snapshotTower, 0, 0);   // On dessine la tour floue par-dessus
-			            window.getGC().restore();						// Retour à save() => annule le flou
-			            
-			            game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
-			            menuCanvas.setVisible(true);
-			            playerRender.render();							// On affiche le Player net
-			            Menu.render(window, menuCanvas);				// On lance Menu qui affiche le bouton net
+			        	setMenu(menuBlur);
 			            return;
+			            
 		        	case RUNNING:
-		        		window.getCanvas().setEffect(null);		   // Supprime le flou	
-		        		menuCanvas.setVisible(false);		       // Cache le canvas menu pendant la partie	
-		        		menuCanvas.getGraphicsContext2D().clearRect(0,0,windowWidth,windowHeight);// Efface le canvas menu
-		        	    
-		                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-		                window.setCam(game.getPlayer().getY()-window.getHeight()/2);
-		
-		                game.getPlayer().calculatePosition(window.getWidth(), window.getHeight(), game.getPlatforms());
-		                game.getTower().controlTower(input.getPressedKeyset());
-		
-		                towerRender.render();
-		                platformRender.render();
-		                playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
-		                
-		                gc.save();			// Etat où restore() va revenir
-		                gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
-		                gc.setFill(Color.WHITE);
-		                gc.fillText("Score : "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-220, 50);
-		                gc.restore(); // retire le gras et revient à la police précédente
-		                
-		                //window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 20);
-		
-		                //gc.strokeText("FPS: "+1/delta, 540, 36);
-		                
-		                //on gère les musiques  
-		                
-	                	soundgame.playMusic();
-	            		soundgame.volume(0.7f);
-	                	
-		               return ;
+		        		setRunning();
+		        		return ;
 						
 		        	case GAME_OVER:
-		                // on redessine une dernière image figée :
-		                window.getGC().clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
-		                towerRender.render();
-		                platformRender.render();
-		                playerRender.render();
-		                
-		                //on gère les musiques
-		                soundgame.stopMusic();
-	                	soundDeath.playMusic();
-	                	soundDeath.volume(0.8f);
-
-	                
-	                	// puis l’overlay game over
-		                menuCanvas.setVisible(true);
-		                GameOver.render(window, menuCanvas, (int)-window.getCamY()/PlatformSpacing);
-		                System.out.println("IN GAME OVER");
+		        		setGameOver();
 		                return;				
 		        }
 
