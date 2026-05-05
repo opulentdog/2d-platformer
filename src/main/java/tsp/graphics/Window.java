@@ -317,7 +317,7 @@ public class Window extends Application{
 		
 		// Effet de flou appliqué au canvas de jeu pendant le menu
 		GaussianBlur menuBlur = new GaussianBlur(Constants.FLOU);
-		
+
 		// Grande classe anonyme à décomoser en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		
