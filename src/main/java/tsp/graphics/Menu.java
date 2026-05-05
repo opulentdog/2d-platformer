@@ -3,6 +3,8 @@ package tsp.graphics;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 
 public class Menu {
@@ -17,6 +19,11 @@ public class Menu {
      */
     private final static double BTN_WIDTH = 200;
     private final static double BTN_HEIGHT = 60;
+    /**
+     * Dimensions de l'image du Titre
+     */
+    private final static double TITLE_WIDTH = 400;
+    private final static double TITLE_HEIGHT = 300;
 
     public static void render(Window window, Canvas overlayCanvas) {
         //GraphicsContext gc = window.getGC(); On le garde on sait jamais
@@ -27,15 +34,24 @@ public class Menu {
     	gc.clearRect(0, 0, overlayCanvas.getWidth(), overlayCanvas.getHeight());
     	
     	// Affichage de l'image du titre
-        Texture titre = new Texture(Constants.TITRE_JEU_1, 400, 300);
-        gc.drawImage(titre.getImage(), 145 , -10);
+        Texture titre = new Texture(Constants.TITRE_JEU_1, TITLE_WIDTH, TITLE_HEIGHT);
+        gc.drawImage(titre.getImage(), ( overlayCanvas.getWidth() - TITLE_WIDTH)/2 , overlayCanvas.getWidth()/(-17.33) );
         
+        // Création du bouton bleu
         gc.setFill(Color.BLUE);
         gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
+        // Cadre blanc autour du bouton bleu
+        gc.setStroke(Color.RED);
+        gc.setLineWidth(3);
+        gc.strokeRect(BTN_X, BTN_Y, BTN_WIDTH, BTN_HEIGHT);     
+        // Ecriture du mot PLAY
+        gc.save();			// Etat où restore() va revenir
+        gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
+        gc.setFill(Color.RED);
+        gc.fillText("PLAY", BTN_X+60, BTN_Y+40);
+        gc.restore(); // retire le gras et revient à la police précédente
+       
 
-        gc.setFill(Color.BLACK);
-        gc.fillText("PLAY", BTN_X+80, BTN_Y+35);
-        
     }
 
     /**
