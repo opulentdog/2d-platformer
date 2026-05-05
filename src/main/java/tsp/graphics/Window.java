@@ -78,6 +78,7 @@ public class Window extends Application{
 	private PlatformRender platformRender;
 	
 	private static final int PlatformSpacing = 300;
+	private WritableImage menuBackground = null;
 
 
 	
@@ -162,6 +163,8 @@ public class Window extends Application{
 	    towerRender = new TowerRender(this, game.getTower());
 	    playerRender = new PlayerRender(this, game.getPlayer());
 	    platformRender = new PlatformRender(this, game.getTower(), game.getPlatforms(), game.getGenerator());
+	    menuBackground = null; // ✅ Force le recalcul du fond flouté au prochain menu
+
 	
 	    canvas.toFront();
 	    menuCanvas.toFront();
@@ -203,34 +206,39 @@ public class Window extends Application{
 	 *  Creation du menu avec les calques flous et nets
 	 */
 	private void setMenu(GaussianBlur menuBlur) {
-		this.getGC().clearRect(0,0,this.getWidth(),this.getHeight());
-        
-        // Dessiner le fond sur le canvas
-        this.getGC().drawImage(bg.getImage(), 0, 0, this.getWidth(), this.getHeight());			            
-        towerRender.render();
-        
-        // Snapshot du gameGroup pour capturer la tour 3D
-        WritableImage snapshotTower = new WritableImage(this.getWidth(), this.getHeight());
-        SnapshotParameters params = new SnapshotParameters();
-        params.setFill(Color.TRANSPARENT); 			// Fond transparent pour voir le fond space derrière
-        gameGroup.snapshot(params, snapshotTower);			 // Photo de gameGroup --> snapshotTower
-        
-        // Snapshot du canvas pour capturer le fond space
-        WritableImage snapshotCanvas = new WritableImage(this.getWidth(), this.getHeight());
-        this.getCanvas().snapshot(params, snapshotCanvas);
-        
-        // Redessiner les deux snapshots floutées dans l'ordre
-        this.getGC().clearRect(0,0,this.getWidth(),this.getHeight()); // Efface le canvas
-        this.getGC().save(); 									// Sauvegarde l'état actuel du GC
-        this.getGC().setEffect(menuBlur); 				// Applique le flou gaussien
-        this.getGC().drawImage(snapshotCanvas, 0, 0);  // On dessine le fond flou
-        this.getGC().drawImage(snapshotTower, 0, 0);   // On dessine la tour floue par-dessus
-        this.getGC().restore();						// Retour à save() => annule le flou
-        
-        game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
-        menuCanvas.setVisible(true);
-        playerRender.render();							// On affiche le Player net
-        Menu.render(this, menuCanvas);				// On lance Menu qui affiche le bouton net
+		// On ne calcule le snapshot flou qu'une seule fois
+	    if (menuBackground == null) {
+	        this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
+	        this.getGC().drawImage(bg.getImage(), 0, 0, this.getWidth(), this.getHeight());
+	        towerRender.render();
+
+	        SnapshotParameters params = new SnapshotParameters();
+	        params.setFill(Color.TRANSPARENT);
+
+	        WritableImage snapshotTower = gameGroup.snapshot(params, null);
+	        WritableImage snapshotCanvas = this.getCanvas().snapshot(params, null);
+
+	        // On fusionne les deux snapshots floutés dans menuBackground
+	        menuBackground = new WritableImage(this.getWidth(), this.getHeight());
+	        Canvas tempCanvas = new Canvas(this.getWidth(), this.getHeight());
+	        GraphicsContext tempGc = tempCanvas.getGraphicsContext2D();
+	        tempGc.setEffect(menuBlur);
+	        tempGc.drawImage(snapshotCanvas, 0, 0);
+	        tempGc.drawImage(snapshotTower, 0, 0);
+	        tempGc.applyEffect(menuBlur);
+	        SnapshotParameters p2 = new SnapshotParameters();
+	        p2.setFill(Color.TRANSPARENT);
+	        tempCanvas.snapshot(p2, menuBackground); // On sauvegarde le résultat flouté
+	    }
+
+	    // Chaque frame : on redessine juste le fond mémorisé, pas de snapshot
+	    this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
+	    this.getGC().drawImage(menuBackground, 0, 0);  // Aucun snapshot, aucune condition de course
+
+	    game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
+	    menuCanvas.setVisible(true);
+	    playerRender.render();
+	    Menu.render(this, menuCanvas);
 	}
 	
 	/**
@@ -293,13 +301,11 @@ public class Window extends Application{
 	 */
 	@Override
 	public void start(Stage stage) {		
-		// Pour pouvoir appeler window dans la classe anonyme AnimationTimer
-		Window window = this;
 		
 		// Construire tout les éléments de la fenêtre
 		startScene(stage);
-		this.input = new Input(this);
 		game = new Game(this);
+		this.input = new Input(this);
 		input.listen();
 		startBackground();
 		startRenders();
