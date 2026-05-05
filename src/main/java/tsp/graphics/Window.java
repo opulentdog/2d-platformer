@@ -76,9 +76,20 @@ public class Window extends Application{
 	private TowerRender towerRender;
 	private PlayerRender playerRender;
 	private PlatformRender platformRender;
-	
+	/**
+	 * Espacement vertical entre chaque plateforme
+	 */
 	private static final int PlatformSpacing = 300;
+	
+	/**
+	 * Ce paramètre permet de calculer une seule dois les snapshots de MENU
+	 */
 	private WritableImage menuBackground = null;
+	/**
+	 * Ce booléen indique si la souris survole le bouton
+	 */
+	private boolean survolSouris = false;
+
 
 
 	
@@ -234,11 +245,19 @@ public class Window extends Application{
 	    // Chaque frame : on redessine juste le fond mémorisé, pas de snapshot
 	    this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
 	    this.getGC().drawImage(menuBackground, 0, 0);  // Aucun snapshot, aucune condition de course
-
+	    // On place le joueur au milieu de la fenetre
 	    game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
+	    
 	    menuCanvas.setVisible(true);
 	    playerRender.render();
-	    Menu.render(this, menuCanvas);
+	    
+	    //On lit la position de la souris
+	    menuCanvas.setOnMouseMoved(event -> {
+	        survolSouris = Menu.isClicked(event.getX(), event.getY());
+	    }
+	    );
+	    //Affichage du Menu : bouton + Titre
+	    Menu.render(this, menuCanvas, survolSouris);
 	}
 	
 	/**
