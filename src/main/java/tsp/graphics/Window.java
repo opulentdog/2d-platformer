@@ -201,6 +201,8 @@ public class Window extends Application{
 	
 	    this.soundgame = new Sound(Constants.TRACK1_PATH);
 	    this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
+	    this.menu = new Menu();
+
 	}
 	
 	/**
