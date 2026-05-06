@@ -33,12 +33,12 @@ public class Window extends Application{
 	/**
 	 * largeur de la fenetre
 	 */
-	private int windowWidth = 694;
+	private int windowWidth = Constants.WINDOWWIDTH;
 	
 	/**
 	 * hauteur de la fenetre
 	 */
-	private int windowHeight = 520;
+	private int windowHeight = Constants.WINDOWHEIGHT;
 	
 	private Game game;
 	
@@ -82,14 +82,16 @@ public class Window extends Application{
 	private static final int PlatformSpacing = 300;
 	
 	/**
-	 * Ce paramètre permet de calculer une seule dois les snapshots de MENU
+	 * menuBackground permet de calculer une seule fois les snapshots de MENU
 	 */
 	private WritableImage menuBackground = null;
-	/**
-	 * Ce booléen indique si la souris survole le bouton
-	 */
-	private boolean survolSouris = false;
+    private Menu menu;
 
+	/**
+	 * Coordonnées de la position de la souris dans Window
+	 */
+	private double sourisx;
+    private double sourisy;
 
 
 	
@@ -151,7 +153,7 @@ public class Window extends Application{
 	private void changeState(MouseEvent e) {
 
 	    if (game.getState() == GameState.MENU) {
-	        if (Menu.isClicked(e.getX(), e.getY())) {
+	        if (menu.isClicked(e.getX(), e.getY())) {
 	            game.setState(GameState.RUNNING);
 	        }
 	    }
@@ -219,10 +221,12 @@ public class Window extends Application{
 	private void setMenu(GaussianBlur menuBlur) {
 		// On ne calcule le snapshot flou qu'une seule fois
 	    if (menuBackground == null) {
+	    	// On vide le graphical Context
 	        this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
+	        // On dessine le fond et la tour
 	        this.getGC().drawImage(bg.getImage(), 0, 0, this.getWidth(), this.getHeight());
 	        towerRender.render();
-
+	        
 	        SnapshotParameters params = new SnapshotParameters();
 	        params.setFill(Color.TRANSPARENT);
 
@@ -253,11 +257,13 @@ public class Window extends Application{
 	    
 	    //On lit la position de la souris
 	    menuCanvas.setOnMouseMoved(event -> {
-	        survolSouris = Menu.isClicked(event.getX(), event.getY());
+	        sourisx = event.getX() ;
+	        sourisy = event.getY();
 	    }
 	    );
-	    //Affichage du Menu : bouton + Titre
-	    Menu.render(this, menuCanvas, survolSouris);
+	    Menu menu = new Menu();
+		//Affichage du Menu : bouton + Titre
+	    menu.render(this, menuCanvas, sourisx, sourisy);
 	}
 	
 	/**

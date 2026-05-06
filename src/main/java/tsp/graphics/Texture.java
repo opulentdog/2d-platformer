@@ -53,6 +53,10 @@ public class Texture {
 		return img;
 	}
 	
+	public String getPath() {
+		return imgPath;
+	}
+	
 	public double getHeight() {
 		return height;
 	}
@@ -61,6 +65,7 @@ public class Texture {
 		return width;
 	}
 	
+
 	/**
 	 * Texture pour un cylindre (À généraliser plus tard éventuellement pour n'importe quelle forme)
 	 * @param imgPath
