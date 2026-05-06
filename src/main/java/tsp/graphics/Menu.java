@@ -8,24 +8,34 @@ import javafx.scene.text.FontWeight;
 
 
 public class Menu {
-
-	/***
-	 * Coordonnées du bouton dans la fenêtre
-	 */
-    private final static double BTN_X = 250;
-    private final static double BTN_Y = 350;
-    /**
+	/**
      * Dimensions du bouton
      */
-    private final static double BTN_WIDTH = 200;
-    private final static double BTN_HEIGHT = 60;
+    private final static double BTN_WIDTH = 100;
+    private final static double BTN_HEIGHT = 100;
+	/**
+	 * Coordonnées du bouton dans la fenêtre
+	 */
+    private final static double BTN_X = ( Constants.WINDOWWIDTH - BTN_WIDTH )/2;
+    private final static double BTN_Y = 350;
+    
     /**
      * Dimensions de l'image du Titre
      */
     private final static double TITLE_WIDTH = 400;
     private final static double TITLE_HEIGHT = 300;
 
-    public static void render(Window window, Canvas overlayCanvas, boolean survolSouris) {
+    
+    private Button play = new Button(BTN_X, BTN_Y,BTN_WIDTH,BTN_HEIGHT,Constants.PLAYNORMAL_PATH,Constants.PLAYHOVER_PATH);
+
+    /**
+     * Affiche le Menu et ses éléments : Méthode non-static pour pouvoir utiliser les méthodes non-static de Button
+     * @param window
+     * @param overlayCanvas
+     * @param sourix
+     * @param sourisy
+     */
+    public void render(Window window, Canvas overlayCanvas, double sourix,double sourisy) {
         //GraphicsContext gc = window.getGC(); On le garde on sait jamais
     	
     	// Récupère le contexte du canvas overlay (et non celui du jeu)
@@ -37,6 +47,10 @@ public class Menu {
         Texture titre = new Texture(Constants.TITRE_JEU_1, TITLE_WIDTH, TITLE_HEIGHT);
         gc.drawImage(titre.getImage(), ( overlayCanvas.getWidth() - TITLE_WIDTH)/2 , overlayCanvas.getWidth()/(-17.33) );
         
+        //Affichage du bouton PLAY en version normal ou "survolé"
+        play.setImgPath(sourix,sourisy);
+        gc.drawImage(play.getImage(),BTN_X , BTN_Y);
+        /*
         // Couleurs qui changent selon le survol
         Color btnColor  = survolSouris ? Color.YELLOW : Color.BLUE;
         Color borderColor = survolSouris ? Color.ORANGE : Color.RED;
@@ -56,7 +70,7 @@ public class Menu {
         gc.setFill(textColor);
         gc.fillText("PLAY", BTN_X+60, BTN_Y+40);
         gc.restore(); // retire le gras et revient à la police précédente
-       
+       */
 
     }
 
@@ -66,8 +80,8 @@ public class Menu {
      * @param y position de la souris selon la verticale
      * @return
      */
-    public static boolean isClicked(double x,double y) {
-        return x >= BTN_X && x <= BTN_X+BTN_WIDTH &&
-               y >= BTN_Y && y <= BTN_Y+BTN_HEIGHT;
+    public boolean isClicked(double x,double y) {
+        return x >= this.BTN_X && x <= this.BTN_X+BTN_WIDTH &&
+               y >= this.BTN_Y && y <= this.BTN_Y+BTN_HEIGHT;
     }
 }

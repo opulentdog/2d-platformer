@@ -11,7 +11,9 @@ public final class Constants {
     public static final String INVISIBLEPLATFORM_PATH = "/images/stone-wallplatform.png";
     public static final String WALL_PATH = "/images/stone-wall.png";
     public static final String TITRE_JEU_1 = "/images/Titre_jeu_1.png";
-    
+    public static final String PLAYNORMAL_PATH = "/images/play_normal.png";
+    public static final String PLAYHOVER_PATH = "/images/play_hover.png";
+
 
     public static final String TRACK1_PATH = "/sounds/music/track1.wav";
     public static final String TRACK2_PATH = "/sounds/music/track2.wav";
@@ -19,6 +21,10 @@ public final class Constants {
     public static final String EXPLOSIONPATH = "/sounds/sound_effect/8-bit-bomb-explosion-2811.wav";
     
     public static final int FLOU = 20;
+    
+    public static final int WINDOWWIDTH = 694;
+    public static final int WINDOWHEIGHT = 520;
 
+    
 
 }
