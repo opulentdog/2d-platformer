@@ -11,8 +11,13 @@ public final class Constants {
     public static final String INVISIBLEPLATFORM_PATH = "/images/stone-wallplatform.png";
     public static final String WALL_PATH = "/images/stone-wall.png";
     public static final String TITRE_JEU_1 = "/images/Titre_jeu_1.png";
-    public static final String PLAYNORMAL_PATH = "/images/play_normal.png";
-    public static final String PLAYHOVER_PATH = "/images/play_hover.png";
+    public static final String PLAYNORMAL_PATH = "/images/buttons/play_normal.png";
+    public static final String PLAYHOVER_PATH = "/images/buttons/play_hover.png";
+    public static final String LEFTARROW_PATH = "/images/buttons/arrow_left_normal.png";
+    public static final String LEFTARROWHOVER_PATH = "/images/buttons/arrow_left_hover.png";
+    public static final String RIGHTARROW_PATH = "/images/buttons/arrow_right_normal.png";
+    public static final String RIGHTARROWHOVER_PATH = "/images/buttons/arrow_right_hover.png";
+
 
 
     public static final String TRACK1_PATH = "/sounds/music/track1.wav";

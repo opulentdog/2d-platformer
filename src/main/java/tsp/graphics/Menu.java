@@ -9,25 +9,44 @@ import javafx.scene.text.FontWeight;
 
 public class Menu {
 	/**
-     * Dimensions du bouton
+     * Dimensions du bouton PLAY : image carrée donc seul un côté est paramétré
      */
-    private final static double BTN_WIDTH = 100;
-    private final static double BTN_HEIGHT = 100;
+    private final static double PLAYSIDE = 100;
 	/**
 	 * Coordonnées du bouton dans la fenêtre
 	 */
-    private final static double BTN_X = ( Constants.WINDOWWIDTH - BTN_WIDTH )/2;
-    private final static double BTN_Y = 350;
+    private final static double PLAY_X = ( Constants.WINDOWWIDTH - PLAYSIDE )/2;
+    private final static double PLAY_Y = 350;
+
+    /**
+     * Dimensions des boutons flèches (image carrée)
+     */
+    private final static double ARROW_SIDE = 50;
+
+    /**
+     * Ordonnée des flèches dans la fenêtre
+     */
+    private final static double ARROW_Y = 250;
+    /**
+     * Abscisse des flèches
+     */
+    private final static double LEFTARROW_X = ( 0.8 * Constants.WINDOWWIDTH - ARROW_SIDE )/2;
+    private final static double RIGHTARROW_X = ( 1.2 * Constants.WINDOWWIDTH - ARROW_SIDE )/2;
+
     
     /**
      * Dimensions de l'image du Titre
      */
-    private final static double TITLE_WIDTH = 400;
-    private final static double TITLE_HEIGHT = 300;
+    private final static double TITLE_WIDTH = Constants.WINDOWWIDTH/1.735;
+    private final static double TITLE_HEIGHT = TITLE_WIDTH * 0.75;
 
     
-    private Button play = new Button(BTN_X, BTN_Y,BTN_WIDTH,BTN_HEIGHT,Constants.PLAYNORMAL_PATH,Constants.PLAYHOVER_PATH);
+    // Création des boutons
+    private Button play = new Button(PLAY_X, PLAY_Y,PLAYSIDE,PLAYSIDE,Constants.PLAYNORMAL_PATH,Constants.PLAYHOVER_PATH);
+    private Button leftarrow = new Button(LEFTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
+    private Button rightarrow = new Button(RIGHTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
 
+    
     /**
      * Affiche le Menu et ses éléments : Méthode non-static pour pouvoir utiliser les méthodes non-static de Button
      * @param window
@@ -49,7 +68,20 @@ public class Menu {
         
         //Affichage du bouton PLAY en version normal ou "survolé"
         play.setImgPath(sourix,sourisy);
-        gc.drawImage(play.getImage(),BTN_X , BTN_Y);
+        gc.drawImage(play.getImage(), PLAY_X , PLAY_Y);
+        
+        //Affichage de la flèche gauche en version normal ou "survolé"
+        leftarrow.setImgPath(sourix,sourisy);
+        gc.drawImage(leftarrow.getImage(), LEFTARROW_X , ARROW_Y);
+        
+        //Affichage de la flèche droite en version normal ou "survolé"
+        rightarrow.setImgPath(sourix,sourisy);
+        gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
+        
+        System.out.println(TITLE_WIDTH);
+        System.out.println(TITLE_HEIGHT);
+
+        
         /*
         // Couleurs qui changent selon le survol
         Color btnColor  = survolSouris ? Color.YELLOW : Color.BLUE;
@@ -80,8 +112,8 @@ public class Menu {
      * @param y position de la souris selon la verticale
      * @return
      */
-    public boolean isClicked(double x,double y) {
-        return x >= this.BTN_X && x <= this.BTN_X+BTN_WIDTH &&
-               y >= this.BTN_Y && y <= this.BTN_Y+BTN_HEIGHT;
+
+    public boolean isPlayClicked(double x,double y) {
+        return play.isHoveredCirc(x, y);
     }
 }
