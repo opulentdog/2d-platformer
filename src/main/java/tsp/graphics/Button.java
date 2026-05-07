@@ -28,16 +28,37 @@ public class Button {
 	}
 	
 	public void setImgPath(double sourisx, double sourisy) {
-        if (isHovered(sourisx, sourisy)) {
+        if (isHoveredCirc(sourisx, sourisy)) {
             currentImg = imgHover;
         } else {
             currentImg = imgNormal;
         }
     }
 	
+	/**
+	 * Test si un point est inclus dans l'image carrée du bouton
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isHovered(double x,double y) {
         return x >= this.x && x <= this.x+this.width &&
                y >= this.y && y <= this.y+this.height ;
+    }
+	
+	/**
+	 * Test si un point est inclus dans le cercle de l'image du bouton
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean isHoveredCirc(double x,double y) {
+		//On prend un rayon plus petit que l'image car le bouton l'est aussi
+        double radius = 0.85 * this.width / 2; 
+        double cx = this.x + radius;
+        double cy = this.y + radius;
+        double distance = Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
+        return distance <= radius;
     }
 	
 }

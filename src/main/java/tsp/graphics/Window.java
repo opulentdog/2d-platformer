@@ -153,7 +153,7 @@ public class Window extends Application{
 	private void changeState(MouseEvent e) {
 
 	    if (game.getState() == GameState.MENU) {
-	        if (menu.isClicked(e.getX(), e.getY())) {
+	        if (menu.isPlayClicked(e.getX(), e.getY())) {
 	            game.setState(GameState.RUNNING);
 	        }
 	    }

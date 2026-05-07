@@ -69,5 +69,5 @@ public static void render(Window window, Canvas overlayCanvas, int score) {
 public static boolean isRetryClicked(double x,double y) {
     return x >= BTN_X && x <= BTN_X+BTN_WIDTH &&
            y >= BTN_Y && y <= BTN_Y+BTN_HEIGHT;
-           }
+}
 }
