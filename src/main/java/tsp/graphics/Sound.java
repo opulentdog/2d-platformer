@@ -17,6 +17,11 @@ public class Sound {
 		on = false;
 
 	}
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
+	
 	/**
 	 *  Charge le fichier audio associé à l'objet Sound et prépare sa lecture.
 	 */
@@ -30,7 +35,7 @@ public class Sound {
 			e.printStackTrace();
 		}
 	}
-	
+		
 	/**
 	 * lance le son
 	 */

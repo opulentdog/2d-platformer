@@ -28,6 +28,10 @@ public class Player extends Asset {
 		dead = false;
 	}
 	
+	/**
+	 * ------------------- Methods -------------------
+	 */
+	
 	public boolean isDead() {
 		return dead;
 	}

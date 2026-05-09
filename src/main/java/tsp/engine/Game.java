@@ -12,6 +12,9 @@ public class Game {
 	private Generation generator;
 	private Platform[] platforms;
 	
+	/**
+	 * ------------------- Getters -------------------
+	 */
 	public GameState getState() {
 		return state;
 	}
@@ -20,14 +23,18 @@ public class Game {
 		return player;
 	}
 
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
 
 	public Tower getTower() {
 		return tower;
 	}
-
+	
+	public Platform[] getPlatforms() {
+		return platforms;
+	}
+	
+	/**
+	 * ------------------- Setters -------------------
+	 */
 	public void setTower(Tower tower) {
 		this.tower = tower;
 	}
@@ -35,14 +42,15 @@ public class Game {
 	public Generation getGenerator() {
 		return generator;
 	}
-
+	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	
 	public void setGenerator(Generation generator) {
 		this.generator = generator;
 	}
 
-	public Platform[] getPlatforms() {
-		return platforms;
-	}
 
 	public void setPlatforms(Platform[] platforms) {
 		this.platforms = platforms;
@@ -51,9 +59,9 @@ public class Game {
 	public void setState(GameState state) {
 	    this.state = state;
 	}
-
+	
 	/**
-	 * génération du joueur, des plateformes et passage à l'écran du MENU
+	 * Génération du joueur, des plateformes et passage à l'écran du MENU
 	 * @param window la fene^tre du jeu
 	 */
 	public Game(Window window) {
@@ -61,6 +69,10 @@ public class Game {
 		state = GameState.MENU;
 	}
 
+	/**
+	 * ------------------- Methods -------------------
+	 */
+	
 	public void update(double delta) {
 
 	    switch(state) {
