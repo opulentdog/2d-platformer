@@ -57,8 +57,8 @@ public class Button {
         double radius = 0.85 * this.width / 2; 
         double cx = this.x + radius;
         double cy = this.y + radius;
-        double distance = Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
-        return distance <= radius;
+        double distance_carrée = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+        return distance_carrée <= radius*radius ;
     }
 	
 }

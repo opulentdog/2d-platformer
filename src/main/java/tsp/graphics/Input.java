@@ -18,7 +18,7 @@ public class Input {
 	/**
 	 * Lance la détection des touches
 	 */
-	public void listen() {
+	public void listen(Window window) {
 		/*J'écoute les touches enfoncees*/
 		scene.setOnKeyReleased((KeyEvent e) -> {
 			getPressedKeyset().remove(e.getCode());
@@ -26,7 +26,11 @@ public class Input {
 		scene.setOnKeyPressed((KeyEvent e) -> {
 			getPressedKeyset().add(e.getCode());
 		});
+		scene.setOnMouseClicked(e -> {
+	        window.handleClick(e.getX(), e.getY());
+		});
 	}
+	
 	
 	/**
 	 * Récupère l'ensemble des touches actuellement enfoncées

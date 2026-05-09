@@ -77,10 +77,7 @@ public class Menu {
         //Affichage de la flèche droite en version normal ou "survolé"
         rightarrow.setImgPath(sourix,sourisy);
         gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
-        
-        System.out.println(TITLE_WIDTH);
-        System.out.println(TITLE_HEIGHT);
-
+     
         
         /*
         // Couleurs qui changent selon le survol
@@ -115,5 +112,11 @@ public class Menu {
 
     public boolean isPlayClicked(double x,double y) {
         return play.isHoveredCirc(x, y);
+    }
+    public boolean isLeftArrowClicked(double x,double y) {
+        return leftarrow.isHoveredCirc(x, y);
+    }
+    public boolean isRightArrowClicked(double x,double y) {
+        return rightarrow.isHoveredCirc(x, y);
     }
 }
