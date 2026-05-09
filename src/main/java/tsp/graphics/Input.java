@@ -11,7 +11,6 @@ public class Input {
 	private HashSet<KeyCode> PressedKeyset = new HashSet<>();
 	
 	public Input(Window window) {
-		HashSet<KeyCode> PressedKeyset = new HashSet<>();
 		this.scene = window.getScene();
 	}
 	

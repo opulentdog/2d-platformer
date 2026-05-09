@@ -56,7 +56,7 @@ public final class Constants {
      * Dimensions de la fenêtre de jeu
      */
     public static final int WINDOWWIDTH = 694;
-    public static final int WINDOWHEIGHT = 520;
+    public static final int WINDOWHEIGHT = 750;
     
     /**
      * Taille du Player
