@@ -28,10 +28,10 @@ public final class Constants {
      * Skins du personnage principal
      */
     public static final String PLAYER_PATH = "/images/skins/player.png";
-    public static final String SKINEARTH_PATH = "/images/skins/character_earth.png";
+    public static final String SKINEARTH_PATH = "/images/skins/character_fire.png";
     public static final String SKINFIRE_PATH = "/images/skins/character_earth.png";
-    public static final String SKINWATER_PATH = "/images/skins/character_earth.png";
-    public static final String SKINWIND_PATH = "/images/skins/character_earth.png";
+    public static final String SKINWATER_PATH = "/images/skins/character_water.png";
+    public static final String SKINWIND_PATH = "/images/skins/character_wind.png";
 
 
     /**
@@ -52,7 +52,11 @@ public final class Constants {
      */
     public static final int WINDOWWIDTH = 694;
     public static final int WINDOWHEIGHT = 520;
-
+    
+    /**
+     * Taille du Player
+     */
+    public static final int PLAYER_SIDE = 70;
     
 
 }

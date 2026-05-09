@@ -49,6 +49,9 @@ public class Texture {
 		img = new Image(imageStr, width, height, false, true);
 	}
 	
+	/**
+	 * ------------ Getters --------------------------
+	 */
 	public Image getImage() {
 		return img;
 	}
@@ -65,7 +68,16 @@ public class Texture {
 		return width;
 	}
 	
-
+	/**
+	 * ------------ Setters --------------------------
+	 */
+	
+	public void setImgPath(String newPath, double width, double height) {
+	    this.imgPath = newPath;
+	    String imageStr = getClass().getResource(newPath).toString();
+	    this.img = new Image(imageStr, width, height, false, true);
+	}
+	
 	/**
 	 * Texture pour un cylindre (À généraliser plus tard éventuellement pour n'importe quelle forme)
 	 * @param imgPath

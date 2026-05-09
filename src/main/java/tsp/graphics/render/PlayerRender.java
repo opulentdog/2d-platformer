@@ -6,17 +6,36 @@ import tsp.graphics.Window;
 public class PlayerRender extends Render<Player>{
 	
 	private Player player;
-	Window window;
+	private Window window;
+	static String[] skinsList = {
+		    Constants.PLAYER_PATH,
+		    Constants.SKINEARTH_PATH,
+		    Constants.SKINFIRE_PATH,
+		    Constants.SKINWATER_PATH,
+		    Constants.SKINWIND_PATH
+		};
+	private int currentSkinIndex = 0;
 	
 	public PlayerRender(Window window, Player player) {
-		super(player, Constants.PLAYER_PATH);
+		super(player, skinsList[0]);
 		this.player = player;
 		this.window = window;
 	}
+	
 	
 	@Override
 	public void render() {
 		window.getGC().drawImage(this.getTexture().getImage(), player.getX(), player.getY()-window.getCamY());
 	}
+	
+	public void nextSkin() {
+	    currentSkinIndex = (currentSkinIndex + 1) % skinsList.length;
+	    this.getTexture().setImgPath(skinsList[currentSkinIndex],player.getWidth(),player.getHeight());
+	}
 
+	public void previousSkin() {
+	    currentSkinIndex = (currentSkinIndex - 1 + skinsList.length) % skinsList.length;
+	    this.getTexture().setImgPath(skinsList[currentSkinIndex],player.getWidth(),player.getHeight());
+	}
+		
 }

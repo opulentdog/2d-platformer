@@ -1,6 +1,7 @@
 package tsp.engine;
 
 import tsp.engine.platforms.Platform;
+import tsp.graphics.Constants;
 import tsp.graphics.Window;
 
 public class Game {
@@ -96,7 +97,7 @@ public class Game {
 	
 	public void reset(Window window) {
 	    generator = new Generation();
-	    player = new Player(70, 70);
+	    player = new Player(Constants.PLAYER_SIDE, Constants.PLAYER_SIDE);
 	    tower = new Tower();
 
 	    platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());

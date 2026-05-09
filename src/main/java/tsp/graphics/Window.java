@@ -147,19 +147,28 @@ public class Window extends Application{
 // --------------- METHODES --------------------------------------------------------------------------------------------------------------------
 	
 	/**
-	 * Change l'état du jeu à RUNNING si on est dans le menu
+	 * Gère les click de la souris
 	 * @param e un mouseEvent
 	 */	
-	private void changeState(MouseEvent e) {
+	
+	public void handleClick(double sourisx, double sourisy) {
 
 	    if (game.getState() == GameState.MENU) {
-	        if (menu.isPlayClicked(e.getX(), e.getY())) {
+	        if (menu.isPlayClicked(sourisx, sourisy)) {
 	            game.setState(GameState.RUNNING);
+	        }
+	        if (menu.isLeftArrowClicked(sourisx, sourisy)) {
+	        	playerRender.previousSkin();
+	            playerRender.render();
+	        }
+	        if (menu.isRightArrowClicked(sourisx, sourisy)) {
+	        	playerRender.nextSkin();
+	            playerRender.render();
 	        }
 	    }
 
 	    else if (game.getState() == GameState.GAME_OVER) {
-	        if (GameOver.isRetryClicked(e.getX(), e.getY())) {
+	        if (GameOver.isRetryClicked(sourisx,sourisy)) {
 	            game.reset(this);
 	            startRenders();
 	            ycamera = 0;
@@ -176,7 +185,7 @@ public class Window extends Application{
 	    towerRender = new TowerRender(this, game.getTower());
 	    playerRender = new PlayerRender(this, game.getPlayer());
 	    platformRender = new PlatformRender(this, game.getTower(), game.getPlatforms(), game.getGenerator());
-	    menuBackground = null; // ✅ Force le recalcul du fond flouté au prochain menu
+	    menuBackground = null; // Force le recalcul du fond flouté au prochain menu
 
 	
 	    canvas.toFront();
@@ -328,18 +337,18 @@ public class Window extends Application{
 	@Override
 	public void start(Stage stage) {		
 		
-		// Construire tout les éléments de la fenêtre
+		// Construction de tous les éléments de la fenêtre
 		startScene(stage);
 		game = new Game(this);
+		
+		// Activation des inputs de click et touches
 		this.input = new Input(this);
-		input.listen();
+		input.listen(this);
+		
 		startBackground();
 		startRenders();
 
 		gameGroup.getChildren().add(canvas); // Canvas (joueur + plateformes) dans le gameGroup
-		
-		// Détection du click qui quitte le menu
-		menuCanvas.setOnMouseClicked(e -> changeState(e));
 		
 		// Effet de flou appliqué au canvas de jeu pendant le menu
 		GaussianBlur menuBlur = new GaussianBlur(Constants.FLOU);

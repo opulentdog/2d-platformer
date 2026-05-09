@@ -113,4 +113,10 @@ public class Menu {
     public boolean isPlayClicked(double x,double y) {
         return play.isHoveredCirc(x, y);
     }
+    public boolean isLeftArrowClicked(double x,double y) {
+        return leftarrow.isHoveredCirc(x, y);
+    }
+    public boolean isRightArrowClicked(double x,double y) {
+        return rightarrow.isHoveredCirc(x, y);
+    }
 }
