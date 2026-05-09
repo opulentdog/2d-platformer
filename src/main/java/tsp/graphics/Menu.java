@@ -8,26 +8,28 @@ import javafx.scene.text.FontWeight;
 
 
 public class Menu {
+    private final static double MIN = Math.min(Constants.WINDOWHEIGHT, Constants.WINDOWWIDTH);
+
 	/**
      * Dimensions du bouton PLAY : image carrée donc seul un côté est paramétré
      */
-    private final static double PLAYSIDE = 0.2 * Constants.WINDOWWIDTH;;
+    private final static double PLAYSIDE = 0.267 * MIN;
 	/**
 	 * Coordonnées des boutons PLAY dans la fenêtre
 	 */
-    private final static double PLAY_Y = 0.504 * Constants.WINDOWWIDTH;
+    private final static double PLAY_Y = 0.673 * Constants.WINDOWHEIGHT;
     private final static double SOLO_X = ( 0.75*Constants.WINDOWWIDTH - PLAYSIDE )/2;
     private final static double MULTI_X = ( 1.25*Constants.WINDOWWIDTH - PLAYSIDE )/2;
 
     /**
      * Dimensions des boutons flèches (image carrée)
      */
-    private final static double ARROW_SIDE = 0.072 * Constants.WINDOWWIDTH;
+    private final static double ARROW_SIDE = 0.096 * MIN;
 
     /**
      * Ordonnée des flèches dans la fenêtre
      */
-    private final static double ARROW_Y = 250;
+    private final static double ARROW_Y = 0.5 * Constants.WINDOWHEIGHT;//=250
     /**
      * Abscisse des flèches
      */
