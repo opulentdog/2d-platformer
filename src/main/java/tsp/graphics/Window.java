@@ -174,6 +174,7 @@ public class Window extends Application{
 	            startRenders();
 	            playerRender.setSkinIndex(savedSkin); // Réapplique le skin après StartRenders
 	            ycamera = 0;
+	            game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 3);
 	            soundDeath.stopMusic(); // Arrête la musique du GameOver
 	        }
 	    }

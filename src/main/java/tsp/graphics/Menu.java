@@ -33,8 +33,8 @@ public class Menu {
     /**
      * Abscisse des flèches
      */
-    private final static double LEFTARROW_X = ( 0.8 * Constants.WINDOWWIDTH - ARROW_SIDE )/2;
-    private final static double RIGHTARROW_X = ( 1.2 * Constants.WINDOWWIDTH - ARROW_SIDE )/2;
+    private final static double LEFTARROW_X = ( 0.75 * Constants.WINDOWWIDTH - ARROW_SIDE )/2;
+    private final static double RIGHTARROW_X = ( 1.25 * Constants.WINDOWWIDTH - ARROW_SIDE )/2;
 
     
     /**

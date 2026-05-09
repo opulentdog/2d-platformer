@@ -14,13 +14,13 @@ public class GameOver {
 /***
  * Coordonnées du bouton dans la fenêtre
  */
-private final static double BTN_X = 250;
-private final static double BTN_Y = 200;
+private final static double BTN_X = 0.36 * Constants.WINDOWWIDTH;
+private final static double BTN_Y = 0.388 * Constants.WINDOWHEIGHT;
 /**
  * Dimensions du bouton
  */
-private final static double BTN_WIDTH = 200;
-private final static double BTN_HEIGHT = 60;
+private final static double BTN_WIDTH = 0.288 * Constants.WINDOWWIDTH;//200
+private final static double BTN_HEIGHT = 0.3 * BTN_WIDTH;
 
 public static void render(Window window, Canvas overlayCanvas, int score) {
     //GraphicsContext gc = window.getGC(); On le garde on sait jamais
@@ -42,21 +42,21 @@ public static void render(Window window, Canvas overlayCanvas, int score) {
 
     // Texte
     gc.setFill(Color.RED);
-    gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 40));
-    gc.fillText("GAME OVER", w * 0.5 - 120, h * 0.35);
+    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 40));
+    gc.fillText("GAME OVER", 0.327 * w, 0.35 * h);
 
     gc.setFill(Color.WHITE);
-    gc.setFont(Font.font("Helvetica", FontWeight.MEDIUM, 20));
-    gc.fillText("Score: " + score, w * 0.5 - 50, h * 0.65);
-    gc.fillText("Click to retry", w * 0.52 - 70, h * 0.55);
+    gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 20));
+    gc.fillText("Score: " + score, 0.428 * w, 0.7 * h);
+    gc.fillText("Click to retry", 0.4 * w, 0.57 * h);
 	
 
     gc.setFill(Color.RED);
     gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
 
     gc.setFill(Color.BLACK);
-    gc.setFont(Font.font("Helvetica", FontWeight.BOLD, 30));
-    gc.fillText("RETRY", BTN_X+55, BTN_Y+40);
+    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 30));
+    gc.fillText("RETRY", BTN_X+ 0.275*BTN_WIDTH, BTN_Y+ 0.67 * BTN_HEIGHT);
     
 }
 
