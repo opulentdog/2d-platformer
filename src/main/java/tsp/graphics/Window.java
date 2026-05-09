@@ -169,11 +169,12 @@ public class Window extends Application{
 
 	    else if (game.getState() == GameState.GAME_OVER) {
 	        if (GameOver.isRetryClicked(sourisx,sourisy)) {
+	        	int savedSkin = playerRender.getCurrentSkinIndex(); // Sauvegarde l'index
 	            game.reset(this);
 	            startRenders();
+	            playerRender.setSkinIndex(savedSkin); // Réapplique le skin après StartRenders
 	            ycamera = 0;
-	          //on coupe la musique
-                soundDeath.stopMusic();
+	            soundDeath.stopMusic(); // Arrête la musique du GameOver
 	        }
 	    }
 	}
