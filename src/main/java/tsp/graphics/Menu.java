@@ -11,17 +11,18 @@ public class Menu {
 	/**
      * Dimensions du bouton PLAY : image carrée donc seul un côté est paramétré
      */
-    private final static double PLAYSIDE = 100;
+    private final static double PLAYSIDE = 0.2 * Constants.WINDOWWIDTH;;
 	/**
-	 * Coordonnées du bouton dans la fenêtre
+	 * Coordonnées des boutons PLAY dans la fenêtre
 	 */
-    private final static double PLAY_X = ( Constants.WINDOWWIDTH - PLAYSIDE )/2;
-    private final static double PLAY_Y = 350;
+    private final static double PLAY_Y = 0.504 * Constants.WINDOWWIDTH;
+    private final static double SOLO_X = ( 0.75*Constants.WINDOWWIDTH - PLAYSIDE )/2;
+    private final static double MULTI_X = ( 1.25*Constants.WINDOWWIDTH - PLAYSIDE )/2;
 
     /**
      * Dimensions des boutons flèches (image carrée)
      */
-    private final static double ARROW_SIDE = 50;
+    private final static double ARROW_SIDE = 0.072 * Constants.WINDOWWIDTH;
 
     /**
      * Ordonnée des flèches dans la fenêtre
@@ -42,7 +43,9 @@ public class Menu {
 
     
     // Création des boutons
-    private Button play = new Button(PLAY_X, PLAY_Y,PLAYSIDE,PLAYSIDE,Constants.PLAYNORMAL_PATH,Constants.PLAYHOVER_PATH);
+    private Button playSolo = new Button(SOLO_X, PLAY_Y,PLAYSIDE,PLAYSIDE,Constants.SOLONORMAL_PATH,Constants.SOLOHOVER_PATH);
+    private Button playMulti = new Button(MULTI_X, PLAY_Y,PLAYSIDE,PLAYSIDE,Constants.MULTINORMAL_PATH,Constants.MULTIHOVER_PATH);
+
     private Button leftarrow = new Button(LEFTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
     private Button rightarrow = new Button(RIGHTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
 
@@ -66,9 +69,13 @@ public class Menu {
         Texture titre = new Texture(Constants.TITRE_JEU_1, TITLE_WIDTH, TITLE_HEIGHT);
         gc.drawImage(titre.getImage(), ( overlayCanvas.getWidth() - TITLE_WIDTH)/2 , overlayCanvas.getWidth()/(-17.33) );
         
-        //Affichage du bouton PLAY en version normal ou "survolé"
-        play.setImgPath(sourix,sourisy);
-        gc.drawImage(play.getImage(), PLAY_X , PLAY_Y);
+        //Affichage du bouton SOLO en version normal ou "survolé"
+        playSolo.setImgPath(sourix,sourisy);
+        gc.drawImage(playSolo.getImage(), SOLO_X , PLAY_Y);
+        
+        //Affichage du bouton MULTI en version normal ou "survolé"
+        playMulti.setImgPath(sourix,sourisy);
+        gc.drawImage(playMulti.getImage(), MULTI_X , PLAY_Y);
         
         //Affichage de la flèche gauche en version normal ou "survolé"
         leftarrow.setImgPath(sourix,sourisy);
@@ -111,7 +118,7 @@ public class Menu {
      */
 
     public boolean isPlayClicked(double x,double y) {
-        return play.isHoveredCirc(x, y);
+        return playSolo.isHoveredCirc(x, y);
     }
     public boolean isLeftArrowClicked(double x,double y) {
         return leftarrow.isHoveredCirc(x, y);

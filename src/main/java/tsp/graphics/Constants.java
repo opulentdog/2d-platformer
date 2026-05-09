@@ -17,8 +17,13 @@ public final class Constants {
     /**
      * Boutons du jeu : appuyés et normaux
      */
+    public static final String SOLONORMAL_PATH = "/images/buttons/solo_normal.png";
+    public static final String SOLOHOVER_PATH = "/images/buttons/solo_hover.png";
+    public static final String MULTINORMAL_PATH = "/images/buttons/multi_normal.png";
+    public static final String MULTIHOVER_PATH = "/images/buttons/multi_hover.png";
     public static final String PLAYNORMAL_PATH = "/images/buttons/play_normal.png";
     public static final String PLAYHOVER_PATH = "/images/buttons/play_hover.png";
+    
     public static final String LEFTARROW_PATH = "/images/buttons/arrow_left_normal.png";
     public static final String LEFTARROWHOVER_PATH = "/images/buttons/arrow_left_hover.png";
     public static final String RIGHTARROW_PATH = "/images/buttons/arrow_right_normal.png";
