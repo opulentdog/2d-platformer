@@ -16,13 +16,32 @@ public class PlayerRender extends Render<Player>{
 		};
 	private int currentSkinIndex = 0;
 	
+	/**
+	 * Constructeur de PlayerRender qui crée une nouvelle image avec le construteur de Render
+	 * @param window
+	 * @param player
+	 */
 	public PlayerRender(Window window, Player player) {
 		super(player, skinsList[0]);
 		this.player = player;
 		this.window = window;
 	}
 	
+	/**
+	 * ------------------- Getter et Setter -------------------
+	 */
+	public int getCurrentSkinIndex() {
+	    return currentSkinIndex;
+	}
+
+	public void setSkinIndex(int index) {
+	    this.currentSkinIndex = index;
+	    this.getTexture().setImgPath(skinsList[currentSkinIndex], player.getWidth(), player.getHeight());
+	}
 	
+	/**
+	 * ------------------- Méthodes -------------------
+	 */
 	@Override
 	public void render() {
 		window.getGC().drawImage(this.getTexture().getImage(), player.getX(), player.getY()-window.getCamY());
