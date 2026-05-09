@@ -261,10 +261,9 @@ public class Window extends Application{
 	    menuCanvas.setOnMouseMoved(event -> {
 	        sourisx = event.getX() ;
 	        sourisy = event.getY();
-	    }
-	    );
-	    Menu menu = new Menu();
-		//Affichage du Menu : bouton + Titre
+	    });
+	    
+	    // Affichage du Menu : Bouton + Titre
 	    menu.render(this, menuCanvas, sourisx, sourisy);
 	}
 	
