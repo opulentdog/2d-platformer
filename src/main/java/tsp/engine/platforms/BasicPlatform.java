@@ -6,6 +6,10 @@ import tsp.graphics.Sound;
  * plateforme sur laquelle le joueur peut rebondir, sans effets particuliers
  */
 public class BasicPlatform extends Platform{
+
+	/**
+	 * ------------------- Constructor ----------------------
+	 */
 	
 	public BasicPlatform() {
 		super(100, 30);
@@ -14,6 +18,10 @@ public class BasicPlatform extends Platform{
 	}
 	
 
+	/**
+	 * ------------------- Methods ----------------------
+	 */
+	
 	@Override
 	public void effect(Player player) {
 		this.rebond();

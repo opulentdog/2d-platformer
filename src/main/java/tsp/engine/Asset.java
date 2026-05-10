@@ -1,16 +1,29 @@
 package tsp.engine;
 
 public abstract class Asset {
+
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	protected double width;
 	protected double height;
 	protected double x = 0;
 	protected double y = 0;
 	
 
+	/**
+	 * ------------------- Constructor -------------------
+	 */
+	
 	public Asset (int width, int height) {
 		this.width=width;
 		this.height=height;
 	}
+
+	/**
+	 * ------------------- Getters -------------------
+	 */
 	
 	/**
 	 * getter width
@@ -43,7 +56,19 @@ public abstract class Asset {
 	public double getY() {
 		return y;
 	}
+
+	/**
+	 * ------------------- Setters -------------------
+	 */
 	
+	public void setPostition(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
 	
 	/**
 	 * methode pour gerer les hitbox
@@ -58,8 +83,4 @@ public abstract class Asset {
 				-relativex < other.width && -relativey < other.height;
 	}
 	
-	public void setPostition(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
 }

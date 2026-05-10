@@ -10,17 +10,30 @@ import javafx.scene.image.Image;
  * classe représentant une tuile de texture
  */
 public class Tile {
+	
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private double width;
 	private double height;
 	private int repeatX = 5;   // nombre de tuiles horizontalement (autour du cylindre)
 	private int repeatY = 5;   // nombre de tuiles verticalement (hauteur)
 	private Image img;
 	
-	Tile(Image img, double w, double h) {
+	/**
+	 * ------------------- Constructor -------------------
+	 */
+	
+	protected Tile(Image img, double w, double h) {
 		this.img = img;
 		this.width = w;
 		this.height = h;
 	}
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
 	
 	/**
 	 * Crée une nouvelle image en répétant l'image actuelle sous forme de grille 

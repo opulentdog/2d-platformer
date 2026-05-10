@@ -3,6 +3,10 @@ package tsp.graphics;
 import javafx.scene.image.Image;
 
 public class Button {
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private double width;
 	private double height;
 	private double x;
@@ -11,6 +15,9 @@ public class Button {
 	private Image imgHover;
 	private Image currentImg;
 
+	/**
+	 * ------------------- Constructor -------------------
+	 */
 	
 	public Button(double x, double y, double width, double height, String normalPath, String hoverPath) {
 		this.width=width;
@@ -23,17 +30,29 @@ public class Button {
 
 	}
 	
+	/**
+	 * ------------------- Getters -------------------
+	 */
+	
 	public Image getImage() {
 		return currentImg;
 	}
 	
+	/**
+	 * ------------------- Setters -------------------
+	 */
+	
 	public void setImgPath(double sourisx, double sourisy) {
         if (isHoveredCirc(sourisx, sourisy)) {
-            currentImg = imgHover;
+            this.currentImg = imgHover;
         } else {
-            currentImg = imgNormal;
+            this.currentImg = imgNormal;
         }
     }
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
 	
 	/**
 	 * Test si un point est inclus dans l'image carrée du bouton

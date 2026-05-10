@@ -5,7 +5,9 @@ import tsp.graphics.Constants;
 import tsp.graphics.Window;
 
 public class Game {
-	
+	/**
+	 * ------------------- Fields -------------------
+	 */
 	private GameState state = GameState.RUNNING;
 	private Player player;
 	private Tower tower;
@@ -59,6 +61,10 @@ public class Game {
 	public void setState(GameState state) {
 	    this.state = state;
 	}
+	
+	/**
+	 * ------------------- Constructor -------------------
+	 */
 	
 	/**
 	 * Génération du joueur, des plateformes et passage à l'écran du MENU

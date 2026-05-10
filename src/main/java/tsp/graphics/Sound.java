@@ -8,9 +8,18 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 public class Sound {
+	
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private Clip clip;
 	private URL soundURL;
 	private boolean on;
+	
+	/**
+	 * ------------------- Constructor -------------------
+	 */
 	
 	public Sound(String chemin) {
 		soundURL = getClass().getResource(chemin);

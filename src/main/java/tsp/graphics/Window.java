@@ -29,7 +29,10 @@ import tsp.graphics.render.TowerRender;
  * Classe pour ce qui est lié à la fenetre
  */
 public class Window extends Application{
-// ---------------- ATTRIBUTS -----------------------------------------------------------------------------------------------------------------
+	
+// ----------- ATTRIBUTS --------------------------------------------------------------------------------------------------------------------	
+
+	
 	/**
 	 * largeur de la fenetre
 	 */
