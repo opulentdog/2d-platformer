@@ -11,7 +11,7 @@ public final class Constants {
     public static final String CLOUDS_PATH = "/images/fond_menu.jpg";
     public static final String SPACE_PATH = "/images/space.jpg";
     public static final String BASICPLATFORM_PATH = "/images/platform.png";
-    public static final String LAVAPLATFORM_PATH = "/images/platform-lava.png";
+    public static final String LAVAPLATFORM_PATH = "/images/platform-lava3.png";
     public static final String INVISIBLEPLATFORM_PATH = "/images/stone-wallplatform.png";
     public static final String WALL_PATH = "/images/stone-wall.png";
     public static final String TITRE_JEU_1 = "/images/Titre_jeu_1.png";
