@@ -33,7 +33,11 @@ public class PlayerRender extends Render<Player>{
 	public int getCurrentSkinIndex() {
 	    return currentSkinIndex;
 	}
-
+	
+	public String getCurrentSkinPath() {
+		return skinsList[getCurrentSkinIndex()];
+	}
+	
 	public void setSkinIndex(int index) {
 	    this.currentSkinIndex = index;
 	    this.getTexture().setImgPath(skinsList[currentSkinIndex], player.getWidth(), player.getHeight());

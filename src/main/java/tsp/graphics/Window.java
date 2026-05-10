@@ -328,7 +328,7 @@ public class Window extends Application{
     
     	// puis l’overlay game over
         menuCanvas.setVisible(true);
-        GameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing);
+        GameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath());
         System.out.println("IN GAME OVER");
 	}
 	

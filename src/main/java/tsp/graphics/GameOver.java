@@ -2,6 +2,7 @@ package tsp.graphics;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -15,14 +16,15 @@ public class GameOver {
  * Coordonnées du bouton dans la fenêtre
  */
 private final static double BTN_X = 0.36 * Constants.WINDOWWIDTH;
-private final static double BTN_Y = 0.388 * Constants.WINDOWHEIGHT;
+private final static double BTN_Y = 0.467 * Constants.WINDOWHEIGHT;
 /**
  * Dimensions du bouton
  */
 private final static double BTN_WIDTH = 0.288 * Constants.WINDOWWIDTH;//200
 private final static double BTN_HEIGHT = 0.3 * BTN_WIDTH;
 
-public static void render(Window window, Canvas overlayCanvas, int score) {
+
+public static void render(Window window, Canvas overlayCanvas, int score, String skinPath) {
     //GraphicsContext gc = window.getGC(); On le garde on sait jamais
 	
 	// Récupère le contexte du canvas overlay (et non celui du jeu)
@@ -32,23 +34,24 @@ public static void render(Window window, Canvas overlayCanvas, int score) {
 	
     double w = window.getWidth();
     double h = window.getHeight();
-
+    
     // Overlay sombre
     gc.save();
     gc.setGlobalAlpha(0.6);
     gc.setFill(Color.BLACK);
     gc.fillRect(0, 0, w, h);
     gc.restore();
-
+    
+ 
     // Texte
     gc.setFill(Color.RED);
-    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 40));
-    gc.fillText("GAME OVER", 0.327 * w, 0.35 * h);
+    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 0.07*h));
+    gc.fillText("GAME OVER", (w-0.378*h)/2, 0.35 * h);
 
     gc.setFill(Color.WHITE);
     gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 20));
-    gc.fillText("Score: " + score, 0.428 * w, 0.7 * h);
-    gc.fillText("Click to retry", 0.4 * w, 0.57 * h);
+    gc.fillText("Score: " + score, 0.428 * w, 0.8 * h);
+    gc.fillText("Click to retry", 0.4 * w, 0.7 * h);
 	
 
     gc.setFill(Color.RED);
@@ -57,6 +60,14 @@ public static void render(Window window, Canvas overlayCanvas, int score) {
     gc.setFill(Color.BLACK);
     gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 30));
     gc.fillText("RETRY", BTN_X+ 0.275*BTN_WIDTH, BTN_Y+ 0.67 * BTN_HEIGHT);
+    
+    // Perso triste
+    String cryPath = Constants.NORMALTOCRY.get(skinPath); 				// On récupère le chemin relatif associé
+    String imageStr = GameOver.class.getResource(cryPath).toString(); 	// On le convertit en absolu
+    double sadPlayerSide = 0.15*Constants.WINDOWHEIGHT;					// On crée la taille de l'image
+    Image sadPlayer = new Image(imageStr, sadPlayerSide, sadPlayerSide, false, true); // On crée l'image
+	gc.drawImage(sadPlayer, 0.5*(w-sadPlayerSide), 0.1 * h );						  // On affiche l'image
+
     
 }
 
