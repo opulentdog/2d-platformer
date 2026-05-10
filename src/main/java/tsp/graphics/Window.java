@@ -89,6 +89,11 @@ public class Window extends Application{
 	 */
 	private WritableImage menuBackground = null;
     private Menu menu;
+    private GameOver gameOver;
+    
+    // Effet de flou appliqué au canvas de jeu pendant le menu
+ 	private GaussianBlur menuBlur ;
+
 
 	/**
 	 * Coordonnées de la position de la souris dans Window
@@ -171,7 +176,7 @@ public class Window extends Application{
 	    }
 
 	    else if (game.getState() == GameState.GAME_OVER) {
-	        if (GameOver.isRetryClicked(sourisx,sourisy)) {
+	        if (gameOver.isRetryClicked(sourisx,sourisy)) {
 	        	int savedSkin = playerRender.getCurrentSkinIndex(); // Sauvegarde l'index
 	            game.reset(this);
 	            startRenders();
@@ -179,6 +184,14 @@ public class Window extends Application{
 	            ycamera = 0;
 	            game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 3);
 	            soundDeath.stopMusic(); // Arrête la musique du GameOver
+	        }
+	        if (gameOver.isMenuClicked(sourisx, sourisy)) {
+	            game.getPlayer().revive();
+	            startRenders();
+	            menuBackground = null;
+	            ycamera = 0;
+	            soundDeath.stopMusic();
+	            game.setState(GameState.MENU); // reset met RUNNING, on repasse en MENU
 	        }
 	    }
 	}
@@ -216,6 +229,9 @@ public class Window extends Application{
 	    this.soundgame = new Sound(Constants.TRACK1_PATH);
 	    this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
 	    this.menu = new Menu();
+	    this.gameOver = new GameOver();
+	 	this.menuBlur = new GaussianBlur(Constants.FLOU);
+
 
 	}
 	
@@ -328,10 +344,15 @@ public class Window extends Application{
     	soundDeath.playMusic();
     	soundDeath.volume(0.8f);
 
-    
+    	
     	// puis l’overlay game over
         menuCanvas.setVisible(true);
-        GameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath());
+        //On lit la position de la souris
+	    menuCanvas.setOnMouseMoved(event -> {
+	        sourisx = event.getX() ;
+	        sourisy = event.getY();
+	    });
+        gameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath(),sourisx,sourisy);
         System.out.println("IN GAME OVER");
 	}
 	
@@ -355,9 +376,7 @@ public class Window extends Application{
 
 		gameGroup.getChildren().add(canvas); // Canvas (joueur + plateformes) dans le gameGroup
 		
-		// Effet de flou appliqué au canvas de jeu pendant le menu
-		GaussianBlur menuBlur = new GaussianBlur(Constants.FLOU);
-
+		
 		// Grande classe anonyme à décomoser en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		

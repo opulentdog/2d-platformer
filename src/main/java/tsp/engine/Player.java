@@ -48,7 +48,11 @@ public class Player extends Asset {
 	public void kill() {
 		dead = true;
 	}
- 		
+ 	
+	public void revive() {
+	    this.dead = false;
+	}
+	
 	public void addxVelocity(double delta_xVelocity) {
 		 this.xVelocity += delta_xVelocity;
 	}

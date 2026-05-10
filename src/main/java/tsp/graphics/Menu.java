@@ -17,7 +17,7 @@ public class Menu {
 	/**
      * Dimensions du bouton PLAY : image carrée donc seul un côté est paramétré
      */
-    private final static double PLAYSIDE = 0.267 * MIN;
+    private final static double PLAYSIDE = 0.2 * MIN;
 	/**
 	 * Coordonnées des boutons PLAY dans la fenêtre
 	 */
