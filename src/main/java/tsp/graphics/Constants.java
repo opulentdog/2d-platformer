@@ -1,5 +1,7 @@
 package tsp.graphics;
 
+import java.util.HashMap;
+
 public final class Constants {
 	private Constants() {}
 	
@@ -37,7 +39,20 @@ public final class Constants {
     public static final String SKINFIRE_PATH = "/images/skins/character_earth.png";
     public static final String SKINWATER_PATH = "/images/skins/character_water.png";
     public static final String SKINWIND_PATH = "/images/skins/character_wind.png";
-
+    
+    public static final String PLAYER_CRY_PATH = "/images/skins/sad/player_cry.png";
+    public static final String SKINEARTH_CRY_PATH = "/images/skins/sad/character_fire_cry.png";
+    public static final String SKINFIRE_CRY_PATH = "/images/skins/sad/character_earth_cry.png";
+    public static final String SKINWATER_CRY_PATH = "/images/skins/sad/character_water_cry.png";
+    public static final String SKINWIND_CRY_PATH = "/images/skins/sad/character_wind_cry.png";
+    
+    public static final HashMap<String, String> NORMALTOCRY = new HashMap<>() {{
+        put(PLAYER_PATH, PLAYER_CRY_PATH);
+        put(SKINEARTH_PATH,  SKINEARTH_CRY_PATH);
+        put(SKINFIRE_PATH, SKINFIRE_CRY_PATH);
+        put(SKINWATER_PATH,  SKINWATER_CRY_PATH);
+        put(SKINWIND_PATH,  SKINWIND_CRY_PATH);
+    }};
 
     /**
      * Sons du jeu : Musiques et effets sonores
