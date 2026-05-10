@@ -14,23 +14,38 @@ public class GameOver {
 	/**
 	 * ------------------- Fields -------------------
 	 */
-	
-	/***
-	 * Coordonnées du bouton dans la fenêtre
-	 */
-	private final static double BTN_X = 0.36 * Constants.WINDOWWIDTH;
-	private final static double BTN_Y = 0.467 * Constants.WINDOWHEIGHT;
 	/**
 	 * Dimensions du bouton
 	 */
+	/*
 	private final static double BTN_WIDTH = 0.288 * Constants.WINDOWWIDTH;//200
 	private final static double BTN_HEIGHT = 0.3 * BTN_WIDTH;
+	*/
+	private final static double BTN_SIDE = 0.2 * Constants.WINDOWWIDTH;//200
 	
+	/***
+	 * Coordonnées du bouton RETRY dans la fenêtre
+	 */
+	/*
+	private final static double BTN_X = 0.36 * Constants.WINDOWWIDTH;
+	private final static double BTN_Y = 0.467 * Constants.WINDOWHEIGHT;
+	*/
+	private final static double RETRY_X = 0.33 * Constants.WINDOWWIDTH -BTN_SIDE/2 ;
+	private final static double MENU_X = 0.66 * Constants.WINDOWWIDTH - BTN_SIDE/2;
+	private final static double BTN_Y = 0.5 * Constants.WINDOWWIDTH;
+
+	
+	/**
+	 * Création des boutons
+	 */
+	private Button retry = new Button(RETRY_X, BTN_Y,BTN_SIDE,BTN_SIDE, Constants.RETRYNORMAL_PATH, Constants.RETRYHOVER_PATH);
+    private Button menu = new Button(MENU_X, BTN_Y,BTN_SIDE,BTN_SIDE,Constants.MENUNORMAL_PATH,Constants.MENUHOVER_PATH);
+
 	/**
 	 * ------------------- Methods -------------------
 	 */
 	
-	public static void render(Window window, Canvas overlayCanvas, int score, String skinPath) {
+	public void render(Window window, Canvas overlayCanvas, int score, String skinPath, double sourisx, double sourisy) {
 	    //GraphicsContext gc = window.getGC(); On le garde on sait jamais
 		
 		// Récupère le contexte du canvas overlay (et non celui du jeu)
@@ -55,17 +70,24 @@ public class GameOver {
 	    gc.fillText("GAME OVER", (w-0.378*h)/2, 0.35 * h);
 	
 	    gc.setFill(Color.WHITE);
-	    gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 20));
-	    gc.fillText("Score: " + score, 0.428 * w, 0.8 * h);
-	    gc.fillText("Click to retry", 0.4 * w, 0.7 * h);
+	    gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 0.07*h));
+	    gc.fillText("Score: " + score, 0.3 * w, 0.8 * h);
+	    //gc.fillText("Click to retry", 0.4 * w, 0.7 * h);
 		
-	
+	    // Affichage des boutons
+        retry.setImgPath(sourisx,sourisy);
+        gc.drawImage(retry.getImage(), RETRY_X , BTN_Y);
+        menu.setImgPath(sourisx,sourisy);
+        gc.drawImage(menu.getImage(), MENU_X , BTN_Y);
+
+	    /*
 	    gc.setFill(Color.RED);
 	    gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
 	
 	    gc.setFill(Color.BLACK);
 	    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 30));
 	    gc.fillText("RETRY", BTN_X+ 0.275*BTN_WIDTH, BTN_Y+ 0.67 * BTN_HEIGHT);
+	    */
 	    
 	    // Perso triste
 	    String cryPath = Constants.NORMALTOCRY.get(skinPath); 				// On récupère le chemin relatif associé
@@ -83,8 +105,16 @@ public class GameOver {
 	 * @param y position de la souris selon la verticale
 	 * @return
 	 */
+	/*
 	public static boolean isRetryClicked(double x,double y) {
 	    return x >= BTN_X && x <= BTN_X+BTN_WIDTH &&
 	           y >= BTN_Y && y <= BTN_Y+BTN_HEIGHT;
+	}
+	*/
+	public boolean isRetryClicked(double x,double y) {
+	    return retry.isHoveredCirc(x,y);
+	}
+	public boolean isMenuClicked(double x,double y) {
+	    return menu.isHoveredCirc(x,y);
 	}
 }

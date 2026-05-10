@@ -26,6 +26,12 @@ public final class Constants {
     public static final String PLAYNORMAL_PATH = "/images/buttons/play_normal.png";
     public static final String PLAYHOVER_PATH = "/images/buttons/play_hover.png";
     
+    public static final String RETRYNORMAL_PATH = "/images/buttons/retry_normal.png";
+    public static final String RETRYHOVER_PATH = "/images/buttons/retry_hover.png";
+    public static final String MENUNORMAL_PATH = "/images/buttons/menu_normal.png";
+    public static final String MENUHOVER_PATH = "/images/buttons/menu_hover.png";
+
+    
     public static final String LEFTARROW_PATH = "/images/buttons/arrow_left_normal.png";
     public static final String LEFTARROWHOVER_PATH = "/images/buttons/arrow_left_hover.png";
     public static final String RIGHTARROW_PATH = "/images/buttons/arrow_right_normal.png";
