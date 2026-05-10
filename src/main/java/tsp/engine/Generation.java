@@ -5,9 +5,26 @@ import java.util.Random;
 import tsp.engine.platforms.*;
 
 public class Generation {
+
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private static final int PlatformSpacing = 300;
 	private int[] platformAngles;
-
+	
+	/**
+	 * ------------------- Getters -------------------
+	 */
+	
+	public int[] getPlatformAngles() {
+		return platformAngles;
+	}
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
+	
 	/**
 	 * genere des plateformes sur la tour de maniere aleatoire
 	 * @param windowWidth largeur fenetre
@@ -100,7 +117,4 @@ public class Generation {
 	    return platforms;
 	}
 	
-	public int[] getPlatformAngles() {
-		return platformAngles;
-	}
 }

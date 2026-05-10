@@ -8,6 +8,10 @@ import javafx.scene.text.FontWeight;
 
 
 public class Menu {
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
     private final static double MIN = Math.min(Constants.WINDOWHEIGHT, Constants.WINDOWWIDTH);
 
 	/**
@@ -51,9 +55,13 @@ public class Menu {
     private Button leftarrow = new Button(LEFTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
     private Button rightarrow = new Button(RIGHTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
 
-    
     /**
-     * Affiche le Menu et ses éléments : Méthode non-static pour pouvoir utiliser les méthodes non-static de Button
+	 * ------------------- Methods -------------------
+	 */
+	
+    /**
+     * Affiche le Menu et ses éléments : Méthode non-static 
+     * pour pouvoir utiliser les méthodes non-static de Button
      * @param window
      * @param overlayCanvas
      * @param sourix

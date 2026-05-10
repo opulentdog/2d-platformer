@@ -7,12 +7,25 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Input {
+	
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private Scene scene;
 	private HashSet<KeyCode> PressedKeyset = new HashSet<>();
+	
+	/**
+	 * ------------------- Constructor -------------------
+	 */
 	
 	public Input(Window window) {
 		this.scene = window.getScene();
 	}
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
 	
 	/**
 	 * Lance la détection des touches
@@ -30,6 +43,9 @@ public class Input {
 		});
 	}
 	
+	/**
+	 * ------------------- Getters -------------------
+	 */
 	
 	/**
 	 * Récupère l'ensemble des touches actuellement enfoncées
@@ -40,6 +56,10 @@ public class Input {
 		return PressedKeyset;
 	}
 
+	/**
+	 * ------------------- Setters -------------------
+	 */
+	
 	/**
 	 * Remplace l'ensemble des touches pressées par un nouvel ensemble
 	 * * @param pressedKeyset le nouvel ensemble de keycode à utiliser

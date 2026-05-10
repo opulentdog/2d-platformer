@@ -10,6 +10,11 @@ import javafx.scene.shape.Shape3D;
  * 2 constructeurs différents selon si l' image "répétée" sur une surface ou utilisée directement comme "sprite"
  */
 public class Texture {
+	
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	/**
 	 * Largeur de la texture
 	 */
@@ -26,6 +31,10 @@ public class Texture {
 	private Image img;
 
 	private String imgPath;
+	
+	/**
+	 * ------------------- Constructors -------------------
+	 */
 	
 	/**
 	 * constructeur lorsque l'image est répétée sur une surface
@@ -69,7 +78,7 @@ public class Texture {
 	}
 	
 	/**
-	 * ------------ Setters --------------------------
+	 * ------------ Methods --------------------------
 	 */
 	
 	public void setImgPath(String newPath, double width, double height) {
@@ -77,6 +86,7 @@ public class Texture {
 	    String imageStr = getClass().getResource(newPath).toString();
 	    this.img = new Image(imageStr, width, height, false, true);
 	}
+	
 	
 	/**
 	 * Texture pour un cylindre (À généraliser plus tard éventuellement pour n'importe quelle forme)

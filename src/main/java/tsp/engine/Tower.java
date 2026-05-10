@@ -12,17 +12,28 @@ import javafx.scene.input.KeyCode;
  * classe de la tour contenant ses dimensions, sa texture.
  */
 public class Tower extends Asset{
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private final static int cylinderWidth = 250; // largeur de la tour
 	private static int cylinderHeight = 2000; // hauteur de la tour
 	
 	private double towerxVelocity; 
 	double rotation; // position angulaire de la tour
 
-
+	/**
+	 * ------------------- Constructor -------------------
+	 */
+	
 	public Tower() {
 		super(cylinderWidth, cylinderHeight);
 
     }
+	
+	/**
+	 * ------------------- Getters -------------------
+	 */
 	
 	/*
 	 * donne la position angulaire de la tour
@@ -31,6 +42,10 @@ public class Tower extends Asset{
 		return rotation;
 	}
     
+	/**
+	 * ------------------- Methods -------------------
+	 */
+	
 	/**
 	 * met à jour la position de la tour
 	 * Applique un coefficient de friction à la vitesse de rotation,

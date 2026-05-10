@@ -12,6 +12,11 @@ import tsp.graphics.Texture;
 import tsp.graphics.Window;
 
 public class PlatformRender extends Render<Platform> {
+	
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	Platform platform;
 	Window window;
 	Tower tower;
@@ -20,6 +25,9 @@ public class PlatformRender extends Render<Platform> {
 	Generation generator;
 	EnumMap<PlatformType, Texture> textureMap;
 
+	/**
+	 * ------------------- Constructor -------------------
+	 */
 	
 	public PlatformRender(Window window, Tower tower, Platform[] platforms, Generation generator) {
 		super(platforms[0], Constants.BASICPLATFORM_PATH);
@@ -37,6 +45,11 @@ public class PlatformRender extends Render<Platform> {
         textureMap.put(PlatformType.INVISIBLE, new Texture(Constants.INVISIBLEPLATFORM_PATH));
 
 	}
+	
+	/**
+	 * ------------------- Methods -------------------
+	 */
+	
 	/**
 	 * Calcule en fonction de la positio de la tour la largeur que doivent avoir les plateformces et les déplace
 	 */

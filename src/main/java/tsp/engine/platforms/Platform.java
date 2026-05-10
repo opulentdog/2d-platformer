@@ -6,6 +6,11 @@ import tsp.engine.Player;
 import tsp.graphics.Sound;
 
 public abstract class Platform extends Asset{
+
+	/**
+	 * ------------------- Fields ----------------------
+	 */
+	
 	protected Sound soundeff;
 	protected PlatformType type;
 	
@@ -20,13 +25,25 @@ public abstract class Platform extends Asset{
 	    INVISIBLE
 	}
 
+	/**
+	 * ------------------- Constructor ----------------------
+	 */
+	
 	public Platform(int width, int height) {
 		super(width, height);
 	}
+
+	/**
+	 * ------------------- Getters ----------------------
+	 */
 	
 	public PlatformType getType() {
         return type;
     }
+
+	/**
+	 * ------------------- Methods ----------------------
+	 */
 	
 	/**
 	 * Surcharge de la methode mere pour ajouter l'effet de la plateforme

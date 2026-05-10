@@ -16,11 +16,20 @@ import tsp.graphics.Window;
  * 
  */
 public class TowerRender extends Render<Tower>{
+	
+	/**
+	 * ------------------- Fields ----------------------
+	 */
+	
 	private Tower tower;
     Window window;
 	private Cylinder cyl;
 	private int textureRepetition = 5 ;
 	
+
+	/**
+	 * ------------------- Constructor ----------------------
+	 */
 	
 	public TowerRender(Window window, Tower tower) {
 		super(tower, Constants.WALL_PATH);
@@ -60,6 +69,10 @@ public class TowerRender extends Render<Tower>{
 		this.window=window;
 	}
 
+	/**
+	 * ------------------- Methods ----------------------
+	 */
+	
 	/**
 	 * Met à jour l'affichage visuel de la tour pour la frame actuelle.
 	 * <p>

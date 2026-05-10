@@ -13,6 +13,11 @@ import tsp.graphics.render.PlayerRender;
 import tsp.graphics.Sound;
 
 public class Player extends Asset {
+	
+	/**
+	 * ------------------- Fields -------------------
+	 */
+	
 	private boolean dead;
 	private double xVelocity=0;
 	private double yVelocity=0;
@@ -22,6 +27,10 @@ public class Player extends Asset {
 	final private int FALL_THRESHOLD=29;
 	private Boolean ground=true;
 	private PlayerRender playerRender;
+	
+	/**
+	 * ------------------- Constructor -------------------
+	 */
 	
 	public Player(int width, int height) {
 		super(width, height);

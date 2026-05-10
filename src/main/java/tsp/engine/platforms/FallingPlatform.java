@@ -8,12 +8,20 @@ import tsp.engine.platforms.Platform.PlatformType;
  * TODO implémenter
  */
 public class FallingPlatform extends Platform{
+
+	/**
+	 * ------------------- Constructor ----------------------
+	 */
 	
 	public FallingPlatform() {
 		super(100,30);
 		this.type = PlatformType.FALLING;
 
 	}
+
+	/**
+	 * ------------------- Methods ----------------------
+	 */
 	
 	public void effect(Player player) {}
 
