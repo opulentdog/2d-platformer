@@ -95,7 +95,7 @@ public class Menu {
         rightarrow.setImgPath(sourix,sourisy);
         gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
      
-        
+        System.out.println("Printing Menu");
         /*
         // Couleurs qui changent selon le survol
         Color btnColor  = survolSouris ? Color.YELLOW : Color.BLUE;

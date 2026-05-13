@@ -41,6 +41,14 @@ public class Input {
 		scene.setOnMouseClicked(e -> {
 	        window.handleClick(e.getX(), e.getY());
 		});
+		//On lit la position de la souris
+	    scene.setOnMouseMoved(event -> {
+	    	window.setSourisX(event.getX());
+	    	window.setSourisY(event.getY());
+	        window.setMenuNeedsRedraw(true); // ← force le redraw du menu 
+	        window.setGameOverNeedsRedraw(true); // ← force le redraw du menu 
+
+	    });
 	}
 	
 	/**
