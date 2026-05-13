@@ -79,7 +79,7 @@ public class Game {
 	 * ------------------- Methods -------------------
 	 */
 	
-	public void update(double delta) {
+	public void update(double delta,Window window) {
 
 	    switch(state) {
 	    	// A l'ouvreture du jeu ou après un game over
@@ -92,7 +92,7 @@ public class Game {
 	            updateGame(delta);
 	            if(player.isDead()) {
 	                state = GameState.GAME_OVER;
-	                System.out.println("IN GAME OVER");
+	                window.setGameOverNeedsRedraw(true);
 	            }
 	            break;
 

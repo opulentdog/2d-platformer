@@ -30,8 +30,9 @@ import tsp.graphics.render.TowerRender;
  */
 public class Window extends Application{
 	
-// ----------- ATTRIBUTS --------------------------------------------------------------------------------------------------------------------	
-
+	/***
+	 * ------------------- Fields -------------------
+	 */
 	
 	/**
 	 * largeur de la fenetre
@@ -91,6 +92,12 @@ public class Window extends Application{
     private Menu menu;
     private GameOver gameOver;
     
+    /**
+     * Booléens qui permettent d'afficher les menus une seule fois
+     */
+    private boolean menuNeedsRedraw = true;
+    private boolean GONeedsRedraw = true;
+    
     // Effet de flou appliqué au canvas de jeu pendant le menu
  	private GaussianBlur menuBlur ;
 
@@ -100,15 +107,11 @@ public class Window extends Application{
 	 */
 	private double sourisx;
     private double sourisy;
+    
 
-
-	
-
-// ----------- GETTER/SETTER/CONSTRUCTEUR ---------------------------------------------------------------------------------------------------	
-	public void setSize(int windowWidth, int windowHeight) {
-		 this.windowWidth = windowWidth;
-		 this.windowHeight = windowHeight;
-		 }
+    /***
+	 * ------------------- Getters -------------------
+	 */
 	
 	public int getWidth() {
 		return windowWidth;
@@ -149,10 +152,39 @@ public class Window extends Application{
 		return ycamera;
 	}
 	
+	
+	/***
+	 * ------------------- Setters -------------------
+	 */
+	
+	public void setSize(int windowWidth, int windowHeight) {
+		 this.windowWidth = windowWidth;
+		 this.windowHeight = windowHeight;
+	}
+	
 	public void setCam(double ycamera) {
 		this.ycamera = ycamera;
 	}
-// --------------- METHODES --------------------------------------------------------------------------------------------------------------------
+	
+	public void setSourisX(double x) {
+	    this.sourisx = x;
+	}
+
+	public void setSourisY(double y) {
+	    this.sourisy = y;
+	}
+	
+	public void setMenuNeedsRedraw(boolean value) {
+	    this.menuNeedsRedraw = value;
+	}
+	
+	public void setGameOverNeedsRedraw(boolean value) {
+	    this.GONeedsRedraw = value;
+	}
+	
+	/***
+	 * ------------------- Methods -------------------
+	 */
 	
 	/**
 	 * Gère les click de la souris
@@ -189,8 +221,9 @@ public class Window extends Application{
 	            game.getPlayer().revive();
 	            startRenders();
 	            menuBackground = null;
-	            ycamera = 0;
-	            soundDeath.stopMusic();
+	            menuNeedsRedraw = true; // Permet de redessiner le Menu
+	            ycamera = 0;			// Remet la caméra en bas de la tour
+	            soundDeath.stopMusic(); // On coupe la musique
 	            game.setState(GameState.MENU); // reset met RUNNING, on repasse en MENU
 	        }
 	    }
@@ -251,6 +284,9 @@ public class Window extends Application{
 	 *  Creation du menu avec les calques flous et nets
 	 */
 	private void setMenu(GaussianBlur menuBlur) {
+		// On n'affiche PAS le menu à CHAQUE frame
+		if (!menuNeedsRedraw) return; // rien à faire
+	    menuNeedsRedraw = false;
 		// On ne calcule le snapshot flou qu'une seule fois
 	    if (menuBackground == null) {
 	    	// On vide le graphical Context
@@ -280,21 +316,16 @@ public class Window extends Application{
 
 	    // Chaque frame : on redessine juste le fond mémorisé, pas de snapshot
 	    this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
-	    this.getGC().drawImage(menuBackground, 0, 0);  // Aucun snapshot, aucune condition de course
+	    this.getGC().drawImage(menuBackground, 0, 0); 
 	    // On place le joueur au milieu de la fenetre
 	    game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
 	    
 	    menuCanvas.setVisible(true);
-	    playerRender.render();
 	    
-	    //On lit la position de la souris
-	    menuCanvas.setOnMouseMoved(event -> {
-	        sourisx = event.getX() ;
-	        sourisy = event.getY();
-	    });
+	    playerRender.render(); 							// on affiche le joueur 
 	    
-	    // Affichage du Menu : Bouton + Titre
-	    menu.render(this, menuCanvas, sourisx, sourisy);
+	    menu.render(this, menuCanvas, sourisx, sourisy);  // Affichage du Menu : Boutons + Titre
+
 	}
 	
 	/**
@@ -333,6 +364,9 @@ public class Window extends Application{
 	}
 	
 	private void setGameOver() {
+		// On n'affiche PAS le GameOver à CHAQUE frame
+		if (!menuNeedsRedraw) return; // rien à faire
+	    menuNeedsRedraw = false;
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();
@@ -347,13 +381,8 @@ public class Window extends Application{
     	
     	// puis l’overlay game over
         menuCanvas.setVisible(true);
-        //On lit la position de la souris
-	    menuCanvas.setOnMouseMoved(event -> {
-	        sourisx = event.getX() ;
-	        sourisy = event.getY();
-	    });
+        
         gameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath(),sourisx,sourisy);
-        System.out.println("IN GAME OVER");
 	}
 	
 	/**
@@ -375,9 +404,9 @@ public class Window extends Application{
 		startRenders();
 
 		gameGroup.getChildren().add(canvas); // Canvas (joueur + plateformes) dans le gameGroup
-		
-		
-		// Grande classe anonyme à décomoser en petits blocs
+    	Window w = this;
+    	
+		// Grande classe anonyme à décomposer en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		
 			//private static final int PlatformSpacing = 300;
@@ -409,7 +438,7 @@ public class Window extends Application{
 				//On met à jour le dernier temps de dessin
 		        lastTime = now;
 		        
-		        game.update(delta);
+		        game.update(delta,w);
 		        switch(game.getState()) {
 			        case MENU:
 			        	setMenu(menuBlur);
