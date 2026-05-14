@@ -11,7 +11,7 @@ import javafx.scene.shape.Shape3D;
  */
 public class Texture {
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -32,7 +32,7 @@ public class Texture {
 
 	private String imgPath;
 	
-	/**
+	/***
 	 * ------------------- Constructors -------------------
 	 */
 	
@@ -58,7 +58,7 @@ public class Texture {
 		img = new Image(imageStr, width, height, false, true);
 	}
 	
-	/**
+	/***
 	 * ------------ Getters --------------------------
 	 */
 	public Image getImage() {
@@ -77,7 +77,7 @@ public class Texture {
 		return width;
 	}
 	
-	/**
+	/***
 	 * ------------ Methods --------------------------
 	 */
 	

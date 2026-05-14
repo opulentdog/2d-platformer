@@ -17,7 +17,7 @@ import tsp.graphics.Window;
  */
 public class TowerRender extends Render<Tower>{
 	
-	/**
+	/***
 	 * ------------------- Fields ----------------------
 	 */
 	
@@ -27,7 +27,7 @@ public class TowerRender extends Render<Tower>{
 	private int textureRepetition = 5 ;
 	
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -69,7 +69,7 @@ public class TowerRender extends Render<Tower>{
 		this.window=window;
 	}
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

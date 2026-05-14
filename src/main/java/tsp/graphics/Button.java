@@ -3,7 +3,7 @@ package tsp.graphics;
 import javafx.scene.image.Image;
 
 public class Button {
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -15,7 +15,7 @@ public class Button {
 	private Image imgHover;
 	private Image currentImg;
 
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -30,7 +30,7 @@ public class Button {
 
 	}
 	
-	/**
+	/***
 	 * ------------------- Getters -------------------
 	 */
 	
@@ -38,7 +38,7 @@ public class Button {
 		return currentImg;
 	}
 	
-	/**
+	/***
 	 * ------------------- Setters -------------------
 	 */
 	
@@ -50,7 +50,7 @@ public class Button {
         }
     }
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	

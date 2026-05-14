@@ -9,7 +9,7 @@ import javax.sound.sampled.FloatControl;
 
 public class Sound {
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -17,7 +17,7 @@ public class Sound {
 	private URL soundURL;
 	private boolean on;
 	
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -27,7 +27,7 @@ public class Sound {
 
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	
@@ -65,6 +65,7 @@ public class Sound {
 	public void stop() {
 		clip.stop();
 	}
+	
 	/**
 	 * Convertit un pourcentage de volume linéaire en gain audio (en décibels)
 	 * et applique ce gain au clip sonore.

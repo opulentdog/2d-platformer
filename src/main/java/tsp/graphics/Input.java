@@ -8,14 +8,14 @@ import javafx.scene.input.KeyEvent;
 
 public class Input {
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
 	private Scene scene;
 	private HashSet<KeyCode> PressedKeyset = new HashSet<>();
 	
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -23,7 +23,7 @@ public class Input {
 		this.scene = window.getScene();
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	
@@ -51,7 +51,7 @@ public class Input {
 	    });
 	}
 	
-	/**
+	/***
 	 * ------------------- Getters -------------------
 	 */
 	
@@ -64,7 +64,7 @@ public class Input {
 		return PressedKeyset;
 	}
 
-	/**
+	/***
 	 * ------------------- Setters -------------------
 	 */
 	

@@ -8,7 +8,8 @@ import javafx.scene.text.FontWeight;
 
 
 public class Menu {
-	/**
+	
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -55,7 +56,7 @@ public class Menu {
     private Button leftarrow = new Button(LEFTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
     private Button rightarrow = new Button(RIGHTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
 
-    /**
+    /***
 	 * ------------------- Methods -------------------
 	 */
 	
@@ -96,27 +97,6 @@ public class Menu {
         gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
      
         System.out.println("Printing Menu");
-        /*
-        // Couleurs qui changent selon le survol
-        Color btnColor  = survolSouris ? Color.YELLOW : Color.BLUE;
-        Color borderColor = survolSouris ? Color.ORANGE : Color.RED;
-        Color textColor = survolSouris ? Color.BLUE   : Color.RED;
-
-        
-        // Création du bouton bleu
-        gc.setFill(btnColor);
-        gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
-        // Cadre blanc autour du bouton bleu
-        gc.setStroke(borderColor);
-        gc.setLineWidth(3);
-        gc.strokeRect(BTN_X, BTN_Y, BTN_WIDTH, BTN_HEIGHT);     
-        // Ecriture du mot PLAY
-        gc.save();			// Etat où restore() va revenir
-        gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
-        gc.setFill(textColor);
-        gc.fillText("PLAY", BTN_X+60, BTN_Y+40);
-        gc.restore(); // retire le gras et revient à la police précédente
-       */
 
     }
 

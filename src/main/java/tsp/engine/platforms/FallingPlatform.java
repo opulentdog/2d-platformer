@@ -9,7 +9,7 @@ import tsp.engine.platforms.Platform.PlatformType;
  */
 public class FallingPlatform extends Platform{
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -19,7 +19,7 @@ public class FallingPlatform extends Platform{
 
 	}
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

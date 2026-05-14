@@ -9,7 +9,7 @@ import tsp.graphics.Sound;
  */
 public class LavaPlatform extends Platform {
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -19,7 +19,7 @@ public class LavaPlatform extends Platform {
 		this.type = PlatformType.LAVA;
 	}
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
  */
 public class Tile {
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -21,7 +21,7 @@ public class Tile {
 	private int repeatY = 5;   // nombre de tuiles verticalement (hauteur)
 	private Image img;
 	
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -31,7 +31,7 @@ public class Tile {
 		this.height = h;
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	

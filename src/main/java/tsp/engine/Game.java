@@ -5,7 +5,7 @@ import tsp.graphics.Constants;
 import tsp.graphics.Window;
 
 public class Game {
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	private GameState state = GameState.RUNNING;
@@ -14,7 +14,7 @@ public class Game {
 	private Generation generator;
 	private Platform[] platforms;
 	
-	/**
+	/***
 	 * ------------------- Getters -------------------
 	 */
 	public GameState getState() {
@@ -34,7 +34,7 @@ public class Game {
 		return platforms;
 	}
 	
-	/**
+	/***
 	 * ------------------- Setters -------------------
 	 */
 	public void setTower(Tower tower) {
@@ -62,7 +62,7 @@ public class Game {
 	    this.state = state;
 	}
 	
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -75,7 +75,7 @@ public class Game {
 		state = GameState.MENU;
 	}
 
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	

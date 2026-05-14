@@ -7,7 +7,7 @@ import tsp.graphics.Sound;
  */
 public class InvisiblePlatform extends Platform{
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -17,7 +17,7 @@ public class InvisiblePlatform extends Platform{
 		this.type = PlatformType.INVISIBLE;
 	}
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

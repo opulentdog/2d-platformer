@@ -7,7 +7,7 @@ import tsp.graphics.Sound;
  */
 public class BasicPlatform extends Platform{
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -18,7 +18,7 @@ public class BasicPlatform extends Platform{
 	}
 	
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

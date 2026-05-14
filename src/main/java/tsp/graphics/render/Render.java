@@ -6,13 +6,13 @@ import tsp.graphics.Window;
 
 public abstract class Render<A extends Asset> {
 	
-	/**
+	/***
 	 * ------------------- Fields ----------------------
 	 */
 	
 	private Texture texture;
 	
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -20,7 +20,7 @@ public abstract class Render<A extends Asset> {
 		this.texture = new Texture(imgPath, a.getWidth(), a.getHeight());
 	}
 	
-	/**
+	/***
 	 * ------------------- Getter ----------------------
 	 */
 	
@@ -28,7 +28,7 @@ public abstract class Render<A extends Asset> {
 		return texture;
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

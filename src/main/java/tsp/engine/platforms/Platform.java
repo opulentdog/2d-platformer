@@ -7,7 +7,7 @@ import tsp.graphics.Sound;
 
 public abstract class Platform extends Asset{
 
-	/**
+	/***
 	 * ------------------- Fields ----------------------
 	 */
 	
@@ -25,7 +25,7 @@ public abstract class Platform extends Asset{
 	    INVISIBLE
 	}
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -33,7 +33,7 @@ public abstract class Platform extends Asset{
 		super(width, height);
 	}
 
-	/**
+	/***
 	 * ------------------- Getters ----------------------
 	 */
 	
@@ -41,7 +41,7 @@ public abstract class Platform extends Asset{
         return type;
     }
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

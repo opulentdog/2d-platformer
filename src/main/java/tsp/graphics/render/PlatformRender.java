@@ -13,7 +13,7 @@ import tsp.graphics.Window;
 
 public class PlatformRender extends Render<Platform> {
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -25,7 +25,7 @@ public class PlatformRender extends Render<Platform> {
 	Generation generator;
 	EnumMap<PlatformType, Texture> textureMap;
 
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -46,7 +46,7 @@ public class PlatformRender extends Render<Platform> {
 
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	

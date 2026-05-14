@@ -70,6 +70,7 @@ public class Window extends Application{
 	 * Son de la fenêtre
 	 */
 	private Sound soundgame;
+	
 	/**
 	 * Son du game over
 	 */
@@ -80,6 +81,7 @@ public class Window extends Application{
 	private TowerRender towerRender;
 	private PlayerRender playerRender;
 	private PlatformRender platformRender;
+	
 	/**
 	 * Espacement vertical entre chaque plateforme
 	 */
@@ -98,7 +100,9 @@ public class Window extends Application{
     private boolean menuNeedsRedraw = true;
     private boolean GONeedsRedraw = true;
     
-    // Effet de flou appliqué au canvas de jeu pendant le menu
+    /**
+     * Effet de flou appliqué au canvas de jeu pendant le menu
+     */
  	private GaussianBlur menuBlur ;
 
 
