@@ -6,14 +6,14 @@ import tsp.engine.platforms.*;
 
 public class Generation {
 
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
 	private static final int PlatformSpacing = 300;
 	private int[] platformAngles;
 	
-	/**
+	/***
 	 * ------------------- Getters -------------------
 	 */
 	
@@ -21,12 +21,12 @@ public class Generation {
 		return platformAngles;
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	
 	/**
-	 * genere des plateformes sur la tour de maniere aleatoire
+	 * Génère des plateformes sur la tour de maniere aleatoire
 	 * @param windowWidth largeur fenetre
 	 * @param windowHeight hauteur fenetre
 	 */

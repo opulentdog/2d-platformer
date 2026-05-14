@@ -8,7 +8,7 @@ import tsp.engine.platforms.Platform.PlatformType;
  */
 public class SpringBoardPlatform extends Platform{
 
-	/**
+	/***
 	 * ------------------- Constructor ----------------------
 	 */
 	
@@ -17,7 +17,7 @@ public class SpringBoardPlatform extends Platform{
 		this.type = PlatformType.SPRING;
 	}
 
-	/**
+	/***
 	 * ------------------- Methods ----------------------
 	 */
 	

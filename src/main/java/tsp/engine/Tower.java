@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCode;
  * classe de la tour contenant ses dimensions, sa texture.
  */
 public class Tower extends Asset{
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -22,7 +22,7 @@ public class Tower extends Asset{
 	private double towerxVelocity; 
 	double rotation; // position angulaire de la tour
 
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -31,7 +31,7 @@ public class Tower extends Asset{
 
     }
 	
-	/**
+	/***
 	 * ------------------- Getters -------------------
 	 */
 	
@@ -42,7 +42,7 @@ public class Tower extends Asset{
 		return rotation;
 	}
     
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	

@@ -5,7 +5,7 @@ import tsp.graphics.Window;
 
 public class PlayerRender extends Render<Player>{
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -20,7 +20,7 @@ public class PlayerRender extends Render<Player>{
 		};
 	private int currentSkinIndex = 0;
 	
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -35,7 +35,7 @@ public class PlayerRender extends Render<Player>{
 		this.window = window;
 	}
 	
-	/**
+	/***
 	 * ------------------- Getter ----------------------
 	 */
 	
@@ -47,7 +47,7 @@ public class PlayerRender extends Render<Player>{
 		return skinsList[getCurrentSkinIndex()];
 	}
 	
-	/**
+	/***
 	 * ------------------- Getter ----------------------
 	 */
 	
@@ -56,7 +56,7 @@ public class PlayerRender extends Render<Player>{
 	    this.getTexture().setImgPath(skinsList[currentSkinIndex], player.getWidth(), player.getHeight());
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	@Override

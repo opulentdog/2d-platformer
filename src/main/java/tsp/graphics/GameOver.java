@@ -11,25 +11,19 @@ import javafx.scene.text.FontWeight;
  * écran de game over
  */
 public class GameOver {
-	/**
+	
+	/***
 	 * ------------------- Fields -------------------
 	 */
+	
 	/**
 	 * Dimensions du bouton
 	 */
-	/*
-	private final static double BTN_WIDTH = 0.288 * Constants.WINDOWWIDTH;//200
-	private final static double BTN_HEIGHT = 0.3 * BTN_WIDTH;
-	*/
 	private final static double BTN_SIDE = 0.2 * Constants.WINDOWWIDTH;//200
 	
-	/***
-	 * Coordonnées du bouton RETRY dans la fenêtre
+	/**
+	 * Coordonnées des boutons MENU et RETRY dans la fenêtre
 	 */
-	/*
-	private final static double BTN_X = 0.36 * Constants.WINDOWWIDTH;
-	private final static double BTN_Y = 0.467 * Constants.WINDOWHEIGHT;
-	*/
 	private final static double RETRY_X = 0.33 * Constants.WINDOWWIDTH -BTN_SIDE/2 ;
 	private final static double MENU_X = 0.66 * Constants.WINDOWWIDTH - BTN_SIDE/2;
 	private final static double BTN_Y = 0.5 * Constants.WINDOWWIDTH;
@@ -41,7 +35,7 @@ public class GameOver {
 	private Button retry = new Button(RETRY_X, BTN_Y,BTN_SIDE,BTN_SIDE, Constants.RETRYNORMAL_PATH, Constants.RETRYHOVER_PATH);
     private Button menu = new Button(MENU_X, BTN_Y,BTN_SIDE,BTN_SIDE,Constants.MENUNORMAL_PATH,Constants.MENUHOVER_PATH);
 
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	
@@ -80,14 +74,6 @@ public class GameOver {
         menu.setImgPath(sourisx,sourisy);
         gc.drawImage(menu.getImage(), MENU_X , BTN_Y);
 
-	    /*
-	    gc.setFill(Color.RED);
-	    gc.fillRect(BTN_X,BTN_Y,BTN_WIDTH,BTN_HEIGHT);
-	
-	    gc.setFill(Color.BLACK);
-	    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 30));
-	    gc.fillText("RETRY", BTN_X+ 0.275*BTN_WIDTH, BTN_Y+ 0.67 * BTN_HEIGHT);
-	    */
 	    
 	    // Perso triste
 	    String cryPath = Constants.NORMALTOCRY.get(skinPath); 				// On récupère le chemin relatif associé
@@ -100,17 +86,12 @@ public class GameOver {
 	}
 	
 	/**
-	 * Indique si la souris est superposée au bouton start ( n'indique pas directement que le bouton start est cliqué )
+	 * Indique si la souris est superposée au bouton ( n'indique pas directement que le bouton start est cliqué )
 	 * @param x position de la souris selon l'horizontale
 	 * @param y position de la souris selon la verticale
 	 * @return
 	 */
-	/*
-	public static boolean isRetryClicked(double x,double y) {
-	    return x >= BTN_X && x <= BTN_X+BTN_WIDTH &&
-	           y >= BTN_Y && y <= BTN_Y+BTN_HEIGHT;
-	}
-	*/
+
 	public boolean isRetryClicked(double x,double y) {
 	    return retry.isHoveredCirc(x,y);
 	}

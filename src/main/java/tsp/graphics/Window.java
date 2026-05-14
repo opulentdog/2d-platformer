@@ -70,6 +70,7 @@ public class Window extends Application{
 	 * Son de la fenêtre
 	 */
 	private Sound soundgame;
+	
 	/**
 	 * Son du game over
 	 */
@@ -80,6 +81,7 @@ public class Window extends Application{
 	private TowerRender towerRender;
 	private PlayerRender playerRender;
 	private PlatformRender platformRender;
+	
 	/**
 	 * Espacement vertical entre chaque plateforme
 	 */
@@ -98,7 +100,9 @@ public class Window extends Application{
     private boolean menuNeedsRedraw = true;
     private boolean GONeedsRedraw = true;
     
-    // Effet de flou appliqué au canvas de jeu pendant le menu
+    /**
+     * Effet de flou appliqué au canvas de jeu pendant le menu
+     */
  	private GaussianBlur menuBlur ;
 
 
@@ -365,8 +369,8 @@ public class Window extends Application{
 	
 	private void setGameOver() {
 		// On n'affiche PAS le GameOver à CHAQUE frame
-		if (!menuNeedsRedraw) return; // rien à faire
-	    menuNeedsRedraw = false;
+		if (!GONeedsRedraw) return; // rien à faire
+	    GONeedsRedraw = false;
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();

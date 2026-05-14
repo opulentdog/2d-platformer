@@ -2,7 +2,7 @@ package tsp.engine;
 
 public abstract class Asset {
 
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -12,7 +12,7 @@ public abstract class Asset {
 	protected double y = 0;
 	
 
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -21,7 +21,7 @@ public abstract class Asset {
 		this.height=height;
 	}
 
-	/**
+	/***
 	 * ------------------- Getters -------------------
 	 */
 	
@@ -57,7 +57,7 @@ public abstract class Asset {
 		return y;
 	}
 
-	/**
+	/***
 	 * ------------------- Setters -------------------
 	 */
 	
@@ -66,7 +66,7 @@ public abstract class Asset {
 		this.y = y;
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	

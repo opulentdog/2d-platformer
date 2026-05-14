@@ -14,7 +14,7 @@ import tsp.graphics.Sound;
 
 public class Player extends Asset {
 	
-	/**
+	/***
 	 * ------------------- Fields -------------------
 	 */
 	
@@ -28,7 +28,7 @@ public class Player extends Asset {
 	private Boolean ground=true;
 	private PlayerRender playerRender;
 	
-	/**
+	/***
 	 * ------------------- Constructor -------------------
 	 */
 	
@@ -37,7 +37,7 @@ public class Player extends Asset {
 		dead = false;
 	}
 	
-	/**
+	/***
 	 * ------------------- Methods -------------------
 	 */
 	
