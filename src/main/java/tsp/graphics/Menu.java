@@ -95,7 +95,7 @@ public class Menu {
         rightarrow.setImgPath(sourisX,sourisY);
         gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
      
-        System.out.println("Printing Menu");
+        System.out.println("Refresh Menu");
 
     }
     

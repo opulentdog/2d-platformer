@@ -465,9 +465,6 @@ public class Window extends Application{
 		};
 		animation.start();
 
-		//window.getGroup().getChildren().add(window.getCanvas());	// Ajout du canvas jeu (flouté)
-		//window.getGroup().getChildren().add(menuCanvas);           // Ajout du canvas menu au-dessus du canvas jeu (ordre = profondeur)
-
 		// Ajout au group principal
 		group.getChildren().add(gameGroup);           // gameGroup --> group principal (fond + tour)
 		group.getChildren().add(menuCanvas);          // Canvas menu --> group au-dessus du gameGroup

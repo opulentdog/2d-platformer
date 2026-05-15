@@ -82,7 +82,7 @@ public class GameOver {
 	    Image sadPlayer = new Image(imageStr, sadPlayerSide, sadPlayerSide, false, true); // On crée l'image
 		gc.drawImage(sadPlayer, 0.5*(w-sadPlayerSide), 0.1 * h );						  // On affiche l'image
 	
-        System.out.println("Printing GameOver");
+        System.out.println("Refresh GameOver");
 	}
 	
 	/**
