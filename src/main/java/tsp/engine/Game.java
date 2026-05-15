@@ -119,7 +119,7 @@ public class Game {
 	    tower = new Tower();
 
 	    platforms = generator.randomPlatformGeneration(window.getWidth(), window.getHeight());
-		player.setPosition((window.getWidth()-player.getWidth())/2, player.getHeight());
+		player.setPosition((window.getWidth()-player.getWidth())/2, window.getHeight() / 3);
 
 	    state = GameState.RUNNING;
 	}

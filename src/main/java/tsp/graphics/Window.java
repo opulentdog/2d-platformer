@@ -199,6 +199,7 @@ public class Window extends Application{
 
 	    if (game.getState() == GameState.MENU) {
 	        if (menu.isPlayClicked(sourisx, sourisy)) {
+	    		game.getPlayer().setPosition(game.getPlayer().getX(),this.getHeight() / 3); //Replace le Player en position de départ
 	            game.setState(GameState.RUNNING);
 	        }
 	        if (menu.isLeftArrowClicked(sourisx, sourisy)) {
@@ -218,7 +219,6 @@ public class Window extends Application{
 	            startRenders();
 	            playerRender.setSkinIndex(savedSkin); // Réapplique le skin après StartRenders
 	            ycamera = 0;
-	            game.getPlayer().setPosition(game.getPlayer().getX(), windowHeight / 3);
 	            soundDeath.stopMusic(); // Arrête la musique du GameOver
 	        }
 	        if (gameOver.isMenuClicked(sourisx, sourisy)) {
