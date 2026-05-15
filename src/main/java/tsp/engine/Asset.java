@@ -61,7 +61,7 @@ public abstract class Asset {
 	 * ------------------- Setters -------------------
 	 */
 	
-	public void setPostition(double x, double y) {
+	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}

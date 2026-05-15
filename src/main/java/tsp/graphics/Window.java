@@ -218,7 +218,7 @@ public class Window extends Application{
 	            startRenders();
 	            playerRender.setSkinIndex(savedSkin); // Réapplique le skin après StartRenders
 	            ycamera = 0;
-	            game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 3);
+	            game.getPlayer().setPosition(game.getPlayer().getX(), windowHeight / 3);
 	            soundDeath.stopMusic(); // Arrête la musique du GameOver
 	        }
 	        if (gameOver.isMenuClicked(sourisx, sourisy)) {
@@ -324,7 +324,7 @@ public class Window extends Application{
 	    this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
 	    this.getGC().drawImage(menuBackground, 0, 0); 
 	    // On place le joueur au milieu de la fenetre
-	    game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
+	    game.getPlayer().setPosition(game.getPlayer().getX(), windowHeight / 2);
 	    
 	    menuCanvas.setVisible(true);
 	    
