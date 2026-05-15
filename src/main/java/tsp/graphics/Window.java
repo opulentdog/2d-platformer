@@ -371,8 +371,10 @@ public class Window extends Application{
 	
 	private void setGameOver() {
 		// On n'affiche PAS le GameOver à CHAQUE frame
-		if (!GONeedsRedraw) return; // rien à faire
-	    GONeedsRedraw = false;
+		if (!GONeedsRedraw && !gameOver.doesGObuttonsNeedsRedraw(sourisx, sourisy)) {
+			return; 												// rien à redessiner
+		}
+	    GONeedsRedraw = false;	
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();
