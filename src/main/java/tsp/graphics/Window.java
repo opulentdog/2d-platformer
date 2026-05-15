@@ -289,8 +289,10 @@ public class Window extends Application{
 	 */
 	private void setMenu(GaussianBlur menuBlur) {
 		// On n'affiche PAS le menu à CHAQUE frame
-		if (!menuNeedsRedraw) return; // rien à faire
-	    menuNeedsRedraw = false;
+		if (!menuNeedsRedraw && !menu.doesMenubuttonsNeedsRedraw(sourisx, sourisy)) {
+			return; 												// rien à redessiner
+		}
+	    menuNeedsRedraw = false;											
 		// On ne calcule le snapshot flou qu'une seule fois
 	    if (menuBackground == null) {
 	    	// On vide le graphical Context
