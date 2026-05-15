@@ -65,7 +65,7 @@ public class Generation {
 	    // ── First platform: centred vertically, random angle ──────────────────────
 	    platformAngles[0] = (int) (360 * random.nextDouble());
 	    platforms[0]      = new BasicPlatform();
-	    platforms[0].setPostition(0, windowHeight / 2.0);
+	    platforms[0].setPosition(0, windowHeight / 2.0);
 
 	    // altitude counts how many BasicPlatforms have been placed so far;
 	    // it drives both vertical position and the lava-spawn probability.
@@ -90,7 +90,7 @@ public class Generation {
 	            double posX        = 0;//(windowWidth - platforms[k].getWidth()) * random.nextDouble();
 	            double posY        = windowHeight / 2.0 - altitude * PlatformSpacing;
 	            altitude++;
-	            platforms[k].setPostition(posX, posY);
+	            platforms[k].setPosition(posX, posY);
 	            previousWasLava    = false;
 
 	        } else {
@@ -109,7 +109,7 @@ public class Generation {
 	            double altitudeOffset = LAVA_ALTITUDE_BASE + LAVA_ALTITUDE_VARIANCE * random.nextDouble();
 	            double posX           = 0;//(windowWidth - platforms[k].getWidth()) * random.nextDouble();
 	            double posY           = windowHeight / 2.0 - (altitude - altitudeOffset) * PlatformSpacing;
-	            platforms[k].setPostition(posX, posY);
+	            platforms[k].setPosition(posX, posY);
 	            previousWasLava       = true;
 	        }
 	    }

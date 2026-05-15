@@ -68,7 +68,7 @@ public class PlatformRender extends Render<Platform> {
 			double sinRel=Math.sin(relRotation*2*3.14159/360);
 			if(relRotation>0 && relRotation < 180) {
 				this.renderPlatform(platform1,Math.abs(sinRel)*100,platform1.getHeight());
-				platform1.setPostition(towercenterx+cosRel*tower.getWidth(),platform1.getY());
+				platform1.setPosition(towercenterx+cosRel*tower.getWidth(),platform1.getY());
 			}
 			i++;
 		}

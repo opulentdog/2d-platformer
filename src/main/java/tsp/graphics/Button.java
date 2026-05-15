@@ -14,6 +14,7 @@ public class Button {
 	private Image imgNormal;
 	private Image imgHover;
 	private Image currentImg;
+	private boolean wasHovered = false;
 
 	/***
 	 * ------------------- Constructor -------------------
@@ -80,4 +81,12 @@ public class Button {
         return distance_carrée <= radius*radius ;
     }
 	
+	public boolean isEnteringOrExiting(double sourisX, double sourisY) {
+		boolean isHoveredNow = this.isHoveredCirc(sourisX, sourisY);
+		if (this.wasHovered != isHoveredNow ) {
+			wasHovered = isHoveredNow;
+			return true;
+		}
+		return false;
+	}
 }

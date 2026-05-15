@@ -45,9 +45,6 @@ public class Input {
 	    scene.setOnMouseMoved(event -> {
 	    	window.setSourisX(event.getX());
 	    	window.setSourisY(event.getY());
-	        window.setMenuNeedsRedraw(true); // ← force le redraw du menu 
-	        window.setGameOverNeedsRedraw(true); // ← force le redraw du menu 
-
 	    });
 	}
 	

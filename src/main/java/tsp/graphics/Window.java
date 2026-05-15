@@ -199,6 +199,7 @@ public class Window extends Application{
 
 	    if (game.getState() == GameState.MENU) {
 	        if (menu.isPlayClicked(sourisx, sourisy)) {
+	    		game.getPlayer().setPosition(game.getPlayer().getX(),this.getHeight() / 3); //Replace le Player en position de départ
 	            game.setState(GameState.RUNNING);
 	        }
 	        if (menu.isLeftArrowClicked(sourisx, sourisy)) {
@@ -218,7 +219,6 @@ public class Window extends Application{
 	            startRenders();
 	            playerRender.setSkinIndex(savedSkin); // Réapplique le skin après StartRenders
 	            ycamera = 0;
-	            game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 3);
 	            soundDeath.stopMusic(); // Arrête la musique du GameOver
 	        }
 	        if (gameOver.isMenuClicked(sourisx, sourisy)) {
@@ -289,8 +289,10 @@ public class Window extends Application{
 	 */
 	private void setMenu(GaussianBlur menuBlur) {
 		// On n'affiche PAS le menu à CHAQUE frame
-		if (!menuNeedsRedraw) return; // rien à faire
-	    menuNeedsRedraw = false;
+		if (!menuNeedsRedraw && !menu.doesMenubuttonsNeedsRedraw(sourisx, sourisy)) {
+			return; 												// rien à redessiner
+		}
+	    menuNeedsRedraw = false;											
 		// On ne calcule le snapshot flou qu'une seule fois
 	    if (menuBackground == null) {
 	    	// On vide le graphical Context
@@ -322,7 +324,7 @@ public class Window extends Application{
 	    this.getGC().clearRect(0, 0, this.getWidth(), this.getHeight());
 	    this.getGC().drawImage(menuBackground, 0, 0); 
 	    // On place le joueur au milieu de la fenetre
-	    game.getPlayer().setPostition(game.getPlayer().getX(), windowHeight / 2);
+	    game.getPlayer().setPosition(game.getPlayer().getX(), windowHeight / 2);
 	    
 	    menuCanvas.setVisible(true);
 	    
@@ -369,8 +371,10 @@ public class Window extends Application{
 	
 	private void setGameOver() {
 		// On n'affiche PAS le GameOver à CHAQUE frame
-		if (!GONeedsRedraw) return; // rien à faire
-	    GONeedsRedraw = false;
+		if (!GONeedsRedraw && !gameOver.doesGObuttonsNeedsRedraw(sourisx, sourisy)) {
+			return; 												// rien à redessiner
+		}
+	    GONeedsRedraw = false;	
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();
@@ -460,9 +464,6 @@ public class Window extends Application{
 			}
 		};
 		animation.start();
-
-		//window.getGroup().getChildren().add(window.getCanvas());	// Ajout du canvas jeu (flouté)
-		//window.getGroup().getChildren().add(menuCanvas);           // Ajout du canvas menu au-dessus du canvas jeu (ordre = profondeur)
 
 		// Ajout au group principal
 		group.getChildren().add(gameGroup);           // gameGroup --> group principal (fond + tour)

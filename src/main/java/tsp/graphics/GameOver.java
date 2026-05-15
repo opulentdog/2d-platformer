@@ -82,7 +82,7 @@ public class GameOver {
 	    Image sadPlayer = new Image(imageStr, sadPlayerSide, sadPlayerSide, false, true); // On crée l'image
 		gc.drawImage(sadPlayer, 0.5*(w-sadPlayerSide), 0.1 * h );						  // On affiche l'image
 	
-        System.out.println("Printing GameOver");
+        System.out.println("Refresh GameOver");
 	}
 	
 	/**
@@ -91,10 +91,18 @@ public class GameOver {
 	 * @param y position de la souris selon la verticale
 	 * @return
 	 */
-
+	public boolean doesGObuttonsNeedsRedraw(double sourisX, double sourisY) {
+    	if (		retry.isEnteringOrExiting(sourisX, sourisY)
+    			 || menu.isEnteringOrExiting(sourisX, sourisY)	) {
+    		return true;
+    	}
+    	return false;
+    }
+	
 	public boolean isRetryClicked(double x,double y) {
 	    return retry.isHoveredCirc(x,y);
 	}
+	
 	public boolean isMenuClicked(double x,double y) {
 	    return menu.isHoveredCirc(x,y);
 	}

@@ -65,12 +65,11 @@ public class Menu {
      * pour pouvoir utiliser les méthodes non-static de Button
      * @param window
      * @param overlayCanvas
-     * @param sourix
-     * @param sourisy
+     * @param sourisX
+     * @param sourisY
      */
-    public void render(Window window, Canvas overlayCanvas, double sourix,double sourisy) {
-        //GraphicsContext gc = window.getGC(); On le garde on sait jamais
-    	
+    public void render(Window window, Canvas overlayCanvas, double sourisX, double sourisY) {
+
     	// Récupère le contexte du canvas overlay (et non celui du jeu)
     	GraphicsContext gc = overlayCanvas.getGraphicsContext2D(); 
     	// Efface le canvas menu à chaque frame pour éviter les superpositions
@@ -81,25 +80,35 @@ public class Menu {
         gc.drawImage(titre.getImage(), ( overlayCanvas.getWidth() - TITLE_WIDTH)/2 , overlayCanvas.getWidth()/(-17.33) );
         
         //Affichage du bouton SOLO en version normal ou "survolé"
-        playSolo.setImgPath(sourix,sourisy);
+        playSolo.setImgPath(sourisX,sourisY);
         gc.drawImage(playSolo.getImage(), SOLO_X , PLAY_Y);
         
         //Affichage du bouton MULTI en version normal ou "survolé"
-        playMulti.setImgPath(sourix,sourisy);
+        playMulti.setImgPath(sourisX,sourisY);
         gc.drawImage(playMulti.getImage(), MULTI_X , PLAY_Y);
         
         //Affichage de la flèche gauche en version normal ou "survolé"
-        leftarrow.setImgPath(sourix,sourisy);
+        leftarrow.setImgPath(sourisX,sourisY);
         gc.drawImage(leftarrow.getImage(), LEFTARROW_X , ARROW_Y);
         
         //Affichage de la flèche droite en version normal ou "survolé"
-        rightarrow.setImgPath(sourix,sourisy);
+        rightarrow.setImgPath(sourisX,sourisY);
         gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
      
-        System.out.println("Printing Menu");
+        System.out.println("Refresh Menu");
 
     }
-
+    
+    public boolean doesMenubuttonsNeedsRedraw(double sourisX, double sourisY) {
+    	if (		playSolo.isEnteringOrExiting(sourisX, sourisY)
+    			|| playMulti.isEnteringOrExiting(sourisX, sourisY)
+    			|| leftarrow.isEnteringOrExiting(sourisX, sourisY)
+    			|| rightarrow.isEnteringOrExiting(sourisX, sourisY)
+    			) {
+    		return true;
+    	}
+    	return false;
+    }
     /**
      * Indique si la souris est superposée au bouton start ( n'indique pas directement que le bouton start est cliqué )
      * @param x position de la souris selon l'horizontale
