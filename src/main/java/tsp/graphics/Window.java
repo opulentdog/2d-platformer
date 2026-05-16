@@ -204,11 +204,11 @@ public class Window extends Application{
 	        }
 	        if (menu.isLeftArrowClicked(sourisx, sourisy)) {
 	        	playerRender.previousSkin();
-	            playerRender.render();
+	        	menuNeedsRedraw = true;
 	        }
 	        if (menu.isRightArrowClicked(sourisx, sourisy)) {
 	        	playerRender.nextSkin();
-	            playerRender.render();
+	        	menuNeedsRedraw = true;
 	        }
 	    }
 
