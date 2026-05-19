@@ -62,6 +62,7 @@ public class PlatformRender extends Render<Platform> {
 		double sin=Math.sin(rotation*2*3.14159/360);
 		
 		int i=0;
+		/*
 		for(Platform platform1 : platforms) {
 			int relRotation = ((int)rotation - generator.getPlatformAngles()[i] + 360)%360;
 			double cosRel=Math.cos(relRotation*2*3.14159/360);
@@ -71,6 +72,21 @@ public class PlatformRender extends Render<Platform> {
 				platform1.setPosition(towercenterx+cosRel*tower.getWidth(),platform1.getY());
 			}
 			i++;
+		}
+		*/
+		for(Platform platform1 : platforms) {
+		    int relRotation = ((int)rotation - generator.getPlatformAngles()[i] + 360) % 360;
+		    double cosRel = Math.cos(relRotation * 2 * 3.14159 / 360);
+		    double sinRel = Math.sin(relRotation * 2 * 3.14159 / 360);
+		    
+		    if(relRotation > 0 && relRotation < 180) {
+		        double platformWidth = Math.abs(sinRel) * 100;
+		        double newX = towercenterx + cosRel * tower.getWidth() - platformWidth * (1 - cosRel) / 2;
+		        
+		        platform1.setPosition(newX, platform1.getY());
+		        this.renderPlatform(platform1, platformWidth, platform1.getHeight());
+		    }
+		    i++;
 		}
 		
 	}
