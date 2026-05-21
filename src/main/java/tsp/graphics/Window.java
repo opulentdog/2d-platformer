@@ -356,8 +356,8 @@ public class Window extends Application{
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); 				// police Arial, gras, taille 24
         gc.setFill(Color.WHITE);											// On fixe la couleur de police à blanc
         gc.fillText("Score : "+(int)-this.getCamY()/PlatformSpacing, this.getHeight()-220, 50);
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20)); 				// police Arial, gras, taille 24
-        int fps = (int)(Math.round(1.0 / delta / 10.0) * 10);
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20)); 				//  taille 20
+        int fps = (int)(Math.round(1.0 / delta / 10.0) * 10);				// affichage des FPS
         gc.fillText("FPS : " + fps, this.getHeight()-0.25*this.getWidth(), 0.13*this.getHeight());
         gc.restore(); 														// retire le gras et revient à la police précédente
         
