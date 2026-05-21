@@ -39,7 +39,7 @@ public class Menu {
     /**
      * Ordonnée des flèches de skin dans la fenêtre
      */
-    private final static double SEED_ARROW_Y = 0.3 * Constants.WINDOWHEIGHT;
+    private final static double SEED_ARROW_Y = 0.4 * Constants.WINDOWHEIGHT;
     /**
      * Abscisse des flèches
      */
@@ -71,21 +71,25 @@ public class Menu {
     /**
      * Affiche le Menu et ses éléments : Méthode non-static 
      * pour pouvoir utiliser les méthodes non-static de Button
-     * @param window
      * @param overlayCanvas
+     * @param seed
      * @param sourisX
      * @param sourisY
      */
-    public void render(Window window, Canvas overlayCanvas, double sourisX, double sourisY) {
+    public void render(Canvas overlayCanvas, int seed, double sourisX, double sourisY) {
 
     	// Récupère le contexte du canvas overlay (et non celui du jeu)
     	GraphicsContext gc = overlayCanvas.getGraphicsContext2D(); 
+    	
+    	double w = overlayCanvas.getWidth();
+	    double h = overlayCanvas.getHeight();
+	    
     	// Efface le canvas menu à chaque frame pour éviter les superpositions
-    	gc.clearRect(0, 0, overlayCanvas.getWidth(), overlayCanvas.getHeight());
+    	gc.clearRect(0, 0, w, h);
     	
     	// Affichage de l'image du titre
         Texture titre = new Texture(Constants.TITRE_JEU_1, TITLE_WIDTH, TITLE_HEIGHT);
-        gc.drawImage(titre.getImage(), ( overlayCanvas.getWidth() - TITLE_WIDTH)/2 , overlayCanvas.getWidth()/(-17.33) );
+        gc.drawImage(titre.getImage(), ( w - TITLE_WIDTH)/2 , w/(-17.33) );
         
         //Affichage du bouton SOLO en version normal ou "survolé"
         playSolo.setImgPath(sourisX,sourisY);
@@ -105,13 +109,16 @@ public class Menu {
         
         //Affichage de la flèche SEEDgauche en version normal ou "survolé"
         seedLeftArrow.setImgPath(sourisX,sourisY);
-        gc.drawImage(seedLeftArrow.getImage(), LEFTARROW_X , ARROW_Y);
+        gc.drawImage(seedLeftArrow.getImage(), LEFTARROW_X , SEED_ARROW_Y);
         
         //Affichage de la flèche SEEDdroite en version normal ou "survolé"
         seedRightArrow.setImgPath(sourisX,sourisY);
-        gc.drawImage(seedRightArrow.getImage(), RIGHTARROW_X , ARROW_Y);
+        gc.drawImage(seedRightArrow.getImage(), RIGHTARROW_X , SEED_ARROW_Y);
         System.out.println("Refresh Menu");
-
+        
+        gc.setFill(Color.WHITE);
+	    gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 0.06*h));
+	    gc.fillText(""+seed, 0.48 * w, SEED_ARROW_Y+0.7*ARROW_SIDE);
     }
     
     /**
@@ -125,6 +132,8 @@ public class Menu {
     			|| playMulti.isEnteringOrExiting(sourisX, sourisY)
     			|| leftarrow.isEnteringOrExiting(sourisX, sourisY)
     			|| rightarrow.isEnteringOrExiting(sourisX, sourisY)
+    			|| seedLeftArrow.isEnteringOrExiting(sourisX, sourisY)
+    			|| seedRightArrow.isEnteringOrExiting(sourisX, sourisY)
     		) {
     		return true;
     	}

@@ -135,9 +135,13 @@ public class Game {
 	}
 
 	public void previousSeed() {
-		this.generator.setSeed( (this.generator.getSeed()-1)%10 );
+		generator.setSeed( (generator.getSeed()-1 +10)%10 ); // Le +10 est là pour éviter d'avoir -1
 	}
 	public void nextSeed() {
-		this.generator.setSeed( (this.generator.getSeed()+1)%10 );
+		generator.setSeed( (generator.getSeed()+1)%10 );
+	}
+	
+	public void generateSeed(Window window) {
+		this.setPlatforms(generator.randomPlatformGeneration(window.getWidth(), window.getHeight()));
 	}
 }
