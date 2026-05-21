@@ -81,6 +81,7 @@ public class Game {
 	 */
 	public Game(Window window) {
 		reset(window);
+		this.generator = new Generation(1);
 		state = GameState.MENU;
 	}
 
@@ -124,7 +125,6 @@ public class Game {
 	}
 	
 	public void reset(Window window) {
-	    generator = new Generation();
 	    player = new Player(Constants.PLAYER_SIDE, Constants.PLAYER_SIDE);
 	    tower = new Tower();
 
@@ -134,4 +134,7 @@ public class Game {
 	    state = GameState.RUNNING;
 	}
 	
+	public void setGeneration(int seed) {
+		this.generator.setSeed(seed);
+	}
 }
