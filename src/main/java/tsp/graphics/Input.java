@@ -28,20 +28,22 @@ public class Input {
 	 */
 	
 	/**
-	 * Lance la détection des touches
+	 * Lance la détection des touches 
 	 */
 	public void listen(Window window) {
-		/*J'écoute les touches enfoncees*/
+		/* J'écoute les touches relachees */
 		scene.setOnKeyReleased((KeyEvent e) -> {
 			getPressedKeyset().remove(e.getCode());
 		});
+		/* J'écoute les touches enfoncees */
 		scene.setOnKeyPressed((KeyEvent e) -> {
 			getPressedKeyset().add(e.getCode());
 		});
+		/* J'écoute le clic souris */
 		scene.setOnMouseClicked(e -> {
 	        window.handleClick(e.getX(), e.getY());
 		});
-		//On lit la position de la souris
+		/* J'écoute les mouvements de la souris */
 	    scene.setOnMouseMoved(event -> {
 	    	window.setSourisX(event.getX());
 	    	window.setSourisY(event.getY());
@@ -53,7 +55,7 @@ public class Input {
 	 */
 	
 	/**
-	 * Récupère l'ensemble des touches actuellement enfoncées
+	 * Récupère le HashSet des touches actuellement enfoncées
 	 * @param pressedKeyset
 	 * @return un HashSet contenant les KeyCode des touches pressées
 	 */

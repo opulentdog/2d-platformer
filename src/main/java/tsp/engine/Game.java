@@ -17,6 +17,11 @@ public class Game {
 	/***
 	 * ------------------- Getters -------------------
 	 */
+	
+	/**
+	 * getter de State
+	 * @return l'état de Game parmi les éléments de GameState
+	 */
 	public GameState getState() {
 		return state;
 	}
@@ -30,6 +35,10 @@ public class Game {
 		return tower;
 	}
 	
+	/**
+	 * getter de platforms
+	 * @return la liste des platforms du jeu
+	 */
 	public Platform[] getPlatforms() {
 		return platforms;
 	}
@@ -98,6 +107,7 @@ public class Game {
 
 	        // géré dans graphics
 	        case GAME_OVER:
+	        	updateGameOver(delta);
 	            break;
 	    }
 	}

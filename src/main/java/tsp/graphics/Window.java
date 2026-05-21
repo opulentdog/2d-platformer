@@ -287,7 +287,7 @@ public class Window extends Application{
 	/**
 	 *  Creation du menu avec les calques flous et nets
 	 */
-	private void setMenu(GaussianBlur menuBlur) {
+	private void setMenu() {
 		// On n'affiche PAS le menu à CHAQUE frame
 		if (!menuNeedsRedraw && !menu.doesMenubuttonsNeedsRedraw(sourisx, sourisy)) {
 			return; 												// rien à redessiner
@@ -335,9 +335,9 @@ public class Window extends Application{
 	}
 	
 	/**
-	 *  Creation de lavec les calques flous et nets
+	 *  Affichage du jeu
 	 */
-	private void setRunning() {
+	private void setRunning(double delta) {
 		this.getCanvas().setEffect(null);		   // Supprime le flou	
 		menuCanvas.setVisible(false);		       // Cache le canvas menu pendant la partie	
 		menuCanvas.getGraphicsContext2D().clearRect(0,0,windowWidth,windowHeight);// Efface le canvas menu
@@ -352,15 +352,15 @@ public class Window extends Application{
         platformRender.render();
         playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
         
-        gc.save();			// Etat où restore() va revenir
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
-        gc.setFill(Color.WHITE);
+        gc.save();															// Etat où restore() va revenir
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); 				// police Arial, gras, taille 24
+        gc.setFill(Color.WHITE);											// On fixe la couleur de police à blanc
         gc.fillText("Score : "+(int)-this.getCamY()/PlatformSpacing, this.getHeight()-220, 50);
-        gc.restore(); // retire le gras et revient à la police précédente
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20)); 				//  taille 20
+        int fps = (int)(Math.round(1.0 / delta / 10.0) * 10);				// affichage des FPS
+        gc.fillText("FPS : " + fps, this.getHeight()-0.25*this.getWidth(), 0.13*this.getHeight());
+        gc.restore(); 														// retire le gras et revient à la police précédente
         
-        //window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 20);
-
-        //gc.strokeText("FPS: "+1/delta, 540, 36);
         
         //on gère les musiques  
         
@@ -369,12 +369,16 @@ public class Window extends Application{
     	
 	}
 	
+	/**
+	 * Fait la transition vers l'affichage du GameOver
+	 */
 	private void setGameOver() {
 		// On n'affiche PAS le GameOver à CHAQUE frame
 		if (!GONeedsRedraw && !gameOver.doesGObuttonsNeedsRedraw(sourisx, sourisy)) {
 			return; 												// rien à redessiner
 		}
 	    GONeedsRedraw = false;	
+	    
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();
@@ -393,10 +397,7 @@ public class Window extends Application{
         gameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath(),sourisx,sourisy);
 	}
 	
-	/**
-	 * TODO segmenter
-	 * 
-	 */
+	
 	@Override
 	public void start(Stage stage) {		
 		
@@ -417,8 +418,6 @@ public class Window extends Application{
 		// Grande classe anonyme à décomposer en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		
-			//private static final int PlatformSpacing = 300;
-
 			long lastTime = 0;	
 	
 		    @Override
@@ -429,12 +428,11 @@ public class Window extends Application{
 		            return;
 		        }
 	
-		        //Delta c'est le temps en milliseconde qui s'est écoulé entre deux frames
-		        //Ca permet que le joueur bouge tjrs à la même vitesse même si il y a du lag
+		        // double delta est le temps en milliseconde qui s'est écoulé entre deux frames
+		        //Ca permet que le joueur bouge toujours à la même vitesse, même si il y a du lag
 		        double delta = (now - lastTime) / 1_000_000_000.0; // seconds
 		        update(delta,now);
 		    }
-//	Refactor
 		    
 			private void update(double delta, long now) {
 				if (delta < 1.0/40) return; // On limite les fps à 40 frames par seconds
@@ -449,11 +447,11 @@ public class Window extends Application{
 		        game.update(delta,w);
 		        switch(game.getState()) {
 			        case MENU:
-			        	setMenu(menuBlur);
+			        	setMenu();
 			            return;
 			            
 		        	case RUNNING:
-		        		setRunning();
+		        		setRunning(delta);
 		        		return ;
 						
 		        	case GAME_OVER:
@@ -475,10 +473,6 @@ public class Window extends Application{
 		
 	}
 
-protected void update(double delta, long now) {
-		// TODO Auto-generated method stub
-		
-	}
 
 // --------------- Lancement du jeu ------------------------
 

@@ -60,7 +60,7 @@ public class Generation {
 
 	    Platform[] platforms     = new Platform[PLATFORM_COUNT];
 	    this.platformAngles       = new int[PLATFORM_COUNT];
-	    Random random             = new Random(1);
+	    Random random             = new Random(2);
 
 	    // ── First platform: centred vertically, random angle ──────────────────────
 	    platformAngles[0] = (int) (360 * random.nextDouble());

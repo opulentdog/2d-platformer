@@ -59,16 +59,26 @@ public class PlayerRender extends Render<Player>{
 	/***
 	 * ------------------- Methods -------------------
 	 */
+	
+	/**
+	 * Affiche le Player dans le GraphicalContext de Window
+	 */
 	@Override
 	public void render() {
 		window.getGC().drawImage(this.getTexture().getImage(), player.getX(), player.getY()-window.getCamY());
 	}
 	
+	/**
+	 * Change le skin du Player avec le suivant dans la liste skinsList
+	 */
 	public void nextSkin() {
 	    currentSkinIndex = (currentSkinIndex + 1) % skinsList.length;
 	    this.getTexture().setImgPath(skinsList[currentSkinIndex],player.getWidth(),player.getHeight());
 	}
-
+	
+	/**
+	 * Change le skin du Player avec le précédent dans la liste skinsList
+	 */
 	public void previousSkin() {
 	    currentSkinIndex = (currentSkinIndex - 1 + skinsList.length) % skinsList.length;
 	    this.getTexture().setImgPath(skinsList[currentSkinIndex],player.getWidth(),player.getHeight());
