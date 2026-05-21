@@ -80,8 +80,8 @@ public class Game {
 	 * @param window la fene^tre du jeu
 	 */
 	public Game(Window window) {
-		reset(window);
 		this.generator = new Generation(1);
+		reset(window);
 		state = GameState.MENU;
 	}
 
