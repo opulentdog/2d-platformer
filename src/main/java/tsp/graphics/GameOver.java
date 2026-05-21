@@ -39,6 +39,16 @@ public class GameOver {
 	 * ------------------- Methods -------------------
 	 */
 	
+    /**
+     * Affiche l'overlay de GameOver : bouton et images
+     * après avoir appliqué une filtre noir sur le jeu
+     * @param window
+     * @param overlayCanvas
+     * @param score
+     * @param skinPath
+     * @param sourisx
+     * @param sourisy
+     */
 	public void render(Window window, Canvas overlayCanvas, int score, String skinPath, double sourisx, double sourisy) {
 	    //GraphicsContext gc = window.getGC(); On le garde on sait jamais
 		

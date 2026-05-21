@@ -81,6 +81,12 @@ public class Button {
         return distance_carrée <= radius*radius ;
     }
 	
+	/**
+	 * Test si un bouton est franchi : non survolé maintenant alors que oui avant, et inversement
+	 * @param sourisX
+	 * @param sourisY
+	 * @return
+	 */
 	public boolean isEnteringOrExiting(double sourisX, double sourisY) {
 		boolean isHoveredNow = this.isHoveredCirc(sourisX, sourisY);
 		if (this.wasHovered != isHoveredNow ) {

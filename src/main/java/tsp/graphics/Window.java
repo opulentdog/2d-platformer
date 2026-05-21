@@ -335,9 +335,9 @@ public class Window extends Application{
 	}
 	
 	/**
-	 *  Creation de lavec les calques flous et nets
+	 *  Affichage du jeu
 	 */
-	private void setRunning() {
+	private void setRunning(double delta) {
 		this.getCanvas().setEffect(null);		   // Supprime le flou	
 		menuCanvas.setVisible(false);		       // Cache le canvas menu pendant la partie	
 		menuCanvas.getGraphicsContext2D().clearRect(0,0,windowWidth,windowHeight);// Efface le canvas menu
@@ -352,15 +352,15 @@ public class Window extends Application{
         platformRender.render();
         playerRender.render();		//On dessine le joueur en dernier pour etre au premier plan
         
-        gc.save();			// Etat où restore() va revenir
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); // police Arial, gras, taille 24
-        gc.setFill(Color.WHITE);
+        gc.save();															// Etat où restore() va revenir
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); 				// police Arial, gras, taille 24
+        gc.setFill(Color.WHITE);											// On fixe la couleur de police à blanc
         gc.fillText("Score : "+(int)-this.getCamY()/PlatformSpacing, this.getHeight()-220, 50);
-        gc.restore(); // retire le gras et revient à la police précédente
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20)); 				// police Arial, gras, taille 24
+        int fps = (int)(Math.round(1.0 / delta / 10.0) * 10);
+        gc.fillText("FPS : " + fps, this.getHeight()-0.25*this.getWidth(), 0.13*this.getHeight());
+        gc.restore(); 														// retire le gras et revient à la police précédente
         
-        //window.getGC().strokeText("Score: "+(int)-window.getCamY()/PlatformSpacing, window.getHeight()-100, 20);
-
-        //gc.strokeText("FPS: "+1/delta, 540, 36);
         
         //on gère les musiques  
         
@@ -369,12 +369,16 @@ public class Window extends Application{
     	
 	}
 	
+	/**
+	 * Fait la transition vers l'affichage du GameOver
+	 */
 	private void setGameOver() {
 		// On n'affiche PAS le GameOver à CHAQUE frame
 		if (!GONeedsRedraw && !gameOver.doesGObuttonsNeedsRedraw(sourisx, sourisy)) {
 			return; 												// rien à redessiner
 		}
 	    GONeedsRedraw = false;	
+	    
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();
@@ -447,7 +451,7 @@ public class Window extends Application{
 			            return;
 			            
 		        	case RUNNING:
-		        		setRunning();
+		        		setRunning(delta);
 		        		return ;
 						
 		        	case GAME_OVER:

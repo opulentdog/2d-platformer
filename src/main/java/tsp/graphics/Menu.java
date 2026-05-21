@@ -99,18 +99,25 @@ public class Menu {
 
     }
     
+    /**
+     * Indique si un des boutons de menu est franchi par la souris
+     * @param sourisX
+     * @param sourisY
+     * @return
+     */
     public boolean doesMenubuttonsNeedsRedraw(double sourisX, double sourisY) {
     	if (		playSolo.isEnteringOrExiting(sourisX, sourisY)
     			|| playMulti.isEnteringOrExiting(sourisX, sourisY)
     			|| leftarrow.isEnteringOrExiting(sourisX, sourisY)
     			|| rightarrow.isEnteringOrExiting(sourisX, sourisY)
-    			) {
+    		) {
     		return true;
     	}
     	return false;
     }
+    
     /**
-     * Indique si la souris est superposée au bouton start ( n'indique pas directement que le bouton start est cliqué )
+     * Indique quel bouton était cliqué en indiquant si la souris est superposée sur le bouton
      * @param x position de la souris selon l'horizontale
      * @param y position de la souris selon la verticale
      * @return
