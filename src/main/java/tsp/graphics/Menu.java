@@ -32,9 +32,14 @@ public class Menu {
     private final static double ARROW_SIDE = 0.096 * MIN;
 
     /**
-     * Ordonnée des flèches dans la fenêtre
+     * Ordonnée des flèches de skin dans la fenêtre
      */
-    private final static double ARROW_Y = 0.5 * Constants.WINDOWHEIGHT;//=250
+    private final static double ARROW_Y = 0.5 * Constants.WINDOWHEIGHT;
+    
+    /**
+     * Ordonnée des flèches de skin dans la fenêtre
+     */
+    private final static double SEED_ARROW_Y = 0.3 * Constants.WINDOWHEIGHT;
     /**
      * Abscisse des flèches
      */
@@ -55,6 +60,9 @@ public class Menu {
 
     private Button leftarrow = new Button(LEFTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
     private Button rightarrow = new Button(RIGHTARROW_X, ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
+
+    private Button seedLeftArrow = new Button(LEFTARROW_X, SEED_ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
+    private Button seedRightArrow = new Button(RIGHTARROW_X, SEED_ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
 
     /***
 	 * ------------------- Methods -------------------
@@ -94,7 +102,14 @@ public class Menu {
         //Affichage de la flèche droite en version normal ou "survolé"
         rightarrow.setImgPath(sourisX,sourisY);
         gc.drawImage(rightarrow.getImage(), RIGHTARROW_X , ARROW_Y);
-     
+        
+        //Affichage de la flèche SEEDgauche en version normal ou "survolé"
+        seedLeftArrow.setImgPath(sourisX,sourisY);
+        gc.drawImage(seedLeftArrow.getImage(), LEFTARROW_X , ARROW_Y);
+        
+        //Affichage de la flèche SEEDdroite en version normal ou "survolé"
+        seedRightArrow.setImgPath(sourisX,sourisY);
+        gc.drawImage(seedRightArrow.getImage(), RIGHTARROW_X , ARROW_Y);
         System.out.println("Refresh Menu");
 
     }
@@ -132,4 +147,10 @@ public class Menu {
     public boolean isRightArrowClicked(double x,double y) {
         return rightarrow.isHoveredCirc(x, y);
     }
+	public boolean isSeedLeftArrowClicked(double x, double y) {
+		return seedLeftArrow.isHoveredCirc(x, y);
+	}
+	public boolean isSeedRightArrowClicked(double x, double y) {
+		return seedRightArrow.isHoveredCirc(x, y);
+	}
 }

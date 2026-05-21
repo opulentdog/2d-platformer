@@ -210,6 +210,14 @@ public class Window extends Application{
 	        	playerRender.nextSkin();
 	        	menuNeedsRedraw = true;
 	        }
+	        if (menu.isSeedLeftArrowClicked(sourisx, sourisy)) {
+	        	//game.previousSeed();
+	        	menuNeedsRedraw = true;
+	        }
+	        if (menu.isSeedRightArrowClicked(sourisx, sourisy)) {
+	        	//game.nextSeed();
+	        	menuNeedsRedraw = true;
+	        }
 	    }
 
 	    else if (game.getState() == GameState.GAME_OVER) {
