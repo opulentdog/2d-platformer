@@ -24,7 +24,15 @@ public class PlatformRender extends Render<Platform> {
 	Platform[] platforms;
 	Generation generator;
 	EnumMap<PlatformType, Texture> textureMap;
-
+	
+	/***
+	 * ------------------- Setters -------------------
+	 */
+	
+	public void setPlatforms(Platform[] platforms) {
+	    this.platforms = platforms;
+	}
+	
 	/***
 	 * ------------------- Constructor -------------------
 	 */

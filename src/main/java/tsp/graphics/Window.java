@@ -200,6 +200,8 @@ public class Window extends Application{
 	    if (game.getState() == GameState.MENU) {
 	        if (menu.isPlayClicked(sourisx, sourisy)) {
 	    		game.getPlayer().setPosition(game.getPlayer().getX(),this.getHeight() / 3); //Replace le Player en position de départ
+				game.generateSeed(this);
+				platformRender.setPlatforms(game.getPlatforms());
 	            game.setState(GameState.RUNNING);
 	        }
 	        if (menu.isLeftArrowClicked(sourisx, sourisy)) {
@@ -208,6 +210,14 @@ public class Window extends Application{
 	        }
 	        if (menu.isRightArrowClicked(sourisx, sourisy)) {
 	        	playerRender.nextSkin();
+	        	menuNeedsRedraw = true;
+	        }
+	        if (menu.isSeedLeftArrowClicked(sourisx, sourisy)) {
+	        	game.previousSeed();
+	        	menuNeedsRedraw = true;
+	        }
+	        if (menu.isSeedRightArrowClicked(sourisx, sourisy)) {
+	        	game.nextSeed();
 	        	menuNeedsRedraw = true;
 	        }
 	    }
@@ -330,7 +340,7 @@ public class Window extends Application{
 	    
 	    playerRender.render(); 							// on affiche le joueur 
 	    
-	    menu.render(this, menuCanvas, sourisx, sourisy);  // Affichage du Menu : Boutons + Titre
+	    menu.render(menuCanvas, game.getGenerator().getSeed(), sourisx, sourisy);  // Affichage du Menu : Boutons + Titre
 
 	}
 	

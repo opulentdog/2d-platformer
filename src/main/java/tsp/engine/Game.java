@@ -80,6 +80,7 @@ public class Game {
 	 * @param window la fene^tre du jeu
 	 */
 	public Game(Window window) {
+		this.generator = new Generation(1);
 		reset(window);
 		state = GameState.MENU;
 	}
@@ -124,7 +125,6 @@ public class Game {
 	}
 	
 	public void reset(Window window) {
-	    generator = new Generation();
 	    player = new Player(Constants.PLAYER_SIDE, Constants.PLAYER_SIDE);
 	    tower = new Tower();
 
@@ -133,5 +133,15 @@ public class Game {
 
 	    state = GameState.RUNNING;
 	}
+
+	public void previousSeed() {
+		generator.setSeed( (generator.getSeed()-1 +10)%10 ); // Le +10 est là pour éviter d'avoir -1
+	}
+	public void nextSeed() {
+		generator.setSeed( (generator.getSeed()+1)%10 );
+	}
 	
+	public void generateSeed(Window window) {
+		this.setPlatforms(generator.randomPlatformGeneration(window.getWidth(), window.getHeight()));
+	}
 }

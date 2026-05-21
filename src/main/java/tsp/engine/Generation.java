@@ -12,6 +12,15 @@ public class Generation {
 	
 	private static final int PlatformSpacing = 300;
 	private int[] platformAngles;
+	private int seed;
+	
+	/***
+	 * ------------------- Constructor -------------------
+	 */
+	
+	public Generation(int seed) {
+		this.seed = seed;
+	}
 	
 	/***
 	 * ------------------- Getters -------------------
@@ -19,6 +28,18 @@ public class Generation {
 	
 	public int[] getPlatformAngles() {
 		return platformAngles;
+	}
+	
+	public int getSeed() {
+		return this.seed;
+	}
+	
+	/***
+	 * ------------------- Setters -------------------
+	 */
+	
+	public void setSeed(int seed) {
+		this.seed = seed;
 	}
 	
 	/***
@@ -60,7 +81,7 @@ public class Generation {
 
 	    Platform[] platforms     = new Platform[PLATFORM_COUNT];
 	    this.platformAngles       = new int[PLATFORM_COUNT];
-	    Random random             = new Random(2);
+	    Random random             = new Random(this.seed);
 
 	    // ── First platform: centred vertically, random angle ──────────────────────
 	    platformAngles[0] = (int) (360 * random.nextDouble());
