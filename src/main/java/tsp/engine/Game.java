@@ -133,8 +133,11 @@ public class Game {
 
 	    state = GameState.RUNNING;
 	}
-	
-	public void setGeneration(int seed) {
-		this.generator.setSeed(seed);
+
+	public void previousSeed() {
+		this.generator.setSeed( (this.generator.getSeed()-1)%10 );
+	}
+	public void nextSeed() {
+		this.generator.setSeed( (this.generator.getSeed()+1)%10 );
 	}
 }

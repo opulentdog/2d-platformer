@@ -211,11 +211,11 @@ public class Window extends Application{
 	        	menuNeedsRedraw = true;
 	        }
 	        if (menu.isSeedLeftArrowClicked(sourisx, sourisy)) {
-	        	//game.previousSeed();
+	        	game.previousSeed();
 	        	menuNeedsRedraw = true;
 	        }
 	        if (menu.isSeedRightArrowClicked(sourisx, sourisy)) {
-	        	//game.nextSeed();
+	        	game.nextSeed();
 	        	menuNeedsRedraw = true;
 	        }
 	    }
