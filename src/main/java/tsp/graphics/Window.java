@@ -393,10 +393,7 @@ public class Window extends Application{
         gameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath(),sourisx,sourisy);
 	}
 	
-	/**
-	 * TODO segmenter
-	 * 
-	 */
+	
 	@Override
 	public void start(Stage stage) {		
 		
@@ -417,8 +414,6 @@ public class Window extends Application{
 		// Grande classe anonyme à décomposer en petits blocs
 		AnimationTimer animation = new AnimationTimer() {
 		
-			//private static final int PlatformSpacing = 300;
-
 			long lastTime = 0;	
 	
 		    @Override
@@ -429,12 +424,11 @@ public class Window extends Application{
 		            return;
 		        }
 	
-		        //Delta c'est le temps en milliseconde qui s'est écoulé entre deux frames
-		        //Ca permet que le joueur bouge tjrs à la même vitesse même si il y a du lag
+		        // double delta est le temps en milliseconde qui s'est écoulé entre deux frames
+		        //Ca permet que le joueur bouge toujours à la même vitesse, même si il y a du lag
 		        double delta = (now - lastTime) / 1_000_000_000.0; // seconds
 		        update(delta,now);
 		    }
-//	Refactor
 		    
 			private void update(double delta, long now) {
 				if (delta < 1.0/40) return; // On limite les fps à 40 frames par seconds
@@ -475,10 +469,6 @@ public class Window extends Application{
 		
 	}
 
-protected void update(double delta, long now) {
-		// TODO Auto-generated method stub
-		
-	}
 
 // --------------- Lancement du jeu ------------------------
 
