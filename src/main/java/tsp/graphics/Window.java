@@ -287,7 +287,7 @@ public class Window extends Application{
 	/**
 	 *  Creation du menu avec les calques flous et nets
 	 */
-	private void setMenu(GaussianBlur menuBlur) {
+	private void setMenu() {
 		// On n'affiche PAS le menu à CHAQUE frame
 		if (!menuNeedsRedraw && !menu.doesMenubuttonsNeedsRedraw(sourisx, sourisy)) {
 			return; 												// rien à redessiner
@@ -443,7 +443,7 @@ public class Window extends Application{
 		        game.update(delta,w);
 		        switch(game.getState()) {
 			        case MENU:
-			        	setMenu(menuBlur);
+			        	setMenu();
 			            return;
 			            
 		        	case RUNNING:
