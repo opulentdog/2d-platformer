@@ -1,7 +1,6 @@
 package tsp.engine.platforms;
 
 import tsp.engine.Player;
-import tsp.engine.platforms.Platform.PlatformType;
 import tsp.graphics.Sound;
 
 /**

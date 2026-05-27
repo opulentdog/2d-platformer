@@ -3,7 +3,6 @@ package tsp.graphics.render;
 import java.util.EnumMap;
 
 import tsp.engine.Generation;
-import tsp.engine.Player;
 import tsp.engine.Tower;
 import tsp.engine.platforms.Platform;
 import tsp.engine.platforms.Platform.PlatformType;
@@ -66,8 +65,6 @@ public class PlatformRender extends Render<Platform> {
 		double rotation = tower.getRotation();
 		double towercenterx = window.getWidth()/2;
 
-		double cos=Math.cos(rotation*2*3.14159/360);
-		double sin=Math.sin(rotation*2*3.14159/360);
 		
 		int i=0;
 		
