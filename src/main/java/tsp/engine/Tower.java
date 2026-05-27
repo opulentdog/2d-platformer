@@ -2,10 +2,6 @@ package tsp.engine;
 
 import java.util.HashSet;
 
-import tsp.graphics.Constants;
-import tsp.graphics.Texture;
-import tsp.graphics.Window;
-import tsp.graphics.render.TowerRender;
 import javafx.scene.input.KeyCode;
 
 /**

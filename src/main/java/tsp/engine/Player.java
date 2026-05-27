@@ -2,15 +2,8 @@ package tsp.engine;
 
 import java.util.HashSet;
 
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import tsp.engine.platforms.Platform;
-import tsp.engine.platforms.Platform.PlatformType;
-import tsp.engine.platforms.BasicPlatform;
-import tsp.engine.platforms.LavaPlatform;
-import tsp.graphics.Window;
-import tsp.graphics.render.PlayerRender;
-import tsp.graphics.Sound;
 
 public class Player extends Asset {
 	
@@ -26,7 +19,6 @@ public class Player extends Asset {
 	private int gravity=1;
 	final private int FALL_THRESHOLD=29;
 	private Boolean ground=true;
-	private PlayerRender playerRender;
 	
 	/***
 	 * ------------------- Constructor -------------------
