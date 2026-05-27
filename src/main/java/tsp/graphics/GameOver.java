@@ -75,7 +75,7 @@ public class GameOver {
 	
 	    gc.setFill(Color.WHITE);
 	    gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 0.07*h));
-	    gc.fillText("Score: " + score, 0.3 * w, 0.8 * h);
+	    gc.fillText("Score: " + Math.max(0,score), 0.3 * w, 0.8 * h);
 	    //gc.fillText("Click to retry", 0.4 * w, 0.7 * h);
 		
 	    // Affichage des boutons

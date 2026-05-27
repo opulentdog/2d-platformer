@@ -199,7 +199,8 @@ public class Window extends Application{
 
 	    if (game.getState() == GameState.MENU) {
 	        if (menu.isPlayClicked(sourisx, sourisy)) {
-	    		game.getPlayer().setPosition(game.getPlayer().getX(),this.getHeight() / 3); //Replace le Player en position de départ
+	        	final double startingYpos = this.getHeight()-PlatformSpacing-150;
+	    		game.getPlayer().setPosition(game.getPlayer().getX(),startingYpos); //Replace le Player en position de départ
 				game.generateSeed(this);
 				platformRender.setPlatforms(game.getPlatforms());
 	            game.setState(GameState.RUNNING);

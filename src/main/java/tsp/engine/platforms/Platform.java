@@ -51,7 +51,18 @@ public abstract class Platform extends Asset{
 	 * @return true si this et s en contact, false sinon
 	 */
 	@Override
-	public Boolean intersects(Asset asset) {
+	public Boolean intersects(Asset other) {
+		double relativex=other.getX()-this.x;
+		double relativey=other.getY()-this.y+other.getHeight();
+		
+		return relativex < this.width 
+			&& relativey < this.height 
+			&& -relativex < other.getWidth() 
+			&& -relativey < 10 //other.getHeight()
+				
+				;
+	
+		/*
 		boolean isInContact = super.intersects(asset);
 		if (! (asset instanceof Player)) {
 			// Pour les non joueur
@@ -60,7 +71,7 @@ public abstract class Platform extends Asset{
 		if (isInContact) {
 			// this.effect(player);
 		}
-		return isInContact;
+		return isInContact;*/
 	}
 	
 	/**
