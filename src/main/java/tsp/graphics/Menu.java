@@ -76,7 +76,7 @@ public class Menu {
      * @param sourisX
      * @param sourisY
      */
-    public void render(Canvas overlayCanvas, int seed, double sourisX, double sourisY) {
+    public void render(Canvas overlayCanvas, int seed, int bestScore, double sourisX, double sourisY) {
 
     	// Récupère le contexte du canvas overlay (et non celui du jeu)
     	GraphicsContext gc = overlayCanvas.getGraphicsContext2D(); 
@@ -119,6 +119,10 @@ public class Menu {
         gc.setFill(Color.WHITE);
 	    gc.setFont(Font.font("Krungthep", FontWeight.MEDIUM, 0.06*h));
 	    gc.fillText(""+seed, 0.48 * w, SEED_ARROW_Y+0.7*ARROW_SIDE);
+	    
+	    // Affichage du meilleur score pour cette seed
+	    gc.setFont(Font.font("Krungthep", FontWeight.BOLD, 0.035*h));
+	    gc.fillText("Meilleur score : " + bestScore, 0.33 * w, SEED_ARROW_Y - 0.25 * ARROW_SIDE);
     }
     
     /**
