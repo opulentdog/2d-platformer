@@ -19,6 +19,7 @@ import tsp.engine.GameState;
 import tsp.graphics.render.PlatformRender;
 import tsp.graphics.render.PlayerRender;
 import tsp.graphics.render.TowerRender;
+import tsp.engine.SaveManager;
 
 /**
  * Classe pour ce qui est lié à la fenetre
@@ -60,6 +61,11 @@ public class Window extends Application{
 	 * Position verticale de la "caméra" (caméra virtuelle)
 	 */
 	double ycamera = 0;
+	
+	/**
+	 * 
+	 */
+	private SaveManager saveManager;
 	
 	/**
 	 * Son de la fenêtre
@@ -273,6 +279,7 @@ public class Window extends Application{
 	    this.soundDeath = new Sound(Constants.GAMEOVER_PATH);
 	    this.menu = new Menu();
 	    this.gameOver = new GameOver();
+	    this.saveManager = new SaveManager();
 	 	this.menuBlur = new GaussianBlur(Constants.FLOU);
 
 
@@ -336,7 +343,9 @@ public class Window extends Application{
 	    
 	    playerRender.render(); 							// on affiche le joueur 
 	    
-	    menu.render(menuCanvas, game.getGenerator().getSeed(), sourisx, sourisy);  // Affichage du Menu : Boutons + Titre
+	    int seed = game.getGenerator().getSeed();
+	    int bestScore = saveManager.getBestScore(seed);
+	    menu.render(menuCanvas, seed, bestScore, sourisx, sourisy);  // Affichage du Menu : Boutons + Titre
 
 	}
 	
@@ -361,7 +370,7 @@ public class Window extends Application{
         gc.save();															// Etat où restore() va revenir
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 30)); 				// police Arial, gras, taille 24
         gc.setFill(Color.WHITE);											// On fixe la couleur de police à blanc
-        gc.fillText("Score : "+(int)-this.getCamY()/PlatformSpacing, this.getHeight()-220, 50);
+        gc.fillText("Score : " + getCurrentScore(), this.getHeight()-220, 50);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 20)); 				//  taille 20
         int fps = (int)(Math.round(1.0 / delta / 10.0) * 10);				// affichage des FPS
         gc.fillText("FPS : " + fps, this.getHeight()-0.25*this.getWidth(), 0.13*this.getHeight());
@@ -385,6 +394,11 @@ public class Window extends Application{
 		}
 	    GONeedsRedraw = false;	
 	    
+		// Sauvegarde le score si meilleur score sur cette seed
+	    int seed = game.getGenerator().getSeed();
+	    int score = getCurrentScore();
+	    saveManager.updateBestScore(seed, score);
+	    
 		// on redessine une dernière image figée :
         this.getGC().clearRect(0, 0, this.getCanvas().getWidth(), this.getCanvas().getHeight());
         towerRender.render();
@@ -403,6 +417,13 @@ public class Window extends Application{
         gameOver.render(this, menuCanvas, (int)-this.getCamY()/PlatformSpacing,playerRender.getCurrentSkinPath(),sourisx,sourisy);
 	}
 	
+	/**
+	 * Méthode de calcul du score selon l'altitude
+	 * @return Score du joueur
+	 */
+	private int getCurrentScore() {
+	    return Math.max(0, (int) (-this.getCamY() / PlatformSpacing));
+	}
 	
 	@Override
 	public void start(Stage stage) {		
