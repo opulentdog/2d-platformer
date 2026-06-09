@@ -1,4 +1,4 @@
-module tsp.alien {
+module tsp.alien{
     exports tsp.graphics;
     exports tsp.engine;
 

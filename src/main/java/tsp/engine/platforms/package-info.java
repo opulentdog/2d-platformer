@@ -1,5 +1,5 @@
 /**
- * Ce package contient les classes du moteur du jeu 2D platformer.
- * Il gère la logique du jeu, la physique et le comportement des entités.
+ * Ce package contient les classes des différentes plateformes du jeu
+ * Il contient la classe Platform, dont hérite les classes des types de plateforme
  */
 package tsp.engine.platforms;
