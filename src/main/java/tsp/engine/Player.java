@@ -5,6 +5,10 @@ import java.util.HashSet;
 import javafx.scene.input.KeyCode;
 import tsp.engine.platforms.Platform;
 
+/**
+ * Joueur contrôlé dans le jeu
+ * Il se déplace en rebondissant sur les plateformes, peut actualiser sa position, et meurt en cas de longue chute
+ */
 public class Player extends Asset {
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
