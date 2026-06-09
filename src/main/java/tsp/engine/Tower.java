@@ -8,8 +8,10 @@ import javafx.scene.input.KeyCode;
  * classe de la tour contenant ses dimensions, sa texture.
  */
 public class Tower extends Asset{
-	/***
+	
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Fields -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	private final static int cylinderWidth = 250; // largeur de la tour
