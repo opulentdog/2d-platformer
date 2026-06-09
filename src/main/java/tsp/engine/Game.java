@@ -5,8 +5,9 @@ import tsp.graphics.Constants;
 import tsp.graphics.Window;
 
 public class Game {
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Fields -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	private GameState state = GameState.RUNNING;
 	private Player player;
@@ -14,8 +15,24 @@ public class Game {
 	private Generation generator;
 	private Platform[] platforms;
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
+	 * ------------------- Constructor -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
+	 */
+	
+	/**
+	 * Génération du joueur, des plateformes et passage à l'écran du MENU
+	 * @param window la fene^tre du jeu
+	 */
+	public Game(Window window) {
+		this.generator = new Generation(1);
+		reset(window);
+		state = GameState.MENU;
+	}
+	
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Getters -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**
@@ -71,19 +88,6 @@ public class Game {
 	    this.state = state;
 	}
 	
-	/***
-	 * ------------------- Constructor -------------------
-	 */
-	
-	/**
-	 * Génération du joueur, des plateformes et passage à l'écran du MENU
-	 * @param window la fene^tre du jeu
-	 */
-	public Game(Window window) {
-		this.generator = new Generation(1);
-		reset(window);
-		state = GameState.MENU;
-	}
 
 	/***
 	 * ------------------- Methods -------------------
