@@ -33,8 +33,9 @@ public class PlatformRender extends Render<Platform> {
 	    this.platforms = platforms;
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Constructor -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	public PlatformRender(Window window, Tower tower, Platform[] platforms, Generation generator) {
