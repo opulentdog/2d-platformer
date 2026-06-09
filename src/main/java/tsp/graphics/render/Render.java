@@ -3,6 +3,11 @@ package tsp.graphics.render;
 import tsp.engine.Asset;
 import tsp.graphics.Texture;
 
+/**
+ * Classe qui met en commun les caractériqtique des renders
+ * Le constructeur crée une Texture avec les arguments reçus
+ * @param <A>
+ */
 public abstract class Render<A extends Asset> {
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -26,14 +31,22 @@ public abstract class Render<A extends Asset> {
 	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * Renvoie la texture associé au Render
+	 * @return
+	 */
 	public Texture getTexture() {
 		return texture;
 	}
 	
-	/***
-	 * ------------------- Methods ----------------------
+	/*-------------------------------------------------------------------------------------------------------------------------------------
+	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * Méthode abstraite que chaque render doit définir
+	 */
 	public void render() {
 	};
 }

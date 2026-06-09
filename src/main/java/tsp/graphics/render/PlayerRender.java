@@ -3,6 +3,9 @@ import tsp.graphics.Constants;
 import tsp.engine.Player;
 import tsp.graphics.Window;
 
+/**
+ * Render du Player : elle gère son affichage dynamique
+ */
 public class PlayerRender extends Render<Player>{
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -12,6 +15,9 @@ public class PlayerRender extends Render<Player>{
 	
 	private Player player;
 	private Window window;
+	/**
+	 * Liste des chemins des différents
+	 */
 	static String[] skinsList = {
 		    Constants.PLAYER_PATH,
 		    Constants.SKINEARTH_PATH,
@@ -42,10 +48,18 @@ public class PlayerRender extends Render<Player>{
 	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * getter du currentSkinIndex
+	 * @return
+	 */
 	public int getCurrentSkinIndex() {
 	    return currentSkinIndex;
 	}
 	
+	/**
+	 * getter du currentSkinPath
+	 * @return
+	 */
 	public String getCurrentSkinPath() {
 		return skinsList[getCurrentSkinIndex()];
 	}
@@ -55,13 +69,20 @@ public class PlayerRender extends Render<Player>{
 	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * setter du chemin de l'image 
+	 * il choisit le bon skin dans la liste
+	 * il utilise le setter de Texture
+	 * @param index
+	 */
 	public void setSkinIndex(int index) {
 	    this.currentSkinIndex = index;
 	    this.getTexture().setImgPath(skinsList[currentSkinIndex], player.getWidth(), player.getHeight());
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**

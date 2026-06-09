@@ -8,9 +8,9 @@ import javafx.scene.shape.Cylinder;
 import tsp.engine.Tower;
 import tsp.graphics.Window;
 /**
- * gère le rendu visuel de la tour en 3D.
+ * Classe qui gère le rendu visuel de la tour en 3D.
  * <p>
- * elle classe crée un cylindre JavaFX, lui applique une texture répétée (tiling)
+ * elle crée un cylindre JavaFX, lui applique une texture répétée (tiling)
  * et synchronise sa rotation avec l'état logique de tower.<p>
  * gère également l'effet de défilement vertical infini de la tour.
  * 
@@ -33,17 +33,13 @@ public class TowerRender extends Render<Tower>{
 	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * Génère la tour à partir des briques et lui applique des effets
+	 * @param window
+	 * @param tower
+	 */
 	public TowerRender(Window window, Tower tower) {
 		super(tower, Constants.WALL_PATH);
-		/*
-		Scene scene = window.getScene();
-		window.getStage().setScene(scene);
-		PerspectiveCamera camera = new PerspectiveCamera(true);
-		camera.setTranslateZ(-800);
-		camera.setNearClip(0.1);
-		camera.setFarClip(5000);
-		scene.setCamera(camera);
-		*/
 		
         //Test du support materiel pour le rendu 3d (-Dprism.forceGPU=true)
         Boolean Support3D = Platform.isSupported(ConditionalFeature.SCENE3D);

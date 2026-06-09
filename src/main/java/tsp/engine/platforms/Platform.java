@@ -4,6 +4,9 @@ import tsp.engine.Asset;
 import tsp.engine.Player;
 import tsp.graphics.Sound;
 
+/**
+ * Classe qui met en commun toutes les caractéristiques des plateformes
+ */
 public abstract class Platform extends Asset{
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -43,8 +46,9 @@ public abstract class Platform extends Asset{
         return type;
     }
 
-	/***
-	 * ------------------- Methods ----------------------
+	/*-------------------------------------------------------------------------------------------------------------------------------------
+	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**
@@ -60,24 +64,13 @@ public abstract class Platform extends Asset{
 		return relativex < this.width 
 			&& relativey < this.height 
 			&& -relativex < other.getWidth() 
-			&& -relativey < 10 //other.getHeight()
-				
+			&& -relativey < 10 
 				;
-	
-		/*
-		boolean isInContact = super.intersects(asset);
-		if (! (asset instanceof Player)) {
-			// Pour les non joueur
-		}
-		Player player = (Player) asset;
-		if (isInContact) {
-			// this.effect(player);
-		}
-		return isInContact;*/
+
 	}
 	
 	/**
-	 * joue les effets liés au rebond
+	 * Joue les effets liés au rebond
 	 */
 	public void rebond() {
 		soundeff.playSE();
@@ -85,7 +78,7 @@ public abstract class Platform extends Asset{
 	}
 
 	/**
-	 * joue les effets liés au rebond
+	 * Joue les effets liés au rebond
 	 * @param player
 	 */
 	public abstract void effect(Player player);

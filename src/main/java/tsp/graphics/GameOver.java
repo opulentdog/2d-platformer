@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 /**
- * écran de game over
+ * Overlay de game over : affichage de tous les éléments
  */
 public class GameOver {
 	
@@ -36,8 +36,9 @@ public class GameOver {
 	private Button retry = new Button(RETRY_X, BTN_Y,BTN_SIDE,BTN_SIDE, Constants.RETRYNORMAL_PATH, Constants.RETRYHOVER_PATH);
     private Button menu = new Button(MENU_X, BTN_Y,BTN_SIDE,BTN_SIDE,Constants.MENUNORMAL_PATH,Constants.MENUHOVER_PATH);
 
-	/***
+    /*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
     /**
@@ -110,10 +111,22 @@ public class GameOver {
     	return false;
     }
 	
+	/**
+	 * Renvoie si le bouton cliqué est en fait Retry
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isRetryClicked(double x,double y) {
 	    return retry.isHoveredCirc(x,y);
 	}
 	
+	/**
+	 * Renvoie si le bouton cliqué est en fait Menu
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isMenuClicked(double x,double y) {
 	    return menu.isHoveredCirc(x,y);
 	}

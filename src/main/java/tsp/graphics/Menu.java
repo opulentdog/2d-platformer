@@ -6,7 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-
+/**
+ * Overlay du Menu d'accueil : affichage de tous les éléments :
+ * joueur, numéro de seed, titre, bouton de sélection et de lancement
+ */
 public class Menu {
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -65,8 +68,10 @@ public class Menu {
     private Button seedLeftArrow = new Button(LEFTARROW_X, SEED_ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.LEFTARROW_PATH,Constants.LEFTARROWHOVER_PATH);
     private Button seedRightArrow = new Button(RIGHTARROW_X, SEED_ARROW_Y,ARROW_SIDE,ARROW_SIDE,Constants.RIGHTARROW_PATH,Constants.RIGHTARROWHOVER_PATH);
 
-    /***
+    
+    /*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
     /**
@@ -147,11 +152,10 @@ public class Menu {
     
     /**
      * Indique quel bouton était cliqué en indiquant si la souris est superposée sur le bouton
-     * @param x position de la souris selon l'horizontale
-     * @param y position de la souris selon la verticale
+     * @param x : position de la souris selon l'horizontale
+     * @param y : position de la souris selon la verticale
      * @return
      */
-
     public boolean isPlayClicked(double x,double y) {
         return playSolo.isHoveredCirc(x, y);
     }

@@ -1,5 +1,8 @@
 package tsp.engine;
 
+/**
+ * Classe mère dont héritent Player et Platform
+ */
 public abstract class Asset {
 
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -7,8 +10,14 @@ public abstract class Asset {
 	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * Dimensions de l'Asset
+	 */
 	protected double width;
 	protected double height;
+	/**
+	 * Coordonnées de l'Asset
+	 */
 	protected double x = 0;
 	protected double y = 0;
 	
@@ -60,8 +69,9 @@ public abstract class Asset {
 		return y;
 	}
 
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Setters -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	public void setPosition(double x, double y) {
@@ -69,8 +79,9 @@ public abstract class Asset {
 		this.y = y;
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**
@@ -78,7 +89,6 @@ public abstract class Asset {
 	 * @param s: asset à comparer avec this
 	 * @return true si this et s en contact, false sinon
 	 */
-	// TODO A tester
 	public Boolean intersects(Asset other) {
 		double relativex=other.x-this.x;
 		double relativey=other.y-this.y;

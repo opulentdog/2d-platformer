@@ -5,7 +5,7 @@ import java.util.HashSet;
 import javafx.scene.input.KeyCode;
 
 /**
- * classe de la tour contenant ses dimensions, sa texture.
+ * Classe de la tour contenant ses dimensions, sa texture.
  */
 public class Tower extends Asset{
 	
@@ -42,8 +42,9 @@ public class Tower extends Asset{
 		return rotation;
 	}
     
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**
