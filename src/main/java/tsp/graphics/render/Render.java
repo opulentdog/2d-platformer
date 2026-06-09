@@ -2,7 +2,6 @@ package tsp.graphics.render;
 
 import tsp.engine.Asset;
 import tsp.graphics.Texture;
-import tsp.graphics.Window;
 
 public abstract class Render<A extends Asset> {
 	

@@ -70,6 +70,7 @@ public class TowerRender extends Render<Tower>{
 	}
 
 	/***
+	 * 
 	 * ------------------- Methods ----------------------
 	 */
 	
