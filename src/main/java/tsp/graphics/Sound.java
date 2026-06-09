@@ -7,6 +7,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Classe qui gère un son du jeu
+ */
 public class Sound {
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -16,6 +19,9 @@ public class Sound {
 	
 	private Clip clip;
 	private URL soundURL;
+	/**
+	 * Indique si le son est en cours
+	 */
 	private boolean on;
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -29,14 +35,14 @@ public class Sound {
 
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**
 	 *  Charge le fichier audio associé à l'objet Sound et prépare sa lecture.
 	 */
-
 	public void setFile() {
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
@@ -48,21 +54,21 @@ public class Sound {
 	}
 		
 	/**
-	 * lance le son
+	 * Lance le son
 	 */
 	public void play() {
 		clip.start();
 	}
 	
 	/**
-	 * lance le son en boucle 
+	 * Lance le son en boucle 
 	 */
 	public void loop() {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
 	/**
-	 * arrete le son
+	 * Arrete le son
 	 */
 	public void stop() {
 		clip.stop();
@@ -86,7 +92,7 @@ public class Sound {
 	}
 	
 	/**
-	 * Lance la musique ( et non un simple son ) en boucle
+	 * Lance un son de type musique : en boucle
 	 */
 	public void playMusic() {
 		if (! on) {
@@ -107,7 +113,7 @@ public class Sound {
 	}
 	 
 	/**
-	 * Lance un son ( sound effect )
+	 * Lance un son de type sound effect
 	 */
 	public void playSE() {
 		this.setFile();

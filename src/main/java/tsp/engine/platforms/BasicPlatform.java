@@ -3,7 +3,7 @@ import tsp.engine.Player;
 import tsp.graphics.Sound;
 
 /**
- * plateforme sur laquelle le joueur peut rebondir, sans effets particuliers
+ * Plateforme sur laquelle le joueur peut rebondir, sans effets particuliers
  */
 public class BasicPlatform extends Platform{
 

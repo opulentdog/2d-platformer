@@ -2,13 +2,15 @@ package tsp.graphics;
 
 import java.util.HashMap;
 
+/**
+ * Fichier/classe où sont définies les constantes de jeu
+ */
 public final class Constants {
 	private Constants() {}
 	
 	/**
 	 * Images des éléments du jeu
 	 */
-    public static final String CLOUDS_PATH = "/images/fond_menu.jpg";
     public static final String SPACE_PATH = "/images/space.jpg";
     public static final String BASICPLATFORM_PATH = "/images/platform.png";
     public static final String LAVAPLATFORM_PATH = "/images/platform-lava3.png";

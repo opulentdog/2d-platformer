@@ -7,7 +7,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
 
 /**
- * classe représentant une tuile de texture
+ * Classe représentant une tuile de texture
  */
 public class Tile {
 	
@@ -18,8 +18,6 @@ public class Tile {
 	
 	private double width;
 	private double height;
-	private int repeatX = 5;   // nombre de tuiles horizontalement (autour du cylindre)
-	private int repeatY = 5;   // nombre de tuiles verticalement (hauteur)
 	private Image img;
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -33,8 +31,9 @@ public class Tile {
 		this.height = h;
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**

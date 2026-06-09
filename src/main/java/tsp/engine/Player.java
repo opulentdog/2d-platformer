@@ -12,12 +12,27 @@ public class Player extends Asset {
 	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * Indique si le Player est mort ou non
+	 */
 	private boolean dead;
+	/**
+	 * Vitesse gagnée par le Player
+	 */
 	private double xVelocity=0;
 	private double yVelocity=0;
+	/**
+	 * Vitesse du Player
+	 */
 	double playeryVelocity=31;
 	double playerxVelocity=3;
+	/**
+	 * Indice sur l'influence de la gravité
+	 */
 	private int gravity=1;
+	/**
+	 * Vitesse max de chute avant de mourrir
+	 */
 	final private int FALL_THRESHOLD=29;
 	private Boolean ground=true;
 	
@@ -31,32 +46,51 @@ public class Player extends Asset {
 		dead = false;
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
+	/**
+	 * Indique si le joueur est mort
+	 * @return
+	 */
 	public boolean isDead() {
 		return dead;
 	}
 	
+	/**
+	 * Tue le Player
+	 */
 	public void kill() {
 		dead = true;
 	}
  	
+	/**
+	 * Réssucite le Player
+	 */
 	public void revive() {
 	    this.dead = false;
 	}
 	
+	/**
+	 * Augmente la vitesse horizontale du Player
+	 * @param delta_xVelocity
+	 */
 	public void addxVelocity(double delta_xVelocity) {
 		 this.xVelocity += delta_xVelocity;
 	}
 	
+	/**
+	 * Augmente la vitesse verticale du joueur
+	 * @param delta_yVelocity
+	 */
 	public void addyVelocity(double delta_yVelocity) {
 		this.yVelocity += delta_yVelocity;
 	}
 	
 	/**
-	 * traduit les entrées clavier en mouvement
+	 * Traduit les entrées clavier en mouvement
 	 * si la touche gauche ou droite est pressée, une accélération est ajoutée à la vitesse horizontale.
 	 * @param pressedKeyset l'ensemble des touches actuellement maintenues enfoncées
 	 */
@@ -78,7 +112,7 @@ public class Player extends Asset {
 	}
 	
 	/**
-	 * calcule et applique le déplacement du joueur pour la prochaine frame</p>
+	 * Calcule et applique le déplacement du joueur pour la prochaine frame</p>
 	 * 
 	 * étapes :</p>
 	 * Applique la gravité et la friction (horizontale et verticale).</p>
@@ -93,12 +127,12 @@ public class Player extends Asset {
 	public void calculatePosition(int windowsWidth,
 			int windowsHeight, Platform[] platforms) {
 
-		//Calcule la position du joueur à la prochaine frame.
+		// Calcule la position du joueur à la prochaine frame.
 		yVelocity+=gravity;
 		xVelocity = 0.7 * xVelocity; // doit être identique au coefficient dans controlTower de tower.java
 		yVelocity = 0.97 * yVelocity;
 		
-		/*Bordure de l'écran gestion des collisions*/
+		// Bordure de l'écran et gestion des collisions
 		if (x < 0) {
 			xVelocity = 0;
 			x = 0;
@@ -118,7 +152,7 @@ public class Player extends Asset {
 		}
 		
 		
-		/*Collision avec les platformes*/
+		// Collision avec les platformes
 		for(Platform platform : platforms) {
 			if(platform.intersects(this)) {
 				if (yVelocity>FALL_THRESHOLD) {		// dégâts de chute (plateforme)
@@ -129,11 +163,6 @@ public class Player extends Asset {
 					platform.effect(this);
 				}
 
-					/*
-					if (platform.getType() == PlatformType.BASIC || platform.getType() == PlatformType.LAVA ) {
-						platform.rebond();
-			        }*/
-				
 			}
 		}
 		this.x = this.x + xVelocity;

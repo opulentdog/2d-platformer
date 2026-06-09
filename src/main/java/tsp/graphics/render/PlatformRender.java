@@ -56,8 +56,9 @@ public class PlatformRender extends Render<Platform> {
 
 	}
 	
-	/***
+	/*-------------------------------------------------------------------------------------------------------------------------------------
 	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	/**
@@ -88,7 +89,12 @@ public class PlatformRender extends Render<Platform> {
 		
 	}
 	
-	//Rend l'image et permet aussi de redimentionner en temps réel
+	/**
+	 * Rend l'image et permet aussi de redimentionner en temps réel
+	 * @param platform
+	 * @param width
+	 * @param height
+	 */
 	public void renderPlatform(Platform platform, double width, double height) {
 		window.getGC().drawImage(textureMap.get(platform.getType()).getImage(), platform.getX(), platform.getY() - window.getCamY(), width, height);
 	}

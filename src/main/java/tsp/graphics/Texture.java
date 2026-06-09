@@ -30,7 +30,9 @@ public class Texture {
 	 * Image de la texture
 	 */
 	private Image img;
-
+	/**
+	 * Chemin de l'Image
+	 */
 	private String imgPath;
 	
 	/*-------------------------------------------------------------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ public class Texture {
 	 */
 	
 	/**
-	 * constructeur lorsque l'image est répétée sur une surface
+	 * Constructeur lorsque l'image est répétée sur une surface
 	 * @param imgPath
 	 * @param width
 	 * @param height
@@ -51,7 +53,7 @@ public class Texture {
 	}
 	
 	/**
-	 * constructeur lorsque l'image est utilisée directement comme simple sprite
+	 * Constructeur lorsque l'image est utilisée directement comme simple sprite
 	 * @param imgPath
 	 */
 	public Texture(String imgPath) {
@@ -81,8 +83,9 @@ public class Texture {
 		return width;
 	}
 	
-	/***
-	 * ------------ Methods --------------------------
+	/*-------------------------------------------------------------------------------------------------------------------------------------
+	 * ------------------- Methods -------------------
+	 * -------------------------------------------------------------------------------------------------------------------------------------
 	 */
 	
 	public void setImgPath(String newPath, double width, double height) {
@@ -93,7 +96,7 @@ public class Texture {
 	
 	
 	/**
-	 * Texture pour un cylindre (À généraliser plus tard éventuellement pour n'importe quelle forme)
+	 * Texture pour un cylindre
 	 * @param imgPath
 	 * @param width
 	 * @param height
@@ -108,6 +111,10 @@ public class Texture {
 		img = tile.tileWithCanvas(repeatX, repeatY);
 	}
 	
+	/**
+	 * Applique la texture à la tour
+	 * @param shape : le render3D de la tour 
+	 */
 	public void applyTexture(Shape3D shape) {
 		PhongMaterial mat = new PhongMaterial();
 		mat.setDiffuseMap(img);
