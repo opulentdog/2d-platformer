@@ -116,7 +116,7 @@ public class Button {
 	 */
 	public boolean isHoveredCirc(double x,double y) {
 		//On prend un rayon plus petit que l'image car le bouton l'est aussi
-        double radius = 0.85 * this.width / 2; 
+        double radius = this.width / 2; 
         double cx = this.x + radius;
         double cy = this.y + radius;
         double distance_carrée = (x - cx) * (x - cx) + (y - cy) * (y - cy);
