@@ -1,7 +1,5 @@
 package tsp.graphics;
 
-import java.net.URL;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -18,7 +16,7 @@ public class Sound {
 	 */
 	
 	private Clip clip;
-	private URL soundURL;
+	private String chemin;
 	/**
 	 * Indique si le son est en cours
 	 */
@@ -30,7 +28,7 @@ public class Sound {
 	 */
 	
 	public Sound(String chemin) {
-		soundURL = getClass().getResource(chemin);
+		this.chemin = chemin;
 		on = false;
 
 	}
@@ -45,7 +43,7 @@ public class Sound {
 	 */
 	public void setFile() {
 		try {
-			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResource(this.chemin));
 			clip = AudioSystem.getClip();
 			clip.open(ais);
 		}catch(Exception e) {
